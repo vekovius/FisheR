@@ -18,6 +18,11 @@ public class DirectionIndicator : MonoBehaviour
     [Header("Player Reference")]
     public Transform playerTransform;
 
+    [Header("KeyBindings")]
+    public KeyCode increaseAnglekey = KeyCode.UpArrow;
+    public KeyCode decreaseAngleKey = KeyCode.DownArrow;
+    public KeyCode castKey = KeyCode.Space;
+
     private Vector2 currentDirection;
 
     private void Start()
@@ -34,11 +39,11 @@ public class DirectionIndicator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(increaseAnglekey))
         {
             angle += angleChangeSpeed * Time.deltaTime;
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(decreaseAngleKey))
         {
             angle -= angleChangeSpeed * Time.deltaTime;
         }
@@ -49,7 +54,7 @@ public class DirectionIndicator : MonoBehaviour
 
         UpdateLine();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(castKey))
         { 
             Debug.Log($"Casting in direction {currentDirection}");
         }

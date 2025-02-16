@@ -1,19 +1,38 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PassiveState : MonoBehaviour
-{
-    [Header("UI Panels")]
-    public GameObject inventoryPanel;
-    public GameObject mapPanel;
-    public GameObject settingsPanel;
+public class PassiveState : StateInterface
+{ 
+    private readonly GameObject inventoryPanel;
+    private readonly GameObject mapPanel;
+    private readonly GameObject settingsPanel;
 
-    [Header("KeyBindings")]
-    public KeyCode inventoryKey = KeyCode.I;
-    public KeyCode mapKey = KeyCode.M;
-    public KeyCode settingsKey = KeyCode.Escape;
 
-    private void Update()
+    public KeyCode inventoryKey;
+    public KeyCode mapKey;
+    public KeyCode settingsKey;
+
+    public PassiveState(
+        GameObject inventoryPanel, 
+        GameObject mapPanel, 
+        GameObject settingsPanel, 
+        KeyCode inventoryKey,
+        KeyCode mapKey, 
+        KeyCode settingsKey)
+    {
+        this.inventoryPanel = inventoryPanel;
+        this.mapPanel = mapPanel;
+        this.settingsPanel = settingsPanel;
+        this.inventoryKey = inventoryKey;
+        this.mapKey = mapKey;
+        this.settingsKey = settingsKey;
+    }
+
+    public void Enter()
+    {
+
+    }
+    public void Update()
     {
         if (Input.GetKeyDown(inventoryKey))
         {
@@ -27,6 +46,11 @@ public class PassiveState : MonoBehaviour
         {
             TogglePanel(settingsPanel);
         }
+    }
+
+    public void Exit()
+    {
+        Debug.Log("Exting Passive State");
     }
 
     void TogglePanel(GameObject panel)

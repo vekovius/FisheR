@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - FishBounds
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -42,20 +43,29 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
-    uniqueID: 337946203
-    locked: 0
-  - name: New Layer 2
-    uniqueID: 454200395
-    locked: 0
-  - name: New Layer 3
-    uniqueID: 992946319
-    locked: 0
-  - name: New Layer 4
+  - name: Water
     uniqueID: 143301493
     locked: 0
-  - name: New Layer 5
+  - name: Background-Far
+    uniqueID: 350088891
+    locked: 0
+  - name: Background-Mid
+    uniqueID: 1478695247
+    locked: 0
+  - name: Background-Near
     uniqueID: 3999961671
+    locked: 0
+  - name: Lure
+    uniqueID: 454200395
+    locked: 0
+  - name: Player
+    uniqueID: 337946203
+    locked: 0
+  - name: Fish
+    uniqueID: 992946319
+    locked: 0
+  - name: Foreground-Objects
+    uniqueID: 1292898851
     locked: 0
   m_RenderingLayers:
   - Default

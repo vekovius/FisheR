@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DirectionIndicator : MonoBehaviour
@@ -25,6 +26,7 @@ public class DirectionIndicator : MonoBehaviour
 
     private Vector2 currentDirection;
 
+    
     private void Start()
     {
         if (lineRenderer == null)
@@ -57,6 +59,7 @@ public class DirectionIndicator : MonoBehaviour
         if (Input.GetKeyDown(castKey))
         { 
             Debug.Log($"Casting in direction {currentDirection}");
+
         }
     }
 
@@ -79,5 +82,11 @@ public class DirectionIndicator : MonoBehaviour
             lineRenderer.SetPosition(i, point);
         }
     }
+
+    public Vector2 getCurrentDirection()
+    {
+        return this.currentDirection;
+    }
+
 
 }

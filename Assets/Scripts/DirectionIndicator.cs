@@ -53,14 +53,7 @@ public class DirectionIndicator : MonoBehaviour
         angle = Mathf.Clamp(angle, 0f, 90f);
 
         UpdateDirection();
-
         UpdateLine();
-
-        if (Input.GetKeyDown(castKey))
-        { 
-            Debug.Log($"Casting in direction {currentDirection}");
-
-        }
     }
 
     void UpdateDirection()

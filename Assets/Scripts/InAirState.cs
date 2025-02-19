@@ -14,7 +14,6 @@ public class InAirState : StateInterface
 
     public void Exit()
     {
-        Debug.Log("Exiting In Air State State");
     }
 
     public void Update()

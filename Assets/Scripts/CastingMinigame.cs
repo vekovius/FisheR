@@ -9,16 +9,22 @@ public class CastingMinigame : MonoBehaviour
     public Image PowerBarMask;
     public float barChangeSpeed = 1;
     float maxPowerBarValue = 100;
-    float currentPowerBarValue;
+    [SerializeField]
+    public float currentPowerBarValue;
     bool powerIsIncreasing;
     bool PowerBarOn;
 
-    private void Start()
+    private void OnEnable()
     {
         currentPowerBarValue = 0;
         powerIsIncreasing = true;
         PowerBarOn = true;
         StartCoroutine(UpdatePowerBar());
+    }
+
+    public float getCurrentPowerBarValue()
+    {
+        return currentPowerBarValue;
     }
 
     IEnumerator  UpdatePowerBar()
@@ -46,20 +52,12 @@ public class CastingMinigame : MonoBehaviour
             PowerBarMask.fillAmount = fill;
             yield return new WaitForSeconds(0.02f);
 
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                PowerBarOn = false;
-                castLure(currentPowerBarValue);
-            }
+            
         }
         yield return null;
     }
 
-    public void castLure(float castFoce)
-    {
-        
-        Debug.Log($"Casting with force {castFoce}");
-    }
+   
 
     
 

@@ -13,7 +13,8 @@ public class StateController : MonoBehaviour
     public KeyCode settingsKey = KeyCode.Escape;
 
     [Header("Cast State Settings")]
-    public float castSpeed = 10f;
+    public float castSpeed;
+    public float maxCastSpeed;
     public GameObject lurePrefab;
     public Transform castOrigin;
     public DirectionIndicator directionIndicator;
@@ -29,7 +30,7 @@ public class StateController : MonoBehaviour
     private void Start()
     {
         passiveState = new PassiveState(inventoryPanel, mapPanel, settingsPanel, inventoryKey, mapKey, settingsKey);
-        castState = new CastState(castSpeed, lurePrefab, castOrigin, directionIndicator);
+        castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, castingMinigame);
         inAirState = new InAirState();
 
         ChangeState(passiveState);
@@ -52,6 +53,7 @@ public class StateController : MonoBehaviour
             castingMinigame.gameObject.SetActive(false);
         }
 
+
         if (currentState != null)
         {
             currentState.Enter();
@@ -66,16 +68,23 @@ public class StateController : MonoBehaviour
 
         if (currentState is PassiveState && Input.GetKeyDown(castKey))
         {
-            Debug.Log("Chaning to cast state");
             ChangeState(castState);
         }
 
         if (currentState is CastState && Input.GetKeyUp(castKey))
         {
-            Debug.Log("Chaning to inAirState state");
             directionIndicator.gameObject.SetActive(false);
             ChangeState(inAirState);
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            directionIndicator.gameObject.SetActive(true);
+            GameObject Lure = GameObject.FindGameObjectWithTag("Lure");
+            Object.Destroy(Lure);
+            ChangeState(passiveState);
+        }
+
     }
 
 }

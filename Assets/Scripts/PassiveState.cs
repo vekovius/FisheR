@@ -6,6 +6,8 @@ public class PassiveState : StateInterface
     private readonly GameObject inventoryPanel;
     private readonly GameObject mapPanel;
     private readonly GameObject settingsPanel;
+    private readonly GameObject playerObject;
+    private readonly GameObject directionIndicator;
 
 
     public KeyCode inventoryKey;
@@ -30,7 +32,12 @@ public class PassiveState : StateInterface
 
     public void Enter()
     {
-
+        //Change camera to track player
+        CameraController cameraController = Camera.main.GetComponent<CameraController>();
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        cameraController.target = playerObject.transform;
+       
+        
     }
     public void Update()
     {
@@ -50,7 +57,6 @@ public class PassiveState : StateInterface
 
     public void Exit()
     {
-        Debug.Log("Exting Passive State");
     }
 
     void TogglePanel(GameObject panel)

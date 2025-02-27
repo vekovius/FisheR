@@ -1,10 +1,10 @@
-# [Name of the Project] : [Team Number]
+# FISHR : Team 24
 # Members
-Project Manager: [Name] ([GitHub Name])\
-Communications Lead: [Name] ([GitHub Name])\
-Git Master: [Name] ([GitHub Name])\
-Design Lead: [Name] ([GitHub Name])\
-Quality Assurance Tester: [Name] ([GitHub Name])
+Project Manager: Samuel Vekovius (vekoLSU)\
+Communications Lead: Mason Dornier (Mason-Dornierk)\
+Git Master: Brock Badeaux (BrockBadeaux14)\
+Design Lead: Michael Meyers ([GitHub Name])\
+Quality Assurance Tester: Jake Ack ([GitHub Name])\
 
 # About Our Software
 

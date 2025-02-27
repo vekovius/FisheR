@@ -3,8 +3,26 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public GameObject inventoryPanel;
     public int maxSize;
     public List<GameObject> inventory = new List<GameObject>();
+
+    public Transform[] sortPoint;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (inventoryPanel.activeSelf == true)
+            {
+                inventoryPanel.SetActive(false);
+            }
+            else 
+            {
+                inventoryPanel.SetActive(true);
+            }
+        }
+    }
 
     public void AddItem(GameObject item) 
     {
@@ -12,13 +30,16 @@ public class Inventory : MonoBehaviour
         {
             Debug.Log("Item Added: " + item.name);
             inventory.Add(item);
+
+            item.GetComponent<ItemScript>().id = inventory.IndexOf(item);
+            item.transform.position = sortPoint[inventory.IndexOf(item)].position;
+            item.transform.localScale = sortPoint[inventory.IndexOf(item)].localScale;
+            item.transform.parent = sortPoint[inventory.IndexOf(item)];
         }
         else 
         {
             Debug.Log("Inventory Full");
         }
-
-        item.GetComponent<ItemScript>().id = inventory.IndexOf(item);
     }
 
     public void RemoveItem(int id) 
@@ -28,6 +49,17 @@ public class Inventory : MonoBehaviour
         foreach (GameObject item in inventory) 
         {
             item.GetComponent<ItemScript>().id = inventory.IndexOf(item);
+            item.transform.position = sortPoint[inventory.IndexOf(item)].position;
+            item.transform.parent = sortPoint[inventory.IndexOf(item)];
+        }
+    }
+
+    public void UnlockInventory(int amount) 
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            sortPoint[maxSize].GetComponent<SortPoint>().Unlock();
+            maxSize++;
         }
     }
 }

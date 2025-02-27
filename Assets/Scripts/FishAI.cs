@@ -4,25 +4,27 @@ using UnityEngine.Rendering.Universal.Internal;
 public class FishAI : MonoBehaviour
 {
     public FishType fishType; //Asigned by FishSpawner
+    public Transform currentLure = null;
     public Vector2 velocity;
     public Vector2 homePosition;
-
+  
     private float maxSpeed;
     //private float maxForce;
     private float neighborRadius;
+    public float lureAttractionRadius = 3;
     private float separationDistance;
     private float alignmentWeight;
     private float cohesionWeight;
     private float separationWeight;
     private float wanderWeight;
     private float homeAttractionWeight;
-
+    
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        
         if(fishType != null)
         {
             maxSpeed = fishType.maxSpeed;
@@ -50,6 +52,9 @@ public class FishAI : MonoBehaviour
         acceleration += Flock();
         acceleration += Wander();
         acceleration += HomeAttraction();
+        acceleration += lureAttraction();
+
+
 
         velocity += acceleration * Time.fixedDeltaTime;
         velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
@@ -66,7 +71,7 @@ public class FishAI : MonoBehaviour
         Vector2 separation = Vector2.zero;
         int count = 0;
 
-        //Goes though all neigbors within range
+        //Goes though all neighbors within range
         foreach (Collider2D col in neighbors)
         {
             //
@@ -117,7 +122,6 @@ public class FishAI : MonoBehaviour
         return wanderForce; //Vector2.ClampMagnitude(wanderForce, maxForce);
     }
 
-
     //This function keeps the fishies near their home point. 
     private Vector2 HomeAttraction()
     {
@@ -125,6 +129,32 @@ public class FishAI : MonoBehaviour
         toHome *= homeAttractionWeight;
         return toHome; //Vector2.ClampMagnitude(toHome, maxForce);
     }
+
+    private Vector2 lureAttraction()
+    {
+        if (currentLure == null)
+        {
+            GameObject lureObject = GameObject.FindWithTag("Lure");
+            if (lureObject != null)
+            {
+                currentLure = lureObject.transform;
+            }
+        }
+
+        if (currentLure != null)
+        {
+            float distanceTolure = Vector2.Distance((Vector2)transform.position, (Vector2)currentLure.position);
+
+            if (distanceTolure <= 5)
+            {
+                Debug.Log("Attracting to lure!");
+                Vector2 toLure = ((Vector2)currentLure.position - (Vector2)transform.position).normalized * maxSpeed - velocity;
+                return toLure;
+            }
+        }
+        return Vector2.zero;
+    }
+
 
     private void OnDrawGizmosSelected()
     {

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
@@ -9,18 +11,17 @@ public class Inventory : MonoBehaviour
 
     public Transform[] sortPoint;
 
-    void Update()
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        DontDestroyOnLoad(gameObject);
+        transform.parent = GameObject.FindGameObjectWithTag("MainCamera").transform;
+    }
+
+    private void Update()
+    {
+        if(transform.parent == null)
         {
-            if (inventoryPanel.activeSelf == true)
-            {
-                inventoryPanel.SetActive(false);
-            }
-            else 
-            {
-                inventoryPanel.SetActive(true);
-            }
+            transform.parent = GameObject.FindGameObjectWithTag("MainCamera").transform;
         }
     }
 

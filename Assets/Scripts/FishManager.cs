@@ -13,18 +13,17 @@ public class FishManager : MonoBehaviour
     {
         foreach (FishType fishType in fishSpawner.fishTypes)
         {
-            for (int i = 0; i < 2; i++)
-            {
-                SpawnRegion region = fishType.spawnRegion != null
-                    ? fishType.spawnRegion
-                    : fishSpawner.GetSpawnRegionForSpecies(fishType.speciesID);
+            
+            SpawnRegion region = fishType.spawnRegion != null
+                ? fishType.spawnRegion
+                : fishSpawner.GetSpawnRegionForSpecies(fishType.speciesID);
 
 
-                if (region != null)
-                    fishSpawner.SpawnSchool(fishType, region);
-                else
-                    Debug.Log($"No spawn region found for {fishType.typeName}");
-            }
+            if (region != null)
+                fishSpawner.SpawnSchool(fishType, region);
+            else
+                Debug.Log($"No spawn region found for {fishType.typeName}");
+            
         }
     }
 }

@@ -9,7 +9,7 @@ public class SpawnRegion : MonoBehaviour
     public string speciesID; //SpeciesID
     public Color gizomoColor = Color.green; //spawn region color
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = gizomoColor;
         Gizmos.DrawWireCube(transform.position, size); //Draws wire cube, well square bc we passing 2d vector 

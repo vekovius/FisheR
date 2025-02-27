@@ -7,6 +7,7 @@ TagManager:
   - FishBounds
   - Water
   - Lure
+  - Item
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,8 @@ TagManager:
   - FishBounds
   - Water
   - Lure
+  - Item
+  - Sort Point
   layers:
   - Default
   - TransparentFX
@@ -67,6 +69,9 @@ TagManager:
     locked: 0
   - name: Foreground-Objects
     uniqueID: 1292898851
+    locked: 0
+  - name: UI
+    uniqueID: 1803619637
     locked: 0
   m_RenderingLayers:
   - Default

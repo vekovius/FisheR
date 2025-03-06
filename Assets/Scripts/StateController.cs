@@ -21,9 +21,17 @@ public class StateController : MonoBehaviour
     public DirectionIndicator directionIndicator;
     public KeyCode castKey = KeyCode.Space;
 
+
+    [Header("Water settings")]
+    public float waterLevel = 16f;
+
+
     private PassiveState passiveState;
     private CastState castState;
     private InAirState inAirState;
+    private InWaterState inWaterState;
+    private HookedState hookedState;
+
     public CastingMinigame castingMinigame;
     public CameraController cameraController;
 
@@ -32,7 +40,9 @@ public class StateController : MonoBehaviour
     {
         passiveState = new PassiveState(inventoryPanel, mapPanel, settingsPanel, inventoryKey, mapKey, settingsKey);
         castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, castingMinigame);
-        inAirState = new InAirState();
+        inAirState = new InAirState(waterLevel);
+        inWaterState = new InWaterState();
+        hookedState = new HookedState();
 
         ChangeState(passiveState);
     }
@@ -67,11 +77,40 @@ public class StateController : MonoBehaviour
         if (currentState != null)
             currentState.Update();
 
+        HandleStateTransitions();
+
+        HandleKeyInputs();
+    }
+
+    private void HandleStateTransitions()
+    {
+        if (currentState is InAirState)
+        {
+            InAirState airState = (InAirState)currentState;
+            if (airState.IsLureInWater())
+            {
+                ChangeState(inWaterState);
+            }
+        }
+
+        if (currentState is InWaterState)
+        {
+            InWaterState waterState = (InWaterState)currentState;
+            if (waterState.IsFishHooked())
+            {
+                Debug.Log("Transitioning to IsHookedState");
+                ChangeState(hookedState);
+            }
+        }
+    }
+
+    private void HandleKeyInputs()
+    {
         if (currentState is PassiveState && Input.GetKeyDown(castKey))
         {
             ChangeState(castState);
         }
-
+        
         if (currentState is CastState && Input.GetKeyUp(castKey))
         {
             directionIndicator.gameObject.SetActive(false);
@@ -85,7 +124,6 @@ public class StateController : MonoBehaviour
             Object.Destroy(Lure);
             ChangeState(passiveState);
         }
-
     }
 
 }

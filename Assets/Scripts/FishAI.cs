@@ -140,16 +140,24 @@ public class FishAI : MonoBehaviour
                 currentLure = lureObject.transform;
             }
         }
+        else
+        {
+            if (currentLure.gameObject.CompareTag("OccupiedLure"))
+            {
+                currentLure = null;
+                return Vector2.zero;
+            }
+        }
 
         if (currentLure != null)
         {
             float distanceTolure = Vector2.Distance((Vector2)transform.position, (Vector2)currentLure.position);
 
-            if (distanceTolure <= 5)
+            if (distanceTolure <= lureAttractionRadius)
             {
-                //Debug.Log("Attracting to lure!");
+                float attractionStrength = Mathf.Lerp(0.5f, 1.5f, 1 - (distanceTolure / lureAttractionRadius));
                 Vector2 toLure = ((Vector2)currentLure.position - (Vector2)transform.position).normalized * maxSpeed - velocity;
-                return toLure;
+                return toLure * attractionStrength;
             }
         }
         return Vector2.zero;

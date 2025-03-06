@@ -25,6 +25,8 @@ public class StateController : MonoBehaviour
     [Header("Water settings")]
     public float waterLevel = 16f;
 
+    [Header("Hooked state settings")]
+    public GameObject tensionBarGameObject;
 
     private PassiveState passiveState;
     private CastState castState;
@@ -42,7 +44,7 @@ public class StateController : MonoBehaviour
         castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, castingMinigame);
         inAirState = new InAirState(waterLevel);
         inWaterState = new InWaterState();
-        hookedState = new HookedState();
+        hookedState = new HookedState(tensionBarGameObject);
 
         ChangeState(passiveState);
     }
@@ -124,6 +126,8 @@ public class StateController : MonoBehaviour
             Object.Destroy(Lure);
             ChangeState(passiveState);
         }
+
+       
     }
 
 }

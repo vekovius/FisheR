@@ -147,7 +147,7 @@ public class FishAI : MonoBehaviour
 
             if (distanceTolure <= 5)
             {
-                Debug.Log("Attracting to lure!");
+                //Debug.Log("Attracting to lure!");
                 Vector2 toLure = ((Vector2)currentLure.position - (Vector2)transform.position).normalized * maxSpeed - velocity;
                 return toLure;
             }

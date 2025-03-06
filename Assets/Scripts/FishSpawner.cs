@@ -35,6 +35,7 @@ public class FishSpawner : MonoBehaviour
             fishObj.transform.parent = schoolParent.transform; //Set parent of fishObject to be the schoolParent
 
             FishAI fishAI = fishObj.GetComponent<FishAI>(); //attach FishAI to fishObj
+            fishObj.GetComponent<Collider2D>();
             if (fishAI != null) //Set FishAI's home and type
             {
                 fishAI.homePosition = schoolCenter; //prev. gen center

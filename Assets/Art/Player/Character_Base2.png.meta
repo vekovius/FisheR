@@ -142,10 +142,10 @@ TextureImporter:
       name: Character_Base2_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 223
-        width: 20
-        height: 33
+        x: 0
+        y: 224
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,10 +164,10 @@ TextureImporter:
       name: Character_Base2_1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 193
-        width: 21
-        height: 31
+        x: 0
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,9 +186,9 @@ TextureImporter:
       name: Character_Base2_2
       rect:
         serializedVersion: 2
-        x: 37
+        x: 32
         y: 192
-        width: 21
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -208,10 +208,10 @@ TextureImporter:
       name: Character_Base2_3
       rect:
         serializedVersion: 2
-        x: 6
-        y: 159
-        width: 20
-        height: 33
+        x: 0
+        y: 160
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,10 +230,10 @@ TextureImporter:
       name: Character_Base2_4
       rect:
         serializedVersion: 2
-        x: 37
+        x: 32
         y: 160
-        width: 21
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,9 +252,9 @@ TextureImporter:
       name: Character_Base2_5
       rect:
         serializedVersion: 2
-        x: 70
+        x: 64
         y: 160
-        width: 21
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -274,10 +274,10 @@ TextureImporter:
       name: Character_Base2_6
       rect:
         serializedVersion: 2
-        x: 8
-        y: 127
-        width: 17
-        height: 31
+        x: 0
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,10 +296,10 @@ TextureImporter:
       name: Character_Base2_7
       rect:
         serializedVersion: 2
-        x: 40
-        y: 127
-        width: 17
-        height: 31
+        x: 32
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,10 +318,10 @@ TextureImporter:
       name: Character_Base2_8
       rect:
         serializedVersion: 2
-        x: 72
-        y: 127
-        width: 17
-        height: 31
+        x: 64
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -340,10 +340,10 @@ TextureImporter:
       name: Character_Base2_9
       rect:
         serializedVersion: 2
-        x: 104
-        y: 127
-        width: 17
-        height: 30
+        x: 96
+        y: 128
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,10 +362,10 @@ TextureImporter:
       name: Character_Base2_10
       rect:
         serializedVersion: 2
-        x: 7
-        y: 95
-        width: 17
-        height: 31
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -384,10 +384,10 @@ TextureImporter:
       name: Character_Base2_11
       rect:
         serializedVersion: 2
-        x: 39
-        y: 95
-        width: 17
-        height: 31
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -406,10 +406,10 @@ TextureImporter:
       name: Character_Base2_12
       rect:
         serializedVersion: 2
-        x: 71
-        y: 95
-        width: 17
-        height: 31
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -428,10 +428,10 @@ TextureImporter:
       name: Character_Base2_13
       rect:
         serializedVersion: 2
-        x: 103
-        y: 95
-        width: 17
-        height: 30
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -450,7 +450,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8aa4ed741d7158249840e7a16a6058de
     internalID: 0
     vertices: []
     indices: 

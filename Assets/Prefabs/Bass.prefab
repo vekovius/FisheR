@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 992946319
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -7812125124591183936, guid: d204a6453e0f1b94f93c2ae5cfa10e1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -130,8 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishType: {fileID: 0}
+  currentLure: {fileID: 0}
   velocity: {x: 0, y: 0}
   homePosition: {x: 0, y: 0}
+  lureAttractionRadius: 3
 --- !u!58 &-6367013037059966117
 CircleCollider2D:
   m_ObjectHideFlags: 0

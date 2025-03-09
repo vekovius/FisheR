@@ -6,9 +6,7 @@ public class PassiveState : StateInterface
     private readonly GameObject inventoryPanel;
     private readonly GameObject mapPanel;
     private readonly GameObject settingsPanel;
-    private readonly GameObject playerObject;
     private readonly GameObject directionIndicator;
-
 
     public KeyCode inventoryKey;
     public KeyCode mapKey;
@@ -20,7 +18,8 @@ public class PassiveState : StateInterface
         GameObject settingsPanel, 
         KeyCode inventoryKey,
         KeyCode mapKey, 
-        KeyCode settingsKey)
+        KeyCode settingsKey,
+        GameObject directionIndicator = null)
     {
         this.inventoryPanel = inventoryPanel;
         this.mapPanel = mapPanel;
@@ -28,6 +27,7 @@ public class PassiveState : StateInterface
         this.inventoryKey = inventoryKey;
         this.mapKey = mapKey;
         this.settingsKey = settingsKey;
+        this.directionIndicator = directionIndicator;
     }
 
     public void Enter()
@@ -36,8 +36,13 @@ public class PassiveState : StateInterface
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         cameraController.target = playerObject.transform;
-       
-        
+
+        if (directionIndicator != null)
+        {
+            directionIndicator.SetActive(true);
+        }
+
+
     }
     public void Update()
     {

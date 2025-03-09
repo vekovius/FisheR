@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CastingMinigame : MonoBehaviour
+public class CastingMinigame : MonoBehaviour, IPowerMinigame
 {
     public GameObject powerBarGameObject;
     public Image PowerBarMask;
@@ -14,19 +14,39 @@ public class CastingMinigame : MonoBehaviour
     bool powerIsIncreasing;
     bool PowerBarOn;
 
+    public event Action<float> OnPowerChanged;
+
     private void OnEnable()
+    {
+        ResetState();
+    }
+
+    private void ResetState()
     {
         currentPowerBarValue = 0;
         powerIsIncreasing = true;
         PowerBarOn = true;
+    }
+
+    public float GetPowerValue()
+    {
+        return currentPowerBarValue / maxPowerBarValue;
+    }
+
+    public void Activate()
+    {
+        gameObject.SetActive(true);
+        ResetState();
         StartCoroutine(UpdatePowerBar());
     }
 
-    public float getCurrentPowerBarValue()
+    public void Deactivate()
     {
-        return currentPowerBarValue;
+        PowerBarOn = false;
+        StopAllCoroutines();
+        gameObject.SetActive(false);
     }
-
+    
     IEnumerator  UpdatePowerBar()
     {
         while (PowerBarOn)
@@ -47,18 +67,14 @@ public class CastingMinigame : MonoBehaviour
                     powerIsIncreasing = false;
                 }
             }
-            
-            float fill = currentPowerBarValue / maxPowerBarValue;
-            PowerBarMask.fillAmount = fill;
+
+            float nomalizedValue = currentPowerBarValue / maxPowerBarValue;
+            PowerBarMask.fillAmount = nomalizedValue;
+
+
+            OnPowerChanged?.Invoke(nomalizedValue);
+
             yield return new WaitForSeconds(0.02f);
-
-            
         }
-        yield return null;
     }
-
-   
-
-    
-
 }

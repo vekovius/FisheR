@@ -6,7 +6,7 @@ public class HookedState : StateInterface
     private GameObject lure;
     private GameObject hookedFish;
     private Rigidbody2D fishRb;
-    private float struggleForce = 500f;
+    private float struggleForce = 10f;
     private float playerForce = 50f;
 
     private GameObject tensionBarGameObject;
@@ -29,8 +29,6 @@ public class HookedState : StateInterface
 
     public void Enter()
     {
-        Debug.Log("Entered hooked state");
-
         lure = GameObject.FindWithTag("Lure");
         if (lure == null)
         {
@@ -88,66 +86,6 @@ public class HookedState : StateInterface
 
     public void Exit()
     {
-        Debug.Log("Exited hooked state");
-
-        // Re-enable fish AI if not caught
-        if (hookedFish != null)
-        {
-            FishAI fishAI = hookedFish.GetComponent<FishAI>();
-            if (fishAI != null)
-            {
-                fishAI.enabled = true;
-            }
-
-            // Remove the joint connecting fish and lure
-            FixedJoint2D joint = hookedFish.GetComponent<FixedJoint2D>();
-            if (joint != null)
-            {
-                GameObject.Destroy(joint);
-            }
-        }
-
-        // Mark the lure as free again if it exists
-        if (lure != null)
-        {
-            // Re-enable lure collider
-            Collider2D lureCollider = lure.GetComponent<Collider2D>();
-            if (lureCollider != null)
-            {
-                lureCollider.enabled = true;
-            }
-
-            // If lure was parented to the fish, restore its original parent
-            if (lure.transform.parent == hookedFish?.transform)
-            {
-                lure.transform.SetParent(null);
-            }
-
-            LureStateController lureState = lure.GetComponent<LureStateController>();
-            if (lureState != null)
-            {
-                lureState.SetFree();
-            }
-        }
-
-        //Mark the lure as free again if it exists
-        if (lure != null)
-        {
-            //Re-enable lure collider
-            Collider2D lureCollider = lure.GetComponent<Collider2D>();
-            if (lureCollider != null)
-            {
-                lureCollider.enabled = true;
-            }
-
-            LureStateController lureState = lure.GetComponent<LureStateController>();
-            if (lureState != null)
-            {
-                lureState.SetFree();
-            }
-        }
-
-        // Hide tension bar
         if (tensionBarGameObject != null)
         {
             tensionBarGameObject.SetActive(false);
@@ -164,8 +102,7 @@ public class HookedState : StateInterface
             if (collider.gameObject.GetComponent<FishAI>() != null)
             {
                 hookedFish = collider.gameObject;
-                Debug.Log($"Hooked fish: {hookedFish.name}");
-
+              
                 // Attach the lure to the fish using a fixed joint
                 AttachLureToFish();
                 break;
@@ -183,20 +120,16 @@ public class HookedState : StateInterface
     {
         if (hookedFish == null || lure == null) return;
 
-        // Calculate hook position - usually the mouth of the fish
-        // For simplicity, we'll use a fixed offset from the center of the fish
+        // Get hook position
         Vector2 hookPosition = hookedFish.transform.position;
 
-        Vector2 fishForward = hookedFish.transform.right; 
-        hookPosition += fishForward * 0.5f; 
 
-        
+        // Create a fixed joint between the fish and the lure
         FixedJoint2D joint = hookedFish.AddComponent<FixedJoint2D>();
         joint.connectedBody = lure.GetComponent<Rigidbody2D>();
         joint.autoConfigureConnectedAnchor = false;
         joint.anchor = Vector2.zero; // Center of the fish
 
-        
         // Disable the lure's collider to prevent further fish interactions
         Collider2D lureCollider = lure.GetComponent<Collider2D>();
         if (lureCollider != null)
@@ -293,8 +226,7 @@ public class HookedState : StateInterface
             {
                 StateController controller = stateControllerObj.GetComponent<StateController>();
                 if (controller != null)
-                {
-                    Debug.Log("Calling fish escaped");
+                {                 
                     controller.FishEscaped();
                     return;
                 }

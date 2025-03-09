@@ -5930,7 +5930,7 @@ MonoBehaviour:
   castOrigin: {fileID: 697167488}
   directionIndicator: {fileID: 1948137067}
   castKey: 32
-  powerMinigameComponent: {fileID: 0}
+  powerMinigameObject: {fileID: 1679288192}
   waterLevel: 16
   tensionBarGameObject: {fileID: 560782637}
 --- !u!1001 &958134294

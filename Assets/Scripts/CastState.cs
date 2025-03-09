@@ -48,6 +48,13 @@ public class CastState : StateInterface
 
     public void Exit()
     {
+        //Hide the direction indicator when exiting cast state
+        if (directionIndicator != null && directionIndicator.gameObject != null)
+        {
+            directionIndicator.gameObject.SetActive(false);
+        }
+
+
         //Unsubscribe to prevent memeory leak
         powerMinigame.OnPowerChanged -= UpdatePowerValue;
         powerMinigame.Deactivate();

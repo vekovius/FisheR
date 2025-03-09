@@ -8,8 +8,6 @@ public class InWaterState : StateInterface
     public void Enter()
     {
         lure = GameObject.FindWithTag("Lure");
-        Debug.Log("Entering inWaterState");
-
     }
 
     public void Update()
@@ -19,8 +17,7 @@ public class InWaterState : StateInterface
     }
 
     public void Exit()
-    {
-        Debug.Log("Exit InWaterState");
+    {      
     }
 
     private void HandleLureMovement()
@@ -49,9 +46,7 @@ public class InWaterState : StateInterface
         {
             FishAI fish = collider.GetComponent<FishAI>();
             if (fish!= null)
-            {
-                Debug.Log("Fish Hooked");
-
+            {     
                 return true;
             }
         }

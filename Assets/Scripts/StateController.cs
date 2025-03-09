@@ -58,13 +58,14 @@ public class StateController : MonoBehaviour
             return;
         }
 
-        passiveState = new PassiveState(inventoryPanel, mapPanel, settingsPanel, inventoryKey, mapKey, settingsKey);
+        passiveState = new PassiveState(inventoryPanel,mapPanel,settingsPanel,inventoryKey,mapKey,settingsKey, directionIndicator.gameObject);
         castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, powerMinigame);
         inAirState = new InAirState(waterLevel);
         inWaterState = new InWaterState();
         hookedState = new HookedState(tensionBarGameObject);
 
         ChangeState(passiveState);
+       
     }
     public void ChangeState(StateInterface newState)
     {
@@ -109,7 +110,6 @@ public class StateController : MonoBehaviour
             InWaterState waterState = (InWaterState)currentState;
             if (waterState.IsFishHooked())
             {
-                Debug.Log("Transitioning to IsHookedState");
                 ChangeState(hookedState);
             }
         }
@@ -124,14 +124,12 @@ public class StateController : MonoBehaviour
         
         if (currentState is CastState && Input.GetKeyUp(castKey))
         {
-            directionIndicator.gameObject.SetActive(false);
             ChangeState(inAirState);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             FishEscaped();
-            directionIndicator.gameObject.SetActive(true);
             ChangeState(passiveState);
         } 
     }
@@ -150,24 +148,21 @@ public class StateController : MonoBehaviour
             Debug.Log($"Fish type: {fishAI.fishType.name}");      
         }
 
-
         //Find and destroy lure 
         GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
         if ( lure != null)
         {
-            //Set lure free before destroying it
-            LureStateController lureState = lure.GetComponent<LureStateController>();
-            if (lureState != null)
-            {
-                lureState.SetFree();
-            }
+            // Clean up lure state and associated componets
+            CleanUpLureAndFish(lure, fish);
 
+            //Destroy Lure object
             Destroy(lure);
         }
 
-       
+        //Destroy fish object
         Destroy(fish);
 
+        // Return to passive state
         ChangeState(passiveState);
       
     }
@@ -186,31 +181,51 @@ public class StateController : MonoBehaviour
             LureStateController lureState = lure.GetComponent<LureStateController>();
             GameObject hookedFish = lureState?.HookedFish;
 
-            if (lureState != null)
-            {
-                lureState.SetFree();
-            }
-
             if (hookedFish != null)
             {
-                FishAI fishAI = hookedFish.GetComponent<FishAI>();
-                if (fishAI != null)
-                {
-                    fishAI.enabled = true;
-                }
-
-                FixedJoint2D joint = hookedFish.GetComponent<FixedJoint2D>();
-                if (joint != null)
-                {
-                    Destroy(joint);
-                }
-
+                CleanUpLureAndFish(lure, hookedFish);
             }
 
+            //Destroy Lure object
             Destroy(lure);
         }
 
+        // Return to passive state
         ChangeState(passiveState);
+    }
+
+    private void CleanUpLureAndFish(GameObject lure, GameObject fish)
+    {
+        // Reset lure state if it has a controller
+        LureStateController lureState = lure.GetComponent<LureStateController>();
+        if (lureState != null)
+        {
+            lureState.SetFree();
+        }
+
+        // Re-enable fish colliders
+        Collider2D lureCollider = lureCollider = lure.GetComponent<Collider2D>();
+        if (lureCollider != null)
+        {
+            lureCollider.enabled = true;
+        }
+
+        if (fish != null)
+        {
+            //Re-enable fish AI behavior
+            FishAI fishAI = fish.GetComponent<FishAI>();
+            if (fishAI != null)
+            {
+                fishAI.enabled = true;
+            }
+
+            //Remove joint connecting fish and lure 
+            FixedJoint2D joint = fish.GetComponent<FixedJoint2D>();
+            if (joint != null)
+            {
+                Destroy(joint);
+            }
+        }
     }
 
 }

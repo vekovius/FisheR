@@ -1,8 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class StateController : MonoBehaviour
 {
+    public static event Action<GameObject> OnFishCaught;
+    public static event Action OnFishEscaped;
+
+
     private StateInterface currentState;
 
     [Header("Passive State Settings")]
@@ -21,6 +26,8 @@ public class StateController : MonoBehaviour
     public DirectionIndicator directionIndicator;
     public KeyCode castKey = KeyCode.Space;
 
+    [Header("Power Minigame Settings")]
+    public GameObject powerMinigameObject;
 
     [Header("Water settings")]
     public float waterLevel = 16f;
@@ -34,14 +41,25 @@ public class StateController : MonoBehaviour
     private InWaterState inWaterState;
     private HookedState hookedState;
 
-    public CastingMinigame castingMinigame;
-    public CameraController cameraController;
-
 
     private void Start()
     {
+       
+        if (powerMinigameObject == null)
+        {
+            Debug.LogError("Power minigame GameObject reference is not set");
+            return;
+        }
+
+        IPowerMinigame powerMinigame = powerMinigameObject.GetComponent<CastingMinigame>();
+        if (powerMinigame == null)
+        {
+            Debug.LogError("Power minigame component not found on the powerMinigameObject");
+            return;
+        }
+
         passiveState = new PassiveState(inventoryPanel, mapPanel, settingsPanel, inventoryKey, mapKey, settingsKey);
-        castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, castingMinigame);
+        castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, powerMinigame);
         inAirState = new InAirState(waterLevel);
         inWaterState = new InWaterState();
         hookedState = new HookedState(tensionBarGameObject);
@@ -56,23 +74,14 @@ public class StateController : MonoBehaviour
         }
 
         currentState = newState;
-
-        if (currentState is CastState)
-        {
-            castingMinigame.gameObject.SetActive(true);
-        }
-        else
-        {
-            castingMinigame.gameObject.SetActive(false);
-        }
-
+  
 
         if (currentState != null)
         {
             currentState.Enter();
         }
-
     }
+
 
     private void Update()
     {
@@ -121,13 +130,87 @@ public class StateController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            FishEscaped();
             directionIndicator.gameObject.SetActive(true);
-            GameObject Lure = GameObject.FindGameObjectWithTag("Lure");
-            Object.Destroy(Lure);
             ChangeState(passiveState);
+        } 
+    }
+
+    public void FishCaught(GameObject fish)
+    {
+        Debug.Log($"Fish caught: {fish.name}");
+
+        OnFishCaught?.Invoke(fish);
+
+        Debug.Log("Generating loot for caught fish...");
+
+        FishAI fishAI = fish.GetComponent<FishAI>();
+        if (fishAI != null && fishAI.fishType != null)
+        {
+            Debug.Log($"Fish type: {fishAI.fishType.name}");      
+        }
+
+
+        //Find and destroy lure 
+        GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
+        if ( lure != null)
+        {
+            //Set lure free before destroying it
+            LureStateController lureState = lure.GetComponent<LureStateController>();
+            if (lureState != null)
+            {
+                lureState.SetFree();
+            }
+
+            Destroy(lure);
         }
 
        
+        Destroy(fish);
+
+        ChangeState(passiveState);
+      
+    }
+
+    public void FishEscaped()
+    {
+        Debug.Log("Fish escaped");
+
+        OnFishEscaped?.Invoke();
+
+        // Find and destoy only the lure 
+        GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
+        if (lure != null)
+        {
+            //Get reference to the hooked fish before destoying lure
+            LureStateController lureState = lure.GetComponent<LureStateController>();
+            GameObject hookedFish = lureState?.HookedFish;
+
+            if (lureState != null)
+            {
+                lureState.SetFree();
+            }
+
+            if (hookedFish != null)
+            {
+                FishAI fishAI = hookedFish.GetComponent<FishAI>();
+                if (fishAI != null)
+                {
+                    fishAI.enabled = true;
+                }
+
+                FixedJoint2D joint = hookedFish.GetComponent<FixedJoint2D>();
+                if (joint != null)
+                {
+                    Destroy(joint);
+                }
+
+            }
+
+            Destroy(lure);
+        }
+
+        ChangeState(passiveState);
     }
 
 }

@@ -29,6 +29,7 @@ public class MoveRooms : MonoBehaviour
             if (Input.GetAxis("Submit") != 0 && !inUse)
             {
                 inUse = true;
+                camAnimator.SetBool("Fade", true);
                 StartCoroutine(Teleport());
             }
         }
@@ -36,8 +37,7 @@ public class MoveRooms : MonoBehaviour
 
      IEnumerator Teleport()
     {
-        camAnimator.SetBool("Fade", true);
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(.55f);
 
         player.transform.position = spawnPos;
         Camera.main.transform.position = new Vector3(spawnPos.x, spawnPos.y, -10);

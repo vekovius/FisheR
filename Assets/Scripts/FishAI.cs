@@ -18,7 +18,10 @@ public class FishAI : MonoBehaviour
     private float separationWeight;
     private float wanderWeight;
     private float homeAttractionWeight;
-    
+
+    [Range(0, 360)]
+    public float fieldOfView = 270f; 
+
     Rigidbody2D rb;
 
     private void Start()
@@ -60,6 +63,13 @@ public class FishAI : MonoBehaviour
         velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
 
         rb.MovePosition(rb.position +  velocity * Time.fixedDeltaTime);
+
+        //Set the fish rotation to match the direction of movement
+        if (velocity.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0,0,angle);
+        }
     }
 
     private Vector2 Flock()
@@ -71,10 +81,16 @@ public class FishAI : MonoBehaviour
         Vector2 separation = Vector2.zero;
         int count = 0;
 
+        Vector2 forward = velocity; //Get the forward direction of the fish
+        if (velocity.sqrMagnitude < 0.1f) //If the fish is not moving, set forward to a default direction
+        {
+            forward = Vector2.right;
+        }
+
+
         //Goes though all neighbors within range
         foreach (Collider2D col in neighbors)
         {
-            //
             if (col.gameObject == gameObject)
                 continue;
 
@@ -82,17 +98,25 @@ public class FishAI : MonoBehaviour
             
             if (other != null)
             {
+                //Calculate the direction vector to the neighbor fish
+                Vector2 dirToNeighbor = other.transform.position - transform.position;
+
+                //Check if neighbor is within the field of view
+                float angleToNeighbor = Vector2.Angle(forward, dirToNeighbor);
+                if (angleToNeighbor > fieldOfView * 0.5f)
+                {
+                    continue;
+                }
+
+                if (dirToNeighbor.magnitude < separationDistance) //If the distance between other other fish and current fish is too small
+                {
+                    Debug.Log($"Fish {gameObject.name} is too close to {other.gameObject.name}");
+                    separation -= dirToNeighbor.normalized * dirToNeighbor.magnitude;
+                }
+
                 alignment += other.velocity; //alignment will be in direction that other fish is heading
                 cohesion += (Vector2)other.transform.position; //Cohestion vector is in the direction of other fish
-
-                Vector2 diff = (Vector2)transform.position - (Vector2)other.transform.position; //diff is from current position to other fish position
-                //Debug.Log($"Diff vector: {diff} Its distance is: {diff.magnitude}, the separationDistance field {separationDistance} ");
-                if (diff.magnitude < separationDistance) //If the distance between other other fish and current fish is too small
-                {
-                    //Debug.Log($"Distance between {transform.position} and {other.transform.position} is too close!");
-                    separation += diff.normalized * diff.magnitude; 
-                    //Debug.Log($"Seperating in direction {separation} of magnitude {separation.magnitude}");
-                }
+                
                 count++;
             }
         }

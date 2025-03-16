@@ -20,12 +20,12 @@ MonoBehaviour:
   spawnDepth: 0
   schoolSizeMin: 10
   schoolSizeMax: 10
-  maxSpeed: 2
+  maxSpeed: 5
   maxForce: 2
-  neighborRadius: 1
-  separationDistance: 1.5
+  neighborRadius: 4
+  separationDistance: 3
   alignmentWeight: 1
-  cohesionWeight: 0.25
+  cohesionWeight: 0.5
   separationWeight: 1
-  wanderWeight: 2
+  wanderWeight: 1
   homeAttractionWeight: 0.3

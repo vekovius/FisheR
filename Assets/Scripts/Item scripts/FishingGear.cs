@@ -61,7 +61,7 @@ public class FishingLine : EquipmentItem
 
 /// <summary>
 /// Represents a fishing lure that can be equipped by the player.
-/// 
+
 /// </summary>
 [CreateAssetMenu(fileName = "New Lure", menuName = "Fishing/Equipment/Lure")]
 public class FishingLure : EquipmentItem

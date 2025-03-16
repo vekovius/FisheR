@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4ec38c03904934ebde371c935ff65f, type: 3}
-  m_Name: Smart Rod Template
+  m_Script: {fileID: 11500000, guid: 465f2f67d3e6b23498dd2144fed0e5bf, type: 3}
+  m_Name: Tier 1
   m_EditorClassIdentifier: 
-  templateName: Smart Rod
-  icon: {fileID: 0}
-  attributeFocus: 0
-  baseStrength: 0
-  baseAgility: 0
-  baseIntelligence: 3
+  tier: 1
+  minItemLevel: 1
+  minValue: 15
+  maxValue: 20
+  weight: 100

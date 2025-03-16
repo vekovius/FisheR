@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7a9a91f8b0d224bb0e68b148a611f5, type: 3}
-  m_Name: Cast Distance Mod
+  m_Script: {fileID: 11500000, guid: 465f2f67d3e6b23498dd2144fed0e5bf, type: 3}
+  m_Name: Tier 3
   m_EditorClassIdentifier: 
-  modName: Cast Distance
-  tierAssets:
-  - {fileID: 11400000, guid: c3d6cd7de86764f45ab70802f6c5379e, type: 2}
-  - {fileID: 11400000, guid: 0db77469357284b4eb56123227aa68a1, type: 2}
+  tier: 3
+  minItemLevel: 10
+  minValue: 30
+  maxValue: 40
+  weight: 40

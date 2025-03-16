@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7a9a91f8b0d224bb0e68b148a611f5, type: 3}
-  m_Name: Cast Distance Mod
+  m_Script: {fileID: 11500000, guid: dd4ec38c03904934ebde371c935ff65f, type: 3}
+  m_Name: Strong Reel
   m_EditorClassIdentifier: 
-  modName: Cast Distance
-  tierAssets:
-  - {fileID: 11400000, guid: c3d6cd7de86764f45ab70802f6c5379e, type: 2}
-  - {fileID: 11400000, guid: 0db77469357284b4eb56123227aa68a1, type: 2}
+  templateName: Strong Reel
+  icon: {fileID: 0}
+  attributeFocus: 1
+  baseStrength: 3
+  baseAgility: 0
+  baseIntelligence: 0

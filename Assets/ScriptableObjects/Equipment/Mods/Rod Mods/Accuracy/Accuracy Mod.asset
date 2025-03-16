@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4ec38c03904934ebde371c935ff65f, type: 3}
-  m_Name: Basic Rod Template
+  m_Script: {fileID: 11500000, guid: cb7a9a91f8b0d224bb0e68b148a611f5, type: 3}
+  m_Name: Accuracy Mod
   m_EditorClassIdentifier: 
-  templateName: Basic Rod
-  icon: {fileID: 0}
-  attributeFocus: 1
-  baseStrength: 2
-  baseAgility: 0
-  baseIntelligence: 0
+  modName: Accuracy
+  tierAssets:
+  - {fileID: 11400000, guid: cf37c6240cd36f04ca6808c5d65d2dcc, type: 2}
+  - {fileID: 11400000, guid: ee12e9ad619406744ab3fcad719c4960, type: 2}

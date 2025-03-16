@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum EquipmentType
@@ -219,7 +220,7 @@ public class GearGenerator : MonoBehaviour
     private void UpdateItemDescription(EquipmentItem item)
     {
         // Build basic description
-        string description = $"Level {item.itemLevel}\n";
+        string description = $"\nLevel {item.itemLevel}\n";
 
         // Add main stats
         if (item.strength > 0) description += $"Strength: +{item.strength}\n";
@@ -229,23 +230,25 @@ public class GearGenerator : MonoBehaviour
         // Add specific equipment properties based on type
         if (item is FishingRod rod)
         {
-            description += $"Cast Distance: +{rod.castDistanceMultiplier:P0}\n";
-            description += $"Reel Speed: +{rod.reelSpeedMultiplier:P0}\n";
+            description += $"Cast Distance: +{rod.CastDistanceMultiplier}\n";
+            description += $"Accuracy: +{rod.Accuracy}\n";
+            description += $"Power Rating: +{rod.PowerRating}\n";
         }
         else if (item is FishingReel reel)
         {
-            description += $"Reel Speed: {reel.reelSpeed:F1}\n";
-            description += $"Tension Resist: {reel.tensionResistance:F1}\n";
+            description += $"Reel Speed: {reel.ReelSpeed}\n";
+            description += $"Tension Resist: {reel.TensionResistance}\n";
         }
         else if (item is FishingLine line)
         {
-            description += $"Tension Limit: {line.tensionLimit:F1}\n";
-            description += $"Visibility: {line.visisbilityModifier:F1}\n";
+            description += $"Tension Limit: {line.TensionLimit}\n";
+            description += $"Line length: {line.LineLength}\n";
         }
         else if (item is FishingLure lure)
         {
-            description += $"Attraction: {lure.attraction:F1}\n";
-            description += $"Visibility: {lure.visibility:F1}\n";
+            description += $"Attraction: {lure.Attraction}\n";
+            description += $"Visibility: {lure.Visibility}\n";
+            description += $"Size: {lure.Size}\n";
         }
         else if (item is Hat hat)
         {
@@ -377,6 +380,7 @@ public class GearGenerator : MonoBehaviour
 
         for (int i = 0; i < modCount; i++)
         {
+            /*
             // Chance to select an attribute mod instead of equipment mod
             if (UnityEngine.Random.value < attributeModChance)
             {
@@ -399,6 +403,7 @@ public class GearGenerator : MonoBehaviour
                     continue;
                 }
             }
+            */
 
             // If we didn't select an attribute mod or it failed, get an equipment mod
             if (i < shuffledMods.Count)
@@ -415,7 +420,6 @@ public class GearGenerator : MonoBehaviour
                 }
             }
         }
-
         return selectedMods;
     }
 
@@ -503,19 +507,22 @@ public class GearGenerator : MonoBehaviour
         ApplyModsToAttributes(rod, selectedMods);
 
         // Set default values
-        rod.castDistanceMultiplier = 1.0f;
-        rod.reelSpeedMultiplier = 1.0f;
+        rod.CastDistanceMultiplier = 1.0f;
 
         // Apply equipment-specific mods
         foreach (var mod in selectedMods)
         {
             if (mod.modName == "Cast Distance")
             {
-                rod.castDistanceMultiplier = mod.modValue;
+                rod.CastDistanceMultiplier = mod.modValue;
             }
-            else if (mod.modName == "Reel Speed")
+            if (mod.modName == "Accuracy")
             {
-                rod.reelSpeedMultiplier = mod.modValue;
+                rod.Accuracy = mod.modValue;
+            }
+            if (mod.modName == "Power Rating")
+            {
+                rod.PowerRating = mod.modValue;
             }
         }
 
@@ -547,19 +554,19 @@ public class GearGenerator : MonoBehaviour
         ApplyModsToAttributes(reel, selectedMods);
 
         // Set default values
-        reel.reelSpeed = 1.0f;
-        reel.tensionResistance = 1.0f;
+        reel.ReelSpeed = 1.0f;
+        reel.TensionResistance = 1.0f;
 
         // Apply equipment-specific mods
         foreach (var mod in selectedMods)
         {
             if (mod.modName == "Reel Speed")
             {
-                reel.reelSpeed = mod.modValue;
+                reel.ReelSpeed = mod.modValue;
             }
             else if (mod.modName == "Tension Resistance")
             {
-                reel.tensionResistance = mod.modValue;
+                reel.TensionResistance = mod.modValue;
             }
         }
 
@@ -591,19 +598,19 @@ public class GearGenerator : MonoBehaviour
         ApplyModsToAttributes(line, selectedMods);
 
         // Set default values
-        line.tensionLimit = 10.0f;
-        line.visisbilityModifier = 1.0f;
+        line.TensionLimit = 10.0f;
+        line.LineLength = 10.0f;
 
         // Apply equipment-specific mods
         foreach (var mod in selectedMods)
         {
-            if (mod.modName == "Tension Limit")
+            if (mod.modName == "Line Length")
             {
-                line.tensionLimit = mod.modValue;
+                line.LineLength = mod.modValue;
             }
-            else if (mod.modName == "Visibility")
+            else if (mod.modName == "Tension Limit")
             {
-                line.visisbilityModifier = mod.modValue;
+                line.TensionLimit = mod.modValue;
             }
         }
 
@@ -635,19 +642,24 @@ public class GearGenerator : MonoBehaviour
         ApplyModsToAttributes(lure, selectedMods);
 
         // Set default values
-        lure.attraction = 1.0f;
-        lure.visibility = 1.0f;
+        lure.Attraction = 1.0f;
+        lure.Visibility = 1.0f;
+        lure.Size = 1.0f;
 
         // Apply equipment-specific mods
         foreach (var mod in selectedMods)
         {
             if (mod.modName == "Attraction")
             {
-                lure.attraction = mod.modValue;
+                lure.Attraction = mod.modValue;
             }
             else if (mod.modName == "Visibility")
             {
-                lure.visibility = mod.modValue;
+                lure.Visibility = mod.modValue;
+            }
+            else if (mod.modName == "Size")
+            {
+                lure.Size = mod.modValue;
             }
         }
 
@@ -1035,7 +1047,7 @@ public class GearGenerator : MonoBehaviour
     public void DubugGenerateAndPrint(EquipmentType type, int level, Rarity rarity)
     {
         EquipmentItem item = GenerateEquipment(type, level, rarity);
-        Debug.Log($"Generated {item.itemName} (Level {item.itemLevel}, Rarity: {rarity})");
+        Debug.Log($"Generated Item: {item.itemName} (Level {item.itemLevel})");
         Debug.Log($"Description: {item.description}");
     }
 

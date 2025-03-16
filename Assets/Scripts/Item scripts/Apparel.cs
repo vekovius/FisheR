@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 [CreateAssetMenu(fileName = "New Hat", menuName = "Fishing/Apparel/Hat")]
 public class Hat : EquipmentItem
 {
@@ -20,10 +19,8 @@ public class Pants : EquipmentItem
     public float fishStruggleResistance;
 }
 
-//Boots
 [CreateAssetMenu(fileName = "New Boots", menuName = "Fishing/Apparel/Boots")]
 public class Boots : EquipmentItem
 {
     public float moveSpeedBonus;
 }
-

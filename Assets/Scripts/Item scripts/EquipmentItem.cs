@@ -9,8 +9,6 @@ public class EquipmentItem : ScriptableObject
     public int strength;
     public int agility;
     public int intelligence;
-    
- 
 }
 
 public enum Rarity

@@ -1,6 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// Responsible for initializing and configuring a GearGenerator compoent with equipment templates and mods.
+/// </summary>
+/// <remarks> 
+/// This compoent acts as a brige between Unity's serializable assets in the inspector and the 
+/// runtime data structures needed by the GearGenerator. It converts EquipmentTemplateAsset and
+/// EquipmentModAsset instances into their runtime coutnerparts during initialization.
+/// </remarks>
 public class GearGeneratorSetup : MonoBehaviour
 {
     [Header("Rod Templates")]
@@ -56,6 +64,15 @@ public class GearGeneratorSetup : MonoBehaviour
     public EquipmentModAsset agilityModAsset;
     public EquipmentModAsset intelligenceModAsset;
 
+    /// <summary>
+    /// Initializes the attached GearGenerator with equipment tempaltes and mods.
+    /// </summary>
+    /// <remarks>
+    /// 1. Retrieves the GearGenreator component from the GameObject.
+    /// 2. Converts all template assets into runtime EquipmentTemplate instances
+    /// 3. Converts all mods assets into runtime EquipmentMod instances.
+    /// 4. Assigns the converted templates and mdos to the GearGenerator.
+    /// </remarks>
     public void Start()
     {
         GearGenerator gearGenerator = GetComponent<GearGenerator>();
@@ -92,6 +109,11 @@ public class GearGeneratorSetup : MonoBehaviour
             gearGenerator.intelligenceMod = intelligenceModAsset.GetEquipmentMod();
     }
 
+    /// <summary>
+    /// Converts a list of template assets to runtime template objects.
+    /// </summary>
+    /// <param name="assets">The source list of template assets</param>
+    /// <param name="templates">The destination list of runtime templates</param>
     private void SetupTemplates(List<EquipmentTemplateAsset> assets, ref List<EquipmentTemplate> templates)
     {
         templates = new List<EquipmentTemplate>();
@@ -102,6 +124,11 @@ public class GearGeneratorSetup : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Converts a list of mod assets to runtime mod objects.
+    /// </summary>
+    /// <param name="assets">The source list of mod assets.</param>
+    /// <param name="mods">The destination list of runtime mods.</param>
     private void SetupMods(List<EquipmentModAsset> assets, ref List<EquipmentMod> mods)
     {
         mods = new List<EquipmentMod>();

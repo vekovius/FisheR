@@ -1,8 +1,14 @@
-#if UNITY_EDITOR
-using static UnityEngine.GraphicsBuffer;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Cusom editor for the GearGenerator component.
+/// </summary>
+/// <remarks> 
+/// This editor extends the default insprector for GearGenerator and adds a
+/// testing section that allows the testing of equipment generator 
+/// directly from the inspector without needing to run the game.
+/// </remarks>
 [CustomEditor(typeof(GearGenerator))]
 public class GearGeneratorEditor : Editor
 {
@@ -10,6 +16,9 @@ public class GearGeneratorEditor : Editor
     private int testLevel = 10;
     private Rarity testRarity = Rarity.Rare;
 
+    /// <summary>
+    /// Override the OnInspectorGUI method to customize the inspector for GearGenerator.
+    /// </summary>
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -23,10 +32,10 @@ public class GearGeneratorEditor : Editor
         testLevel = EditorGUILayout.IntSlider("Item Level", testLevel, 1, 30);
         testRarity = (Rarity)EditorGUILayout.EnumPopup("Rarity", testRarity);
 
+        /// Button to generate and print the test item
         if (GUILayout.Button("Generate Test Item"))
         {
             generator.DubugGenerateAndPrint(testType, testLevel, testRarity);
         }
     }
 }
-#endif

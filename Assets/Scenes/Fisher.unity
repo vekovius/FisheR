@@ -42502,18 +42502,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1740a016c586d4f438982082f6362e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rodTemplateAssets: []
-  reelTemplateAssets:
+  rodTemplateAssets:
   - {fileID: 11400000, guid: 9a388a715b63c9a4e880f3df093b0caf, type: 2}
-  lineTemplateAssets: []
-  lureTemplateAssets: []
+  - {fileID: 11400000, guid: 87d8a2fb8f0796940a259afe5d83c8ae, type: 2}
+  - {fileID: 11400000, guid: 316afa8bde18e5c429814fd72e3f5a59, type: 2}
+  reelTemplateAssets: []
+  lineTemplateAssets:
+  - {fileID: 11400000, guid: 57e4bce17582b5d4980798b295ebbda0, type: 2}
+  lureTemplateAssets:
+  - {fileID: 11400000, guid: 24df2057fc0892a43b77a9fc45d7764e, type: 2}
   hatTemplateAssets: []
   shirtTemplateAssets: []
   pantsTemplateAssets: []
   bootsTemplateAssets: []
-  rodModAssets: []
+  rodModAssets:
+  - {fileID: 11400000, guid: 8e21c48b96367f940a567545543abab7, type: 2}
+  - {fileID: 11400000, guid: e31356fe89521624c968eeaea2b236c3, type: 2}
+  - {fileID: 11400000, guid: 57cdd0f4008431e4bba2ce2ffd3244b4, type: 2}
   reelModAssets: []
-  lineModAssets: []
+  lineModAssets:
+  - {fileID: 11400000, guid: 3752082d34689e84299924a4f99cfee8, type: 2}
   lureModAssets: []
   hatModAssets: []
   shirtModAssets: []

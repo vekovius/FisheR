@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7a9a91f8b0d224bb0e68b148a611f5, type: 3}
-  m_Name: Reel Speed Mod
+  m_Script: {fileID: 11500000, guid: dd4ec38c03904934ebde371c935ff65f, type: 3}
+  m_Name: Strong Lure
   m_EditorClassIdentifier: 
-  modName: Reel Speed
-  tierAssets:
-  - {fileID: 11400000, guid: 68957197e1f4c7e41a3a09481977e042, type: 2}
+  templateName: Strong Lure
+  icon: {fileID: 0}
+  attributeFocus: 1
+  baseStrength: 3
+  baseAgility: 0
+  baseIntelligence: 0

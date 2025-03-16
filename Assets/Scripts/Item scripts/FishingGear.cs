@@ -74,4 +74,9 @@ public class FishingLure : EquipmentItem
     /// How visible the lure is to fish, affects the chance of fish noticing it
     /// </summary>
     public float Visibility;
+
+    /// <summary>
+    /// Physical size of the lure.
+    /// </summary>
+    public float Size;
 }

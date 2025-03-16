@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb7a9a91f8b0d224bb0e68b148a611f5, type: 3}
-  m_Name: Cast Distance Mod
+  m_Name: Power Rating Mod
   m_EditorClassIdentifier: 
-  modName: Cast Distance
+  modName: Power Rating
   tierAssets:
-  - {fileID: 11400000, guid: c3d6cd7de86764f45ab70802f6c5379e, type: 2}
-  - {fileID: 11400000, guid: 0db77469357284b4eb56123227aa68a1, type: 2}
+  - {fileID: 11400000, guid: 5cd3db09e446c9f4f8102dd8f4644ddb, type: 2}
+  - {fileID: 11400000, guid: 9264a95c0184b8448a861b7db97efd1a, type: 2}
+  - {fileID: 11400000, guid: 9ab2593de4b887c47b692e55e7f22d5e, type: 2}

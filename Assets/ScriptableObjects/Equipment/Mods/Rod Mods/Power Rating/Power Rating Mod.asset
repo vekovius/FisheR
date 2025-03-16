@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7a9a91f8b0d224bb0e68b148a611f5, type: 3}
+  m_Name: Power Rating Mod
+  m_EditorClassIdentifier: 
+  modName: Power Rating
+  tierAssets:
+  - {fileID: 11400000, guid: 5cd3db09e446c9f4f8102dd8f4644ddb, type: 2}
+  - {fileID: 11400000, guid: 9264a95c0184b8448a861b7db97efd1a, type: 2}
+  - {fileID: 11400000, guid: 9ab2593de4b887c47b692e55e7f22d5e, type: 2}

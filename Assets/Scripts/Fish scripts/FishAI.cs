@@ -7,7 +7,9 @@ public class FishAI : MonoBehaviour
     public Transform currentLure = null;
     public Vector2 velocity;
     public Vector2 homePosition;
-  
+
+    private SpriteRenderer spriteRenderer;
+
     private float maxSpeed;
     //private float maxForce;
     private float neighborRadius;
@@ -27,7 +29,8 @@ public class FishAI : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         if(fishType != null)
         {
             maxSpeed = fishType.maxSpeed;
@@ -70,6 +73,18 @@ public class FishAI : MonoBehaviour
             float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0,0,angle);
         }
+
+        //Set the direction of the fish to always be rightside up
+        if (velocity.x < 0)
+        {
+            spriteRenderer.flipY = true;
+        }
+        else
+        {
+            spriteRenderer.flipY = false;
+        }
+
+   
     }
 
     private Vector2 Flock()

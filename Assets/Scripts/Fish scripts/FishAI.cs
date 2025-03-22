@@ -125,7 +125,7 @@ public class FishAI : MonoBehaviour
 
                 if (dirToNeighbor.magnitude < separationDistance) //If the distance between other other fish and current fish is too small
                 {
-                    Debug.Log($"Fish {gameObject.name} is too close to {other.gameObject.name}");
+                    //Debug.Log($"Fish {gameObject.name} is too close to {other.gameObject.name}");
                     separation -= dirToNeighbor.normalized * dirToNeighbor.magnitude;
                 }
 

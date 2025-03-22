@@ -22,7 +22,7 @@ public class FishManager : MonoBehaviour
             if (region != null)
                 fishSpawner.SpawnSchool(fishType, region);
             else
-                Debug.Log($"No spawn region found for {fishType.typeName}");
+                Debug.Log($"No spawn region found for {fishType.speciesID}");
             
         }
     }

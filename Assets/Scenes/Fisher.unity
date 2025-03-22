@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishTypes:
   - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
+  - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
   spawnFromCenterRad: 5
 --- !u!4 &89424144
 Transform:
@@ -2218,6 +2219,53 @@ MonoBehaviour:
   target: {fileID: 8403292527301893152, guid: 5cfd872ea22c10449ae756ec5c1c8ffe, type: 3}
   offset: {x: 0, y: 0, z: -10}
   smoothSpeed: 0.125
+--- !u!1 &374091717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 374091718}
+  - component: {fileID: 374091719}
+  m_Layer: 0
+  m_Name: CatfishSpawnRegion
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &374091718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374091717}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.2, y: -11.7, z: 0.19171107}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2056074967}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &374091719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374091717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  speciesID: Catfish
+  gizomoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1001 &537081201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10628,12 +10676,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096971444}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.17, y: 8.53, z: 0.07541399}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -14.819696, y: -0.8938179, z: 0.19171107}
   m_LocalScale: {x: 1, y: 1.36, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2056074967}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1096971446
 MonoBehaviour:
@@ -42409,6 +42457,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5800326848482950903, guid: 73eb21df3cecb60459e551b48ca437ac, type: 3}
   m_PrefabInstance: {fileID: 537081201}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2056074966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056074967}
+  m_Layer: 0
+  m_Name: FishSpawnRegions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2056074967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056074966}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.350302, y: 9.423818, z: -0.11629709}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1096971445}
+  - {fileID: 374091718}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2056596169
 GameObject:
   m_ObjectHideFlags: 0
@@ -42545,7 +42626,7 @@ SceneRoots:
   - {fileID: 232229206}
   - {fileID: 1591427347}
   - {fileID: 932208587}
-  - {fileID: 1096971445}
   - {fileID: 89424144}
   - {fileID: 541145550}
   - {fileID: 2056596171}
+  - {fileID: 2056074967}

@@ -49,6 +49,7 @@ public class FishManager : MonoBehaviour
         
     }
 
+
     private void Update()
     {
         //Update game time with time scaling
@@ -61,8 +62,6 @@ public class FishManager : MonoBehaviour
             lastPopulationUpdateTime = gameTime; //Reset the last update time
         }
     }
-
-
 
 
     private void PerformIntialSpawning()
@@ -89,6 +88,7 @@ public class FishManager : MonoBehaviour
         }
     }
 
+
     private List<SpawnRegion> FindSuitableRegions(FishType fishType)
     {
         List<SpawnRegion> suitable = new List<SpawnRegion>();
@@ -102,6 +102,7 @@ public class FishManager : MonoBehaviour
         }
         return suitable;
     }
+
 
     private void SpawnFishGroup(FishType fishType, SpawnRegion region, int count)
     {
@@ -134,12 +135,17 @@ public class FishManager : MonoBehaviour
 
             fishAI.Initialize(fishType, region, schoolCenter); //Initialize fish AI with type and region
 
+            //Subscribe to fish events
+            fishAI.OnFishDeath += HandleFishDeath; //Subscribe to the death event
+            fishAI.OnFishReproduce += HandleFishReproduction; //Subscribe to the reproduction event
+
             populationData.activeFish.Add(fishAI); //Add fish to the active list
             populationData.currentPopulation++; //Increment the current population
 
         }
         populationData.lastSpawnTime = gameTime; //Update the last spawn time for this fish type
     }
+
 
     private void UpdatePopulations()
     {
@@ -178,10 +184,7 @@ public class FishManager : MonoBehaviour
                     }
                 }
             }
-
-        }
-
-        
+        }   
     }
 
 
@@ -197,6 +200,7 @@ public class FishManager : MonoBehaviour
         }
     }
 
+
     private void HandleFishReproduction(FishAI parent)
     {
         if (parent == null) return;
@@ -209,11 +213,10 @@ public class FishManager : MonoBehaviour
                 //If the population is at max, don't allow reproduction
                 return;
             }
-
             Vector2 parentPosition2D = new Vector2(parent.transform.position.x, parent.transform.position.y);
             Vector2 spawnPos = parentPosition2D + new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)); //Random position around the parent fish
             GameObject babyFishObj = Instantiate(parent.fishType.prefab, spawnPos, Quaternion.identity); //Create a new fish object
-
+   
             //Set up fish AI for the baby fish
             FishAI babyFishAI = babyFishObj.GetComponent<FishAI>();
             if (babyFishAI == null)
@@ -235,6 +238,7 @@ public class FishManager : MonoBehaviour
         }
     }
 
+
     private void OnGUI()
     {
         if(!showPopulationStats) return; //Exit if we don't want to show stats
@@ -247,5 +251,4 @@ public class FishManager : MonoBehaviour
             y += 20; //Move down for the next label
         }
     }
-
 }

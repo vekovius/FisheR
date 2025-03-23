@@ -88,6 +88,7 @@ public class FishAI : MonoBehaviour
     private void Update()
     {
         UpdateLifeCycle(); //Update the life cycle of the fish
+        CheckReproduction(); //Check if the fish can reproduce
 
     }
 
@@ -220,6 +221,22 @@ public class FishAI : MonoBehaviour
             Die();
         }
     }
+
+    //Function to handle fish reproduction
+    public void CheckReproduction()
+    {
+       
+        if (maturity >= 1f) //If fish is mature
+        {
+            float reproductionChance = fishType.reproductionRate; //Calculate chance of reproduction
+           
+            if (UnityEngine.Random.value < reproductionChance) //If chance is met
+            {
+                OnFishReproduce?.Invoke(this); //Invoke the reproduction event
+            }
+        }
+    }
+
 
     public void Die()
     {

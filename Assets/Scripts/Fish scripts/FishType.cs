@@ -15,7 +15,7 @@ public class FishType : ScriptableObject
 
     [Header("Population Control")]
     public int targetPopulation = 20; //Target population for the species
-    public int maxPopulation = 30; //Maximum population for the species
+    public int maxPopulation = 20; //Maximum population for the species
     public float spawnRate = 0.1f;  //New fish per minute 
     public float naturalDeathRate = 0.05f; //Chance of fish dying per minute
 

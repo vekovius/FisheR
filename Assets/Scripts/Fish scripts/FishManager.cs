@@ -127,8 +127,55 @@ public class FishManager : MonoBehaviour
         populationData.lastSpawnTime = gameTime; //Update the last spawn time for this fish type
     }
 
+    private void HandleFishDeath(FishAI fish)
+    {
+        if (fish == null || fish.fishType == null) return; //Exit if fish is null or fish type is not set
 
+        string speciesID = fish.fishType.speciesID; //Get the species ID of the fish
+        if (populations.TryGetValue(speciesID, out PopulationData populationData))
+        {
+            populationData.activeFish.Remove(fish); //Remove fish from the active list
+            populationData.currentPopulation--; //Decrement the current population
+        }
+    }
 
+    private void HandleFishReproduction(FishAI parent)
+    {
+        if (parent == null) return;
+
+        string speciesID = parent.fishType.speciesID; //Get the species ID of the parent fish
+        if (populations.TryGetValue(speciesID, out PopulationData populationData))
+        {
+            if (populationData.currentPopulation >= parent.fishType.maxPopulation)
+            {
+                //If the population is at max, don't allow reproduction
+                return;
+            }
+
+            Vector2 parentPosition2D = new Vector2(parent.transform.position.x, parent.transform.position.y);
+            Vector2 spawnPos = parentPosition2D + new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)); //Random position around the parent fish
+            GameObject babyFishObj = Instantiate(parent.fishType.prefab, spawnPos, Quaternion.identity); //Create a new fish object
+
+            //Set up fish AI for the baby fish
+            FishAI babyFishAI = babyFishObj.GetComponent<FishAI>();
+            if (babyFishAI == null)
+            {
+                babyFishAI = babyFishObj.AddComponent<FishAI>(); //Add FishAI component if not present
+            }
+
+            babyFishAI.Initialize(parent.fishType, parent.currentRegion, parent.homePosition); //Initialize baby fish AI
+            babyFishAI.OnFishDeath += HandleFishDeath; //Subscribe to the death event
+            babyFishAI.OnFishReproduce += HandleFishReproduction; //Subscribe to the reproduction event
+
+            babyFishAI.age = 0f; //Set the age of the baby fish to 0
+            babyFishAI.transform.localScale = Vector3.one * 0.5f; //Scale down the baby fish
+
+            //Track this fish in our populaiton
+            populationData.activeFish.Add(babyFishAI); //Add baby fish to the active list
+            populationData.currentPopulation++; //Increment the current population
+
+        }
+    }
 
     private void OnGUI()
     {

@@ -205,6 +205,11 @@ public class FishAI : MonoBehaviour
         return Vector2.zero;
     }
 
+    public void Die()
+    {
+        OnFishDeath?.Invoke(this); //Invoke the death event
+        Destroy(gameObject); //Destroy the fish object
+    }
 
     private void OnDrawGizmosSelected()
     {

@@ -27,7 +27,7 @@ MonoBehaviour:
   growthRate: 0.1
   maturityAge: 5
   maxAge: 30
-  reproductionRate: 0.02
+  reproductionRate: 0.002
   hungerRate: 0.1
   maxSpeed: 5
   maxForce: 2

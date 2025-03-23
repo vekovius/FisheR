@@ -26,6 +26,16 @@ public class SpawnRegion : MonoBehaviour
         return waterSurfaceY - depthFromSurface;
     }
 
+    public Vector2 GetRandomPosition()
+    {
+        Bounds bounds = GetBounds(); //Get the bounds of the spawn region
+        
+        return new Vector2(
+            Random.Range(bounds.min.x, bounds.max.x), //Random X within the bounds
+            Random.Range(GetYPositionForDepth(maxDepth), GetYPositionForDepth(minDepth)) //Random Y within the depth range
+        );
+    }
+
     public string speciesID; //SpeciesID
     
     private void OnDrawGizmosSelected()

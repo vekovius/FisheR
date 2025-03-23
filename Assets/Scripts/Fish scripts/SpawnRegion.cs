@@ -14,7 +14,6 @@ public class SpawnRegion : MonoBehaviour
 
     [Header("Visualization")]
     public Color gizmoColor = Color.green; //Color for gizmo in edit
-    public bool showDepthLevels = true; //Show depth gradient in editor
 
     public Bounds GetBounds()
     {

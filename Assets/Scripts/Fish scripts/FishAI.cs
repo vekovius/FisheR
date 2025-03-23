@@ -1,53 +1,57 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
 
 public class FishAI : MonoBehaviour
 {
+    //Events for ecosystem management
+    public event Action<FishAI> OnFishDeath; //Event for when fish dies
+    public event Action<FishAI> OnFishReproduce; //Event for when fish reproduces
+
+    //Fish properties
     public FishType fishType; //Asigned by FishSpawner
-    public Transform currentLure = null;
-    public Vector2 velocity;
+    public SpawnRegion currentRegion; //Asigned by FishSpawner
     public Vector2 homePosition;
+    public float age = 0f; //Age of the fish in minutes
+    public float health = 1f; //Health of the fish, 1 is full health, 0 is dead
+    public float hunger = 0f; //Hunger of the fish, 0 is full, 1 is starving
+    public float maturity = 0f; //Maturity of the fish, 0 is immature, 1 is mature
 
+    //Navigational properties
+    public Vector2 velocity;
+    public Transform currentLure = null;
+    public float lureAttractionRadius = 5f; //Radius for lure attraction, fish will be attracted to lures within this radius
+
+    //Components
     private SpriteRenderer spriteRenderer;
-
-    private float maxSpeed;
-    //private float maxForce;
-    private float neighborRadius;
-    public float lureAttractionRadius = 3;
-    private float separationDistance;
-    private float alignmentWeight;
-    private float cohesionWeight;
-    private float separationWeight;
-    private float wanderWeight;
-    private float homeAttractionWeight;
-
-    [Range(0, 360)]
-    public float fieldOfView = 270f; 
-
     Rigidbody2D rb;
+
+    public void Initialize(FishType type, SpawnRegion region, Vector2 home)
+    {
+        fishType = type;
+        currentRegion = region;
+        homePosition = home;
+
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        velocity = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)); //Initialize velocity to a random direction
+
+        lureAttractionRadius = fishType.lureAttractionRadius; //Set the lure attraction radius to the same as the neighbor radius 
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if(fishType != null)
+        Initialize(fishType, currentRegion, homePosition); //Initialize fish properties
+        if (fishType == null)
         {
-            maxSpeed = fishType.maxSpeed;
-            //maxForce = fishType.maxForce;
-            neighborRadius = fishType.neighborRadius;
-            separationDistance = fishType.separationDistance;
-            alignmentWeight = fishType.alignmentWeight;
-            cohesionWeight = fishType.cohesionWeight;
-            separationWeight = fishType.separationWeight;
-            wanderWeight = fishType.wanderWeight;
-            homeAttractionWeight = fishType.homeAttractionWeight;
+            Debug.LogError("FishType is not assigned in FishAI. Please assign a FishType in the inspector.");
+            return;
         }
-        else
-        {
-            Debug.Log($"FishAI on {gameObject.name} has no FishType assigned");
-        }
-        velocity = new Vector2(Random.Range(-maxSpeed, maxSpeed), Random.Range(-maxSpeed, maxSpeed));
     }
 
 
@@ -63,7 +67,7 @@ public class FishAI : MonoBehaviour
 
 
         velocity += acceleration * Time.fixedDeltaTime;
-        velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
+        velocity = Vector2.ClampMagnitude(velocity, fishType.maxSpeed);
 
         rb.MovePosition(rb.position +  velocity * Time.fixedDeltaTime);
 
@@ -90,7 +94,7 @@ public class FishAI : MonoBehaviour
     private Vector2 Flock()
     {
         //Collections all neighbors within neighbor Radius
-        Collider2D[] neighbors = Physics2D.OverlapCircleAll(transform.position, neighborRadius);
+        Collider2D[] neighbors = Physics2D.OverlapCircleAll(transform.position, fishType.neighborRadius);
         Vector2 alignment = Vector2.zero;
         Vector2 cohesion = Vector2.zero;
         Vector2 separation = Vector2.zero;
@@ -118,12 +122,12 @@ public class FishAI : MonoBehaviour
 
                 //Check if neighbor is within the field of view
                 float angleToNeighbor = Vector2.Angle(forward, dirToNeighbor);
-                if (angleToNeighbor > fieldOfView * 0.5f)
+                if (angleToNeighbor > fishType.fieldOfView * 0.5f)
                 {
                     continue;
                 }
 
-                if (dirToNeighbor.magnitude < separationDistance) //If the distance between other other fish and current fish is too small
+                if (dirToNeighbor.magnitude < fishType.separationDistance) //If the distance between other other fish and current fish is too small
                 {
                     //Debug.Log($"Fish {gameObject.name} is too close to {other.gameObject.name}");
                     separation -= dirToNeighbor.normalized * dirToNeighbor.magnitude;
@@ -137,35 +141,34 @@ public class FishAI : MonoBehaviour
         }
         if (count > 0)
         {
-            alignment = (alignment / count).normalized * maxSpeed - velocity;
+            alignment = (alignment / count).normalized * fishType.maxSpeed - velocity;
             //alignment = Vector2.ClampMagnitude(alignment, maxForce);
 
-            cohesion = ((cohesion / count) - (Vector2)transform.position).normalized * maxSpeed - velocity;
+            cohesion = ((cohesion / count) - (Vector2)transform.position).normalized * fishType.maxSpeed - velocity;
             //cohesion = Vector2.ClampMagnitude(cohesion, maxForce);
 
-            separation = separation.normalized * maxSpeed - velocity;
+            separation = separation.normalized * fishType.maxSpeed - velocity;
             //separation = Vector2.ClampMagnitude(separation, maxForce);
 
         }
-        Vector2 flockVector = alignment * alignmentWeight + cohesion * cohesionWeight + separation * separationWeight;
-        //Debug.Log($"Flock vector is {flockVector}");
-        return alignment * alignmentWeight + cohesion * cohesionWeight + separation * separationWeight;
+        
+        return alignment * fishType.alignmentWeight + cohesion * fishType.cohesionWeight + separation * fishType.separationWeight;
     }
 
 
     //Source of random direction for fish  
     private Vector2 Wander()
     {
-        Vector2 wanderForce = new Vector2 (Random.Range(-1f,1f), Random.Range(-1f,1f));
-        wanderForce *= wanderWeight;
+        Vector2 wanderForce = new Vector2 (UnityEngine.Random.Range(-1f,1f), UnityEngine.Random.Range(-1f,1f));
+        wanderForce *= fishType.wanderWeight;
         return wanderForce; //Vector2.ClampMagnitude(wanderForce, maxForce);
     }
 
     //This function keeps the fishies near their home point. 
     private Vector2 HomeAttraction()
     {
-        Vector2 toHome = (homePosition - (Vector2)transform.position).normalized * maxSpeed - velocity;
-        toHome *= homeAttractionWeight;
+        Vector2 toHome = (homePosition - (Vector2)transform.position).normalized * fishType.maxSpeed - velocity;
+        toHome *= fishType.homeAttractionWeight;
         return toHome; //Vector2.ClampMagnitude(toHome, maxForce);
     }
 
@@ -195,7 +198,7 @@ public class FishAI : MonoBehaviour
             if (distanceTolure <= lureAttractionRadius)
             {
                 float attractionStrength = Mathf.Lerp(0.5f, 1.5f, 1 - (distanceTolure / lureAttractionRadius));
-                Vector2 toLure = ((Vector2)currentLure.position - (Vector2)transform.position).normalized * maxSpeed - velocity;
+                Vector2 toLure = ((Vector2)currentLure.position - (Vector2)transform.position).normalized * fishType.maxSpeed - velocity;
                 return toLure * attractionStrength;
             }
         }
@@ -206,9 +209,9 @@ public class FishAI : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(transform.position, neighborRadius); //Draws white circle around neigbor seeing radius
+        Gizmos.DrawWireSphere(transform.position, fishType.neighborRadius); //Draws white circle around neigbor seeing radius
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, separationDistance); //Draws red circle around separtion seeing radius
+        Gizmos.DrawWireSphere(transform.position, fishType.separationDistance); //Draws red circle around separtion seeing radius
     }
 
 }

@@ -54,8 +54,6 @@ public class FishAI : MonoBehaviour
         }
     }
 
-
-
     private void FixedUpdate()
     {
         Vector2 acceleration = Vector2.zero;
@@ -63,8 +61,6 @@ public class FishAI : MonoBehaviour
         acceleration += Wander();
         acceleration += HomeAttraction();
         acceleration += lureAttraction();
-
-
 
         velocity += acceleration * Time.fixedDeltaTime;
         velocity = Vector2.ClampMagnitude(velocity, fishType.maxSpeed);
@@ -87,8 +83,12 @@ public class FishAI : MonoBehaviour
         {
             spriteRenderer.flipY = false;
         }
+    }
 
-   
+    private void Update()
+    {
+        UpdateLifeCycle(); //Update the life cycle of the fish
+
     }
 
     private Vector2 Flock()
@@ -203,6 +203,22 @@ public class FishAI : MonoBehaviour
             }
         }
         return Vector2.zero;
+    }
+
+    private void UpdateLifeCycle()
+    {
+        //Increment age
+        age += Time.deltaTime / 60f; //Convert to minutes
+
+        maturity = Mathf.Clamp01(age / fishType.maturityAge); //Clamp maturity between 0 and 1
+
+        hunger += fishType.hungerRate * Time.deltaTime / 60f; //Increment hunger based on hunger rate
+        transform.localScale = Vector3.Lerp(Vector3.one * 0.25f, Vector3.one, maturity); //Scale fish based on maturity
+
+        if (age > fishType.maxAge) //If fish is older than max age, die
+        {
+            Die();
+        }
     }
 
     public void Die()

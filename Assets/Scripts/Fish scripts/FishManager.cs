@@ -1,29 +1,16 @@
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FishManager : MonoBehaviour
 {
-    //Reference to the FishSpawner component
-    public FishSpawner fishSpawner;
-
-    //all fish in scene
-    //public List<FishAI> allFish = new List<FishAI>();
-
-    private void Start()
+    [System.Serializable]
+    public class  PopulationData
     {
-        foreach (FishType fishType in fishSpawner.fishTypes)
-        {
-            
-            SpawnRegion region = fishType.spawnRegion != null
-                ? fishType.spawnRegion
-                : fishSpawner.GetSpawnRegionForSpecies(fishType.speciesID);
-
-
-            if (region != null)
-                fishSpawner.SpawnSchool(fishType, region);
-            else
-                Debug.Log($"No spawn region found for {fishType.speciesID}");
-            
-        }
+        public FishType fishType; //Type of fish
+        public int currentPopulation; //Current population of the fish type
+        public float lastSpawnTime = 0f; //Last time a fish of this type was spawned
+        public List<FishAI> activeFish = new List<FishAI>(); //List of active fish of this type
     }
+
+
 }

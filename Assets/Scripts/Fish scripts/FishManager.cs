@@ -37,7 +37,6 @@ public class FishManager : MonoBehaviour
                 fishType = fishType,
                 currentPopulation = 0,
                 lastSpawnTime = 0f,
-                activeFish = new List<FishAI>()
             };
 
             populations[fishType.speciesID] = data; //Add the population data to the dictionary
@@ -45,8 +44,23 @@ public class FishManager : MonoBehaviour
 
         //Inital population setup
         PerformIntialSpawning();
+
+        //Start enviromental cycle
+        
     }
 
+    private void Update()
+    {
+        //Update game time with time scaling
+        gameTime += Time.deltaTime * timeScale;
+
+        //Check if it's time to update the population data
+        if (gameTime - lastPopulationUpdateTime >= populationUpdateInterval)
+        {
+            UpdatePopulations();
+            lastPopulationUpdateTime = gameTime; //Reset the last update time
+        }
+    }
 
 
 
@@ -126,6 +140,50 @@ public class FishManager : MonoBehaviour
         }
         populationData.lastSpawnTime = gameTime; //Update the last spawn time for this fish type
     }
+
+    private void UpdatePopulations()
+    {
+        foreach (var entry in populations)
+        {
+            PopulationData data = entry.Value;
+            FishType fishType = data.fishType;
+
+            data.activeFish.RemoveAll(fish => fish == null); //Remove any null fish references
+
+            data.currentPopulation = data.activeFish.Count; //Update the current population count
+
+            //Check if we need to spawn more fish
+            if (data.currentPopulation < fishType.targetPopulation)
+            {
+                //Calculate spawn probability based n time since last spawn
+                float timeSinceLastSpawn = gameTime - data.lastSpawnTime;
+                float spawnChance = timeSinceLastSpawn * fishType.spawnRate * timeScale; //Adjust spawn chance
+
+                if (Random.value < spawnChance)
+                {
+                    int fishToSpawn = Mathf.Min(
+                        Random.Range(1, 3), // //Randomly spawn 1-2 fish
+                        fishType.targetPopulation - data.currentPopulation //Ensure we don't exceed target population
+                    );
+
+                    if (fishToSpawn > 0)
+                    {
+                        //Find suitable regions for spawning
+                        List<SpawnRegion> suitableRegions = FindSuitableRegions(fishType); //Find suitable regions for spawning
+                        if (suitableRegions.Count > 0)
+                        {
+                            SpawnRegion region = suitableRegions[UnityEngine.Random.Range(0, suitableRegions.Count)]; //Select a random suitable region
+                            SpawnFishGroup(fishType, region, fishToSpawn);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        
+    }
+
 
     private void HandleFishDeath(FishAI fish)
     {

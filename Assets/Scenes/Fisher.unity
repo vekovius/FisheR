@@ -5816,8 +5816,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
   spawnRegions:
   - {fileID: 1096971446}
-  populationUpdateInterval: 60
-  timeScale: 1
+  populationUpdateInterval: 1
+  timeScale: 100
   showPopulationStats: 1
   lastPopulationUpdateTime: 0
   gameTime: 0

@@ -12,20 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
   m_Name: BassFishType
   m_EditorClassIdentifier: 
-  typeName: Bass
-  prefab: {fileID: 2491004836648192844, guid: d8e0937c2f9ff314889df975af6a77ea, type: 3}
   speciesID: Bass
+  prefab: {fileID: 2491004836648192844, guid: d8e0937c2f9ff314889df975af6a77ea, type: 3}
   spawnWeight: 0
   spawnRegion: {fileID: 0}
-  spawnDepth: 0
-  schoolSizeMin: 20
-  schoolSizeMax: 20
+  schoolSizeMin: 1
+  schoolSizeMax: 5
+  targetPopulation: 5
+  maxPopulation: 20
+  spawnRate: 0.1
+  naturalDeathRate: 0.05
+  preferredDepthMin: 2
+  preferredDepthMax: 10
+  growthRate: 0.1
+  maturityAge: 5
+  maxAge: 30
+  reproductionRate: 0.002
+  hungerRate: 0.1
   maxSpeed: 5
   maxForce: 2
   neighborRadius: 4
   separationDistance: 3
+  lureAttractionRadius: 5
   alignmentWeight: 1
   cohesionWeight: 0.5
   separationWeight: 1
   wanderWeight: 1
   homeAttractionWeight: 0.1
+  fieldOfView: 270

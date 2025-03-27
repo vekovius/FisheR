@@ -904,7 +904,7 @@ public class GearGenerator : MonoBehaviour
     private int CalculateItemLevelFromFish(FishType fishType)
     {
         // Base level calculation on depth and other factors
-        float baseLevel = Mathf.Max(1f, fishType.spawnDepth / 5f);
+        float baseLevel = Mathf.Max(1f, fishType.spawnWeight / 5f);
 
         // Add random variance
         int variance = UnityEngine.Random.Range(-2, 3);

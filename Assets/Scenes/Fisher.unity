@@ -119,6 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &89424142
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +284,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8451271183595247802, guid: 27cc2db2c80dc0d48980b65eaabb126a, type: 3}
   m_PrefabInstance: {fileID: 238010255}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> 0ad7e9355c819e45ca738d64c3c9ac44f848bc47
 --- !u!1 &232229205
 GameObject:
   m_ObjectHideFlags: 0
@@ -6871,7 +6874,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a170f4ea6d54fbf4e9cd820b20a54b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishSpawner: {fileID: 89424143}
+  managedFishTypes:
+  - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
+  - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  spawnRegions:
+  - {fileID: 1096971446}
+  populationUpdateInterval: 1
+  timeScale: 100
+  showPopulationStats: 1
+  lastPopulationUpdateTime: 0
+  gameTime: 0
 --- !u!4 &932208587
 Transform:
   m_ObjectHideFlags: 0
@@ -11910,6 +11922,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 10
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   speciesID: Bass
   gizomoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1114806893
@@ -44772,7 +44789,6 @@ SceneRoots:
   - {fileID: 1591427347}
   - {fileID: 932208587}
   - {fileID: 1096971445}
-  - {fileID: 89424144}
   - {fileID: 541145550}
   - {fileID: 2056596171}
   - {fileID: 1114806895}

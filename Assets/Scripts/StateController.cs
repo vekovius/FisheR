@@ -168,8 +168,10 @@ public class StateController : MonoBehaviour
         InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
         EquipmentType type = (EquipmentType)UnityEngine.Random.Range(0, 7);
         SerializableEquipmentItem item = gearGenerator.GetSerializableEquipment(type, 1, Rarity.Common);
-        inventory.addItem(item);
+        Debug.Log($"Generated loot: {item.itemName} of type {type}");
+        inventory.AddItem(item);
     
+
         // Return to passive state
         ChangeState(passiveState);
     }

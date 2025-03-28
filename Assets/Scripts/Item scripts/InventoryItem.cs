@@ -4,11 +4,20 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    public SerializableEquipmentItem item;
+    
     [Header("Item Info")]
     public Image image;
 
     public Transform parentAfterDrag;
 
+    public void InitialiseItem(SerializableEquipmentItem newItem)
+    {
+        item = newItem;
+        image = GetComponent<Image>();
+        image.sprite = item.icon;
+    }
+    
     //Drag and drop
     public void OnBeginDrag(PointerEventData eventData)
     {

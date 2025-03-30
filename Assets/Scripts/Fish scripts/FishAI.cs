@@ -9,6 +9,9 @@ public class FishAI : MonoBehaviour
     public event Action<FishAI> OnFishDeath; //Event for when fish dies
     public event Action<FishAI> OnFishReproduce; //Event for when fish reproduces
 
+    //FishData
+    public SerializableFishItem fishData;
+
     //Fish properties
     public FishType fishType; //Asigned by FishSpawner
     public SpawnRegion currentRegion; //Asigned by FishSpawner
@@ -27,7 +30,7 @@ public class FishAI : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     Rigidbody2D rb;
 
-    public void Initialize(FishType type, SpawnRegion region, Vector2 home)
+    public void Initialize(FishType type, SpawnRegion region, Vector2 home, SerializableFishItem fishData = null)
     {
         fishType = type;
         currentRegion = region;
@@ -39,6 +42,12 @@ public class FishAI : MonoBehaviour
         velocity = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)); //Initialize velocity to a random direction
 
         lureAttractionRadius = fishType.lureAttractionRadius; //Set the lure attraction radius to the same as the neighbor radius 
+
+        if (fishData != null)
+        {
+            this.fishData = fishData;
+            ApplyFishData();
+        }
     }
 
     private void Start()
@@ -89,6 +98,20 @@ public class FishAI : MonoBehaviour
     {
         UpdateLifeCycle(); //Update the life cycle of the fish
         CheckReproduction(); //Check if the fish can reproduce
+    }
+
+    private void ApplyFishData()
+    {
+        if (fishData == null) return;
+
+        //Apply modifiers
+        fishType.maxSpeed *= fishData.speedMultiplier;
+        transform.localScale *= fishData.sizeMultiplier; 
+
+        if(!string.IsNullOrEmpty(fishData.glowEffect))
+        {
+            //Apply glow effect
+        }
 
     }
 

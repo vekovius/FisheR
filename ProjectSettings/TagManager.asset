@@ -9,7 +9,7 @@ TagManager:
   - Lure
   - Item
   - Sort Point
-
+  - Interactible
   layers:
   - Default
   - TransparentFX
@@ -17,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Solid_Objects
+  - 
   - 
   - 
   - 
@@ -47,32 +47,38 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Water
-    uniqueID: 143301493
+  - name: Grass
+    uniqueID: 2550105583
     locked: 0
-  - name: Background-Far
-    uniqueID: 350088891
+  - name: Background
+    uniqueID: 1311187845
     locked: 0
-  - name: Background-Mid
-    uniqueID: 1478695247
+  - name: Solid_Object
+    uniqueID: 478024713
     locked: 0
-  - name: Background-Near
-    uniqueID: 3999961671
+  - name: Tree2
+    uniqueID: 602022429
     locked: 0
-  - name: Lure
-    uniqueID: 454200395
+  - name: BehindPlayer
+    uniqueID: 4047533853
     locked: 0
   - name: Player
-    uniqueID: 337946203
+    uniqueID: 2580256527
     locked: 0
-  - name: Fish
-    uniqueID: 992946319
+  - name: Tree_Tops
+    uniqueID: 1881178259
     locked: 0
-  - name: Foreground-Objects
-    uniqueID: 1292898851
+  - name: Tree_Tops_Fixing
+    uniqueID: 1426101527
     locked: 0
-  - name: UI
-    uniqueID: 1803619637
+  - name: InvisWall
+    uniqueID: 1043124377
+    locked: 0
+  - name: InfrontOfPLayer
+    uniqueID: 761817993
+    locked: 0
+  - name: sss
+    uniqueID: 4056965695
     locked: 0
   m_RenderingLayers:
   - Default

@@ -459,7 +459,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NPC1_Spread_0: 3518875973404239523
+      NPC1_Spread_1: 2962738358406435296
+      NPC1_Spread_10: 3593814741368297105
+      NPC1_Spread_11: 8602092846924923150
+      NPC1_Spread_12: 8676898575128806844
+      NPC1_Spread_13: 7279256448920440931
+      NPC1_Spread_2: 7070184701342604692
+      NPC1_Spread_3: -6790685221342084321
+      NPC1_Spread_4: -5602173553028935758
+      NPC1_Spread_5: -2978215723685265681
+      NPC1_Spread_6: -3550234435751607896
+      NPC1_Spread_7: -949854222854124826
+      NPC1_Spread_8: 5730727356448839421
+      NPC1_Spread_9: 5402879719723221240
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

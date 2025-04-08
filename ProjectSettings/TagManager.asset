@@ -89,6 +89,15 @@ TagManager:
   - name: Back3
     uniqueID: 1397776075
     locked: 0
+  - name: Hill1
+    uniqueID: 4076882179
+    locked: 0
+  - name: Hill2
+    uniqueID: 1750368095
+    locked: 0
+  - name: Hill3
+    uniqueID: 3193117431
+    locked: 0
   - name: Boulder
     uniqueID: 1348790547
     locked: 0

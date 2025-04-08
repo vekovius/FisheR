@@ -77,8 +77,23 @@ TagManager:
   - name: InfrontOfPLayer
     uniqueID: 761817993
     locked: 0
-  - name: sss
+  - name: Back
     uniqueID: 4056965695
+    locked: 0
+  - name: Back1
+    uniqueID: 1083925745
+    locked: 0
+  - name: Back2
+    uniqueID: 4149398917
+    locked: 0
+  - name: Back3
+    uniqueID: 1397776075
+    locked: 0
+  - name: Boulder
+    uniqueID: 1348790547
+    locked: 0
+  - name: Floor
+    uniqueID: 2574936303
     locked: 0
   m_RenderingLayers:
   - Default

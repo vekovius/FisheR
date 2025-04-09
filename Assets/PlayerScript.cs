@@ -1,22 +1,28 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
-   private Animator animator;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private Vector3 moveDirection;
+
     public float speed;
+    public GameObject interactionMarker;
 
     // Start is called before the first frame update
     void Start()
     {
+       rb = GetComponent<Rigidbody2D>();
        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);
-
-        transform.position += moveDirection * speed * Time.deltaTime;
+        moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0f);
 
         if (Input.GetAxisRaw("Horizontal") < 0)
         {
@@ -60,6 +66,27 @@ public class PlayerScript : MonoBehaviour
         else
         {
             animator.SetFloat("Speed", -1);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = moveDirection * speed;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Interactible") 
+        { 
+            interactionMarker.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Interactible")
+        {
+            interactionMarker.SetActive(false);
         }
     }
 }

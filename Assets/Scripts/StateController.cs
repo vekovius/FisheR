@@ -148,12 +148,15 @@ public class StateController : MonoBehaviour
         {
             Debug.Log($"Fish type: {fishAI.fishType.name}");      
         }
+
+        Debug.Log($"Fish data: {fishAI.fishData}");
+       
         
         //Find and destroy lure 
         GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
         if ( lure != null)
         {
-            // Clean up lure state and associated componets
+            // Clean up lure state and associated components
             CleanUpLureAndFish(lure, fish);
 
             //Destroy Lure object
@@ -164,16 +167,11 @@ public class StateController : MonoBehaviour
         Destroy(fish);
 
         //Get fish data for loot generation
-        SerializableFishItem fishData = fishAI?.fishData;
-        Rarity lootRarity = Rarity.Common;
-        float gearDropChance = 0.5f;
-
+        SerializableFishItem fishData = fishAI.fishData;
+        Rarity lootRarity = fishData.rarity;
+       
         if (fishData != null)
         {
-            //Use fish data for loot
-            lootRarity = fishData.rarity;
-            gearDropChance = fishData.gearDropChance;
-
             //Apply rarity bonus if any
             if (fishData.gearRarityBonus > 0)
             {
@@ -182,17 +180,13 @@ public class StateController : MonoBehaviour
                 lootRarity = (Rarity)rarityIndex;
             }
         }
+ 
+         //Add fish item to inventory
+        InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
+        //fish. item = gearGenerator.GetSerializableEquipment(type, 1, lootRarity);
+        inventory.AddItem(fishData);
+        
 
-         // Randomm chance to drop gear baserd on fish properties
-         if (UnityEngine.Random.value < gearDropChance)
-        {
-            //Generate the gear
-            GearGenerator gearGenerator = FindFirstObjectByType<GearGenerator>();
-            InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
-            EquipmentType type  = (EquipmentType)UnityEngine.Random.Range(0, 7);
-            SerializableEquipmentItem item = gearGenerator.GetSerializableEquipment(type, 1, lootRarity);
-            inventory.AddItem(item);
-        }
 
         Destroy(fish);
 

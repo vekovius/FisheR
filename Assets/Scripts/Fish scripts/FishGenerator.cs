@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
@@ -43,7 +44,6 @@ public class FishGenerator : MonoBehaviour
     [SerializeField] private float epicWeight = 5f;
     [SerializeField] private float legendaryWeight = 1f;
 
-    //Fish modifier settings based on rarity
     [Header("Fish Rarity Templates")]
     [SerializeField] private SerializableFishItem commonFishTemplate;
     [SerializeField] private SerializableFishItem uncommonFishTemplate;
@@ -65,6 +65,7 @@ public class FishGenerator : MonoBehaviour
         fish.baseFishType = baseFishType;
         fish.fishName = baseFishType.speciesID;
         fish.rarity = rarity;
+        fish.icon = baseFishType.prefab.GetComponent<SpriteRenderer>().sprite;
 
         //Apply rarity template
         ApplyRarityTemplate(fish, rarity);

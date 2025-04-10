@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd4ec38c03904934ebde371c935ff65f, type: 3}
-  m_Name: Strong Line
+  m_Name: Strong Hat
   m_EditorClassIdentifier: 
-  templateName: Strong Line
-  icon: {fileID: -7012814559099258065, guid: 7165426d80acd7340b02e400371d15f8, type: 3}
-  attributeFocus: 1
-  baseStrength: 3
+  templateName: Strong Hat
+  icon: {fileID: -5623194428626525839, guid: 74b61c1dca8aa6b4eb744202a0544eac, type: 3}
+  attributeFocus: 0
+  baseStrength: 0
   baseAgility: 0
   baseIntelligence: 0

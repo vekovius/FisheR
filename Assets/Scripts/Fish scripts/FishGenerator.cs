@@ -1,34 +1,65 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
+[Serializable]
+public class FishModTier
+{
+    public int tier;
+    public int minFishLevel;
+    public float minValue;
+    public float maxValue;
+    public float weight = 1f;
+}
+
+[Serializable]
+public class FishMod
+{
+    public string modName;
+    public List<FishModTier> modTiers;
+}
+
+
+/// <summary>
+/// FishGenerator will randomly generate a fish with weighted rarity and mods
+/// </summary>
 public class FishGenerator : MonoBehaviour
 {
-    //Rarity wegihts
-    [Header("Rarity Generation Settings")]
-    [SerializeField] public float commonWeight = 100f;
-    [SerializeField] public float uncommonWeight = 50f;
-    [SerializeField] public float rareWeight = 25f;
-    [SerializeField] public float epicWeight = 5f;
-    [SerializeField] public float legendaryWeight = 1f;
+    //Fish templates
+    [Header("Fish Templates")]
+    [SerializeField] public List<FishType> fishTypes;
 
-    //Fish modifier settings based on rarirty
-    [Header("Fish Modifier Settings")]
+    //Fish modifiers
+    [Header("Fish Modifiers")]
+    [SerializeField] public List<FishMod> fishMods; //List of all fish mods
+
+    //Rarity weight
+    [Header("Rarity Generation Settings")]
+    [SerializeField] private float commonWeight = 100f;
+    [SerializeField] private float uncommonWeight = 50f;
+    [SerializeField] private float rareWeight = 25f;
+    [SerializeField] private float epicWeight = 5f;
+    [SerializeField] private float legendaryWeight = 1f;
+
+    //Fish modifier settings based on rarity
+    [Header("Fish Rarity Templates")]
     [SerializeField] private SerializableFishItem commonFishTemplate;
     [SerializeField] private SerializableFishItem uncommonFishTemplate;
     [SerializeField] private SerializableFishItem rareFishTemplate;
     [SerializeField] private SerializableFishItem epicFishTemplate;
     [SerializeField] private SerializableFishItem legendaryFishTemplate;
 
-    
-
     //Generate fish with random rarity
-    public SerializableFishItem GenerateRandomFish(FishType baseFishType)
+    public SerializableFishItem GenerateSerializableFish(FishType baseFishType, int level = 1)
     {
         Rarity rarity = GenerateRarity();
-        return GenerateFish(baseFishType, rarity);
+        return GenerateFish(baseFishType, level, rarity);
     }
 
     //Generate fish with specific rarity
-    public SerializableFishItem GenerateFish(FishType baseFishType, Rarity rarity)
+    public SerializableFishItem GenerateFish(FishType baseFishType, int level, Rarity rarity = Rarity.Common)
     {
         SerializableFishItem fish = new SerializableFishItem();
         fish.baseFishType = baseFishType;
@@ -61,7 +92,7 @@ public class FishGenerator : MonoBehaviour
         }
 
         //Select rarity on weights
-        float random = Random.Range(0, totalWeight);
+        float random = UnityEngine.Random.Range(0, totalWeight);
         float accumulatedWeight = 0;
 
         for (int i = 0; i < weights.Length; i++)
@@ -137,9 +168,14 @@ public class FishGenerator : MonoBehaviour
         {
             description += $"Gear Rarity Bonus: {fish.gearRarityBonus}\n";
         }
-
         fish.description = description;
     }
 
+    public void DebugGenerateAndPrint(FishType fishType, int level)
+    {
+
+        SerializableFishItem fish = GenerateSerializableFish(fishType, level);
+        Debug.Log($"Generated Fish: {fish.fishName}\nDescription: {fish.description}");
+    }
 
 }

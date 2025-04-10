@@ -9,19 +9,18 @@ public class FishAI : MonoBehaviour
     public event Action<FishAI> OnFishDeath; //Event for when fish dies
     public event Action<FishAI> OnFishReproduce; //Event for when fish reproduces
 
-    //FishData
-    public SerializableFishItem fishData;
+    public SerializableFishItem fishData; //Data for the fish, assigned by FishSpawner
 
-    //Fish properties
-    public FishType fishType; //Asigned by FishSpawner
-    public SpawnRegion currentRegion; //Asigned by FishSpawner
+    [Header("Fish Properties")]
+    public FishType fishType; //Assigned by FishSpawner
+    public SpawnRegion currentRegion; //Assigned by FishSpawner
     public Vector2 homePosition;
     public float age = 0f; //Age of the fish in minutes
     public float health = 1f; //Health of the fish, 1 is full health, 0 is dead
     public float hunger = 0f; //Hunger of the fish, 0 is full, 1 is starving
     public float maturity = 0f; //Maturity of the fish, 0 is immature, 1 is mature
 
-    //Navigational properties
+    [Header("Navigational Properties")]
     public Vector2 velocity;
     public Transform currentLure = null;
     public float lureAttractionRadius = 5f; //Radius for lure attraction, fish will be attracted to lures within this radius
@@ -106,13 +105,7 @@ public class FishAI : MonoBehaviour
 
         //Apply modifiers
         fishType.maxSpeed *= fishData.speedMultiplier;
-        transform.localScale *= fishData.sizeMultiplier; 
-
-        if(!string.IsNullOrEmpty(fishData.glowEffect))
-        {
-            //Apply glow effect
-        }
-
+        transform.localScale *= fishData.sizeMultiplier;
     }
 
     private Vector2 Flock()
@@ -158,7 +151,7 @@ public class FishAI : MonoBehaviour
                 }
 
                 alignment += other.velocity; //alignment will be in direction that other fish is heading
-                cohesion += (Vector2)other.transform.position; //Cohestion vector is in the direction of other fish
+                cohesion += (Vector2)other.transform.position; //Cohesion vector is in the direction of other fish
                 
                 count++;
             }

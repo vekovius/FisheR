@@ -336,6 +336,57 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1323847798907757148, guid: 3af8b4e29158943489f84cac76567582, type: 3}
   m_PrefabInstance: {fileID: 990167819}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &160904620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160904622}
+  - component: {fileID: 160904621}
+  m_Layer: 0
+  m_Name: BassSpawnRegion (1)
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &160904621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160904620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 10
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: Bass
+--- !u!4 &160904622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160904620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.59, y: 10, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &170706550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7278,6 +7329,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
   spawnRegions:
   - {fileID: 1096971446}
+  - {fileID: 160904621}
   populationUpdateInterval: 30
   timeScale: 1
   showPopulationStats: 0
@@ -12158,6 +12210,117 @@ PrefabInstance:
       addedObject: {fileID: 1269197384}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af8b4e29158943489f84cac76567582, type: 3}
+--- !u!1 &1013860169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013860170}
+  - component: {fileID: 1013860173}
+  - component: {fileID: 1013860172}
+  - component: {fileID: 1013860171}
+  m_Layer: 0
+  m_Name: InventoryItem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1013860170
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013860169}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.9767444, y: 2.9767444, z: 2.9767444}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1595924079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1013860171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013860169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7626892807e81d448416fd8da550aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemName: Rare Fishing Rod
+    description: '
+
+      Level 10
+
+      Cast Distance: +1
+
+      Accuracy: +0
+
+      Power
+      Rating: +0
+
+'
+    icon: {fileID: 0}
+    itemLevel: 10
+    strength: 0
+    agility: 0
+    intelligence: 0
+    rarity: 2
+    equipmentType: 0
+  image: {fileID: 1013860172}
+  parentAfterDrag: {fileID: 0}
+--- !u!114 &1013860172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013860169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1013860173
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013860169}
+  m_CullTransparentMesh: 1
 --- !u!114 &1041623722 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1825138853382457608, guid: c34ef99ff09efec41af62a888f8e6836, type: 3}
@@ -19194,6 +19357,150 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d69b1e791793e4fae7c78d76565920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1601569432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1601569434}
+  - component: {fileID: 1601569433}
+  - component: {fileID: 1601569435}
+  m_Layer: 0
+  m_Name: FishGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1601569433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601569432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a41185801cfcd14fbcbedae023489b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishTypes:
+  - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
+  - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  fishMods:
+  - modName: Haste
+    modTiers:
+    - tier: 1
+      minFishLevel: 1
+      minValue: 1
+      maxValue: 1.05
+      weight: 0
+  commonWeight: 100
+  uncommonWeight: 50
+  rareWeight: 25
+  epicWeight: 5
+  legendaryWeight: 1
+  commonFishTemplate:
+    fishName: 
+    description: 
+    icon: {fileID: 0}
+    baseFishType: {fileID: 0}
+    rarity: 0
+    speedMultiplier: 1
+    sizeMultiplier: 1
+    forceMultiplier: 1
+    expValue: 100
+    gearDropChance: 0.5
+    gearRarityBonus: 0
+    glowEffect: 
+    explicitModCount: 0
+  uncommonFishTemplate:
+    fishName: 
+    description: 
+    icon: {fileID: 0}
+    baseFishType: {fileID: 0}
+    rarity: 0
+    speedMultiplier: 1
+    sizeMultiplier: 1
+    forceMultiplier: 1
+    expValue: 100
+    gearDropChance: 0.5
+    gearRarityBonus: 0
+    glowEffect: 
+    explicitModCount: 0
+  rareFishTemplate:
+    fishName: 
+    description: 
+    icon: {fileID: 0}
+    baseFishType: {fileID: 0}
+    rarity: 0
+    speedMultiplier: 1
+    sizeMultiplier: 1
+    forceMultiplier: 1
+    expValue: 100
+    gearDropChance: 0.5
+    gearRarityBonus: 0
+    glowEffect: 
+    explicitModCount: 0
+  epicFishTemplate:
+    fishName: 
+    description: 
+    icon: {fileID: 0}
+    baseFishType: {fileID: 0}
+    rarity: 0
+    speedMultiplier: 1
+    sizeMultiplier: 1
+    forceMultiplier: 1
+    expValue: 100
+    gearDropChance: 0.5
+    gearRarityBonus: 0
+    glowEffect: 
+    explicitModCount: 0
+  legendaryFishTemplate:
+    fishName: 
+    description: 
+    icon: {fileID: 0}
+    baseFishType: {fileID: 0}
+    rarity: 0
+    speedMultiplier: 1
+    sizeMultiplier: 1
+    forceMultiplier: 1
+    expValue: 100
+    gearDropChance: 0.5
+    gearRarityBonus: 0
+    glowEffect: 
+    explicitModCount: 0
+--- !u!4 &1601569434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601569432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.92237, y: 3.877064, z: -0.119896814}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1601569435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601569432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e0ba2161ee5db47acd0e0ac6b72ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishTypes: []
 --- !u!1 &1679288192 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 413395819783983821, guid: 73eb21df3cecb60459e551b48ca437ac, type: 3}
@@ -45441,7 +45748,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2117467376724834699, guid: c34ef99ff09efec41af62a888f8e6836, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1013860170}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c34ef99ff09efec41af62a888f8e6836, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -45457,7 +45767,9 @@ SceneRoots:
   - {fileID: 1591427347}
   - {fileID: 932208587}
   - {fileID: 1096971445}
+  - {fileID: 160904622}
   - {fileID: 541145550}
   - {fileID: 2056596171}
   - {fileID: 1114806895}
   - {fileID: 621256830}
+  - {fileID: 1601569434}

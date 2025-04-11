@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Precision Rod Template
   m_EditorClassIdentifier: 
   templateName: Precision Rod
-  icon: {fileID: -7012814559099258065, guid: 7165426d80acd7340b02e400371d15f8, type: 3}
+  icon: {fileID: 4547441396451419903, guid: 4f93010cc132e9145b1d16728c8644e4, type: 3}
   attributeFocus: 3
   baseStrength: 0
   baseAgility: 3

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd4ec38c03904934ebde371c935ff65f, type: 3}
-  m_Name: Basic Rod Template
+  m_Name: Strong Hat 1
   m_EditorClassIdentifier: 
-  templateName: Basic Rod
-  icon: {fileID: 172228888226951912, guid: 86c31285d5e24e247aadb16b10d6e7f8, type: 3}
-  attributeFocus: 1
-  baseStrength: 3
+  templateName: Smart Hat
+  icon: {fileID: -5636281575875647791, guid: 00f0f6abc78758e489b2677aa449204b, type: 3}
+  attributeFocus: 2
+  baseStrength: 0
   baseAgility: 0
-  baseIntelligence: 0
+  baseIntelligence: 3

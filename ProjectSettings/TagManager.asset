@@ -10,6 +10,7 @@ TagManager:
   - Item
   - Sort Point
   - Interactible
+  - OccupiedLure
   layers:
   - Default
   - TransparentFX

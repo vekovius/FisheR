@@ -137,7 +137,7 @@ public class StateController : MonoBehaviour
 
     public void FishCaught(GameObject fish)
     {
-        Debug.Log($"Fish caught: {fish.name}");
+        //Debug.Log($"Fish caught: {fish.name}");
 
         OnFishCaught?.Invoke(fish);
         
@@ -146,10 +146,10 @@ public class StateController : MonoBehaviour
         FishAI fishAI = fish.GetComponent<FishAI>();
         if (fishAI != null && fishAI.fishType != null)
         {
-            Debug.Log($"Fish type: {fishAI.fishType.name}");      
+            //Debug.Log($"Fish type: {fishAI.fishType.name}");      
         }
 
-        Debug.Log($"Fish data: {fishAI.fishData}");
+        //Debug.Log($"Fish data: {fishAI.fishData}");
        
         
         //Find and destroy lure 
@@ -170,6 +170,9 @@ public class StateController : MonoBehaviour
         SerializableFishItem fishData = fishAI.fishData;
         Rarity lootRarity = fishData.rarity;
        
+        Debug.Log(fishData);
+        Debug.Log(lootRarity);
+
         if (fishData != null)
         {
             //Apply rarity bonus if any
@@ -202,6 +205,11 @@ public class StateController : MonoBehaviour
 
         // Find and destoy only the lure 
         GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
+        if (lure == null)
+        {
+            Debug.Log("No lure found!");
+            return;
+        }
         if (lure != null)
         {
             //Get reference to the hooked fish before destoying lure

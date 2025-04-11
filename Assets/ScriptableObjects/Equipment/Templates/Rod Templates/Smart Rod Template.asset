@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smart Rod Template
   m_EditorClassIdentifier: 
   templateName: Smart Rod
-  icon: {fileID: -7012814559099258065, guid: 7165426d80acd7340b02e400371d15f8, type: 3}
+  icon: {fileID: 5813991433086041604, guid: 5c66b8d370cc72d4d951f625886c7954, type: 3}
   attributeFocus: 2
   baseStrength: 0
   baseAgility: 0

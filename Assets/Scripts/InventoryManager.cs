@@ -67,4 +67,21 @@ public class InventoryManager : MonoBehaviour
 
         newItem.InitializeItem(itemFish);
     }
+
+    public bool TryAddItemToInventorySlot(GameObject itemObject)
+    {
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            if (slot.transform.childCount == 0)
+            {
+                itemObject.transform.SetParent(slot.transform);
+                itemObject.transform.localPosition = Vector3.zero;
+                return true;
+            }
+        }
+
+        Debug.LogWarning("No open inventory slots to return item");
+        return false;
+    }
+
 }

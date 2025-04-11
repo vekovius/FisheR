@@ -45,6 +45,11 @@ public class EquipmentManager : MonoBehaviour
 
     public void EquipItem(SerializableEquipmentItem item)
     {
+        if (item == null)
+        {
+            Debug.LogWarning("Attempted to equip a null item.");
+            return;
+        }
         switch (item.equipmentType)
         {
             case EquipmentType.Rod: equippedRod = item;

@@ -37,6 +37,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
+
         transform.position = Input.mousePosition;
     }
 
@@ -44,10 +45,18 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (itemData == null)
+        {
+            Debug.Log("Item has no equipment type.");
+            return;
+        }
+
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
@@ -67,7 +76,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             else
             {
                 EquipmentManager.Instance.EquipItem(itemData);
-
                 EquipmentSlot targetSlot = EquipmentManager.Instance.GetSlotForType(itemData.equipmentType);
                 if (targetSlot == null)
                 {

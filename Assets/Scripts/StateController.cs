@@ -137,7 +137,7 @@ public class StateController : MonoBehaviour
 
     public void FishCaught(GameObject fish)
     {
-        Debug.Log($"Fish caught: {fish.name}");
+        //Debug.Log($"Fish caught: {fish.name}");
 
         OnFishCaught?.Invoke(fish);
         
@@ -146,14 +146,17 @@ public class StateController : MonoBehaviour
         FishAI fishAI = fish.GetComponent<FishAI>();
         if (fishAI != null && fishAI.fishType != null)
         {
-            Debug.Log($"Fish type: {fishAI.fishType.name}");      
+            //Debug.Log($"Fish type: {fishAI.fishType.name}");      
         }
+
+        //Debug.Log($"Fish data: {fishAI.fishData}");
+       
         
         //Find and destroy lure 
         GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
         if ( lure != null)
         {
-            // Clean up lure state and associated componets
+            // Clean up lure state and associated components
             CleanUpLureAndFish(lure, fish);
 
             //Destroy Lure object
@@ -163,13 +166,33 @@ public class StateController : MonoBehaviour
         //Destroy fish object
         Destroy(fish);
 
-        //generate the gear
-        GearGenerator gearGenerator = FindFirstObjectByType<GearGenerator>();
+        //Get fish data for loot generation
+        SerializableFishItem fishData = fishAI.fishData;
+        Rarity lootRarity = fishData.rarity;
+       
+        Debug.Log(fishData);
+        Debug.Log(lootRarity);
+
+        if (fishData != null)
+        {
+            //Apply rarity bonus if any
+            if (fishData.gearRarityBonus > 0)
+            {
+                int rarityIndex = (int)lootRarity + fishData.gearRarityBonus;
+                rarityIndex = Mathf.Min(rarityIndex, 4);
+                lootRarity = (Rarity)rarityIndex;
+            }
+        }
+ 
+         //Add fish item to inventory
         InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
-        EquipmentType type = (EquipmentType)UnityEngine.Random.Range(0, 7);
-        SerializableEquipmentItem item = gearGenerator.GetSerializableEquipment(type, 1, Rarity.Common);
-        inventory.addItem(item);
-    
+        //fish. item = gearGenerator.GetSerializableEquipment(type, 1, lootRarity);
+        inventory.AddItem(fishData);
+        
+
+
+        Destroy(fish);
+
         // Return to passive state
         ChangeState(passiveState);
     }
@@ -182,6 +205,11 @@ public class StateController : MonoBehaviour
 
         // Find and destoy only the lure 
         GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
+        if (lure == null)
+        {
+            Debug.Log("No lure found!");
+            return;
+        }
         if (lure != null)
         {
             //Get reference to the hooked fish before destoying lure

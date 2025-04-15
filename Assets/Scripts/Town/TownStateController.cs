@@ -17,8 +17,16 @@ public class TownStateController : MonoBehaviour
     public KeyCode inventoryKey = KeyCode.I;
     public KeyCode mapKey = KeyCode.M;
     public KeyCode settingsKey = KeyCode.Escape;
+    public GameObject buyPanel;
+    public KeyCode BuyKey = KeyCode.B;
+    public GameObject sellPanel;
+    public KeyCode SellKey = KeyCode.R;
+
+    public GameObject Player;
+    
 
     private TownPassiveState passiveState;
+    private TradeState tradeState;
 
     private void Start()
     {
@@ -58,7 +66,7 @@ public class TownStateController : MonoBehaviour
 
     private void HandleKeyInputs()
     {
-        
+     
     }
-
+    
 }

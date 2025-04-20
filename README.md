@@ -5,6 +5,7 @@ Communications Lead: Mason Dornier (Mason-Dornierk)\
 Git Master: Brock Badeaux (BrockBadeaux14)\
 Design Lead: Michael Meyers (MichaelM626)\
 Quality Assurance Tester: Jacob Atkinson (Jatki-projectsubmission)\
+Quality Assurance Tester: Ethan Moak (ethanmoak)\
 
 # About Our Software
 

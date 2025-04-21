@@ -98,8 +98,8 @@ public class BoatFishing : MonoBehaviour
 
     IEnumerator SailAway() 
     {
-        yield return new WaitForSeconds(0.5f);
         player.transform.parent = transform;
+        yield return new WaitForSeconds(0.5f);
         move = true;
 
         yield return new WaitForSeconds(1.3f);

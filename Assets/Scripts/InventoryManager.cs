@@ -6,9 +6,23 @@ using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
+    private static GameObject inventoryManagerInstance;
     public List<SerializableEquipmentItem> inventoryItems = new List<SerializableEquipmentItem>();
     public InventorySlot[] inventorySlots;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if (inventoryManagerInstance == null)
+        {
+            inventoryManagerInstance = gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void AddItem(SerializableEquipmentItem item)
     {

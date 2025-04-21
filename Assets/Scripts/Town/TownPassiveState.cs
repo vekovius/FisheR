@@ -29,51 +29,28 @@ public class TownPassiveState : StateInterface
         this.settingsKey = settingsKey;
     }
 
-    public void Start() 
-    {
-        inventoryPanel = GameObject.FindGameObjectWithTag("Inventory");
-        mapPanel = GameObject.FindGameObjectWithTag("Map");
-        settingsPanel = GameObject.FindGameObjectWithTag("Settings");
-    }
-
     public void Enter()
     {
-        //Change camera to track player
-        //CameraController cameraController = Camera.main.GetComponent<CameraController>();
+        inventoryPanel.SetActive(false);
+        mapPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-        //cameraController.target = playerObject.transform
     }
+
     public void Update()
     {
         if (Input.GetKeyDown(inventoryKey))
         {
-            if (inventoryPanel == null)
-            {
-                inventoryPanel = GameObject.FindGameObjectWithTag("Inventory");
-                inventoryPanel.transform.GetChild(0).gameObject.SetActive(true);
-                inventoryPanel = inventoryPanel.transform.GetChild(0).gameObject;
-            }
             TogglePanel(inventoryPanel);
         }
         if (Input.GetKeyDown(mapKey))
         {
-            if (mapPanel == null)
-            {
-                mapPanel = GameObject.FindGameObjectWithTag("Map");
-                mapPanel.transform.GetChild(0).gameObject.SetActive(true);
-                mapPanel = mapPanel.transform.GetChild(0).gameObject;
-            }
             TogglePanel(mapPanel);
         }    
         if (Input.GetKeyDown(settingsKey))
         {
-            if (settingsPanel == null) 
-            {
-                settingsPanel = GameObject.FindGameObjectWithTag("Settings");
-                settingsPanel.transform.GetChild(0).gameObject.SetActive(true);
-                settingsPanel = settingsPanel.transform.GetChild(0).gameObject;
-            }
-                TogglePanel(settingsPanel);
+            TogglePanel(settingsPanel);
         }
     }
 
@@ -85,7 +62,6 @@ public class TownPassiveState : StateInterface
     {
        //Simple toggle, activeSelf returns current state
        //Then SetActive will set it to negation of the return
-       
        panel.SetActive(!panel.activeSelf);
     }
 }

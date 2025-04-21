@@ -50,28 +50,15 @@ public class StateController : MonoBehaviour
 
     private void Start()
     {
-        if (powerMinigameObject == null)
-        {
-            Debug.LogError("Power minigame GameObject reference is not set");
-            return;
-        }
-
-        IPowerMinigame powerMinigame = powerMinigameObject.GetComponent<CastingMinigame>();
-        if (powerMinigame == null)
-        {
-            Debug.LogError("Power minigame component not found on the powerMinigameObject");
-            return;
-        }
-
-        passiveState = new PassiveState(inventoryPanel,mapPanel,settingsPanel,inventoryKey,mapKey,settingsKey, directionIndicator.gameObject);
-        castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, powerMinigame);
+        InitializePanels();
+        passiveState = new PassiveState(inventoryPanel, mapPanel, settingsPanel, inventoryKey, mapKey, settingsKey, directionIndicator.gameObject);
+        castState = new CastState(castSpeed, maxCastSpeed, lurePrefab, castOrigin, directionIndicator, powerMinigameObject.GetComponent<IPowerMinigame>());
         inAirState = new InAirState(waterLevel);
         inWaterState = new InWaterState();
         hookedState = new HookedState(tensionBarGameObject);
-
         ChangeState(passiveState);
-       
     }
+
     public void ChangeState(StateInterface newState)
     {
         if (currentState != null)
@@ -271,6 +258,16 @@ public class StateController : MonoBehaviour
                 Destroy(joint);
             }
         }
+    }
+
+    public void InitializePanels()
+    {
+        inventoryPanel = GameObject.FindGameObjectWithTag("Inventory");
+        inventoryPanel = inventoryPanel.transform.GetChild(0).gameObject;
+        mapPanel = GameObject.FindGameObjectWithTag("Map");
+        mapPanel = mapPanel.transform.GetChild(0).gameObject;
+        settingsPanel = GameObject.FindGameObjectWithTag("Settings");
+        settingsPanel = settingsPanel.transform.GetChild(0).gameObject;
     }
 
 }

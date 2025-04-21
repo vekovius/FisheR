@@ -30,12 +30,17 @@ public class TownStateController : MonoBehaviour
 
     private void Start()
     {
+        inventoryPanel = GameObject.FindGameObjectWithTag("Inventory");
+        inventoryPanel.transform.GetChild(0).gameObject.SetActive(true);
+        inventoryPanel = inventoryPanel.transform.GetChild(0).gameObject;
+        mapPanel = GameObject.FindGameObjectWithTag("Map");
+        mapPanel.transform.GetChild(0).gameObject.SetActive(true);
+        mapPanel = mapPanel.transform.GetChild(0).gameObject;
+        settingsPanel = GameObject.FindGameObjectWithTag("Settings");
+        settingsPanel.transform.GetChild(0).gameObject.SetActive(true);
+        settingsPanel = settingsPanel.transform.GetChild(0).gameObject;
         passiveState = new TownPassiveState(inventoryPanel,mapPanel,settingsPanel,inventoryKey,mapKey,settingsKey);
         ChangeState(passiveState);
-
-        inventoryPanel = GameObject.FindGameObjectWithTag("Inventory");
-        mapPanel = GameObject.FindGameObjectWithTag("Map");
-        settingsPanel = GameObject.FindGameObjectWithTag("Settings");
     }
 
     public void ChangeState(StateInterface newState)

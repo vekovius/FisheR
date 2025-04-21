@@ -19,6 +19,9 @@ TagManager:
   - Settings
   - Map
   - MapPanel
+  - SettingsPanel
+  - InventoryPanel
+  - DirectionIndicator
   layers:
   - Default
   - TransparentFX

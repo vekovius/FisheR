@@ -2,24 +2,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PassiveState : StateInterface
-{ 
-    private readonly GameObject inventoryPanel;
-    private readonly GameObject mapPanel;
-    private readonly GameObject settingsPanel;
-    private readonly GameObject directionIndicator;
+{
+    private GameObject inventoryPanel;
+    private GameObject mapPanel;
+    private GameObject settingsPanel;
+    private GameObject directionIndicator;
 
     public KeyCode inventoryKey;
     public KeyCode mapKey;
     public KeyCode settingsKey;
 
     public PassiveState(
-        GameObject inventoryPanel, 
-        GameObject mapPanel, 
-        GameObject settingsPanel, 
+        GameObject inventoryPanel,
+        GameObject mapPanel,
+        GameObject settingsPanel,
         KeyCode inventoryKey,
-        KeyCode mapKey, 
+        KeyCode mapKey,
         KeyCode settingsKey,
-        GameObject directionIndicator = null)
+        GameObject directionIndicator = null
+        )
     {
         this.inventoryPanel = inventoryPanel;
         this.mapPanel = mapPanel;
@@ -32,6 +33,10 @@ public class PassiveState : StateInterface
 
     public void Enter()
     {
+        inventoryPanel.SetActive(false);
+        mapPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
         //Change camera to track player
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -41,9 +46,8 @@ public class PassiveState : StateInterface
         {
             directionIndicator.SetActive(true);
         }
-
-
     }
+
     public void Update()
     {
         if (Input.GetKeyDown(inventoryKey))
@@ -53,7 +57,7 @@ public class PassiveState : StateInterface
         if (Input.GetKeyDown(mapKey))
         {
             TogglePanel(mapPanel);
-        }    
+        }
         if (Input.GetKeyDown(settingsKey))
         {
             TogglePanel(settingsPanel);
@@ -66,8 +70,14 @@ public class PassiveState : StateInterface
 
     void TogglePanel(GameObject panel)
     {
-       //Simple toggle, activeSelf returns current state
-       //Then SetActive will set it to negation of the return
+        if (panel == null)
+        {
+            Debug.LogError("Panel is not assigned in the TogglePanel method.");
+            GameObject.FindGameObjectWithTag(panel.name).SetActive(false);
+            return;
+        }
+        //Simple toggle, activeSelf returns current state
+        //Then SetActive will set it to negation of the return
         panel.SetActive(!panel.activeSelf);
     }
 }

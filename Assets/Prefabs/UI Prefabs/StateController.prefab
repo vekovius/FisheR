@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912b8e0e99842ff42b77c1da5fbe6c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 2047372667826523869, guid: 6b57d5f7907d37d45a2d396fcb6d3dd1, type: 3}
   inventoryPanel: {fileID: 0}
   mapPanel: {fileID: 0}
   settingsPanel: {fileID: 0}

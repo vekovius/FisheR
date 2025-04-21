@@ -20,11 +20,7 @@ public class PlayerScript : MonoBehaviour
     {
        rb = GetComponent<Rigidbody2D>();
        animator = GetComponent<Animator>();
-
-        if (leftBoat)
-        {
-            transform.parent = transform;
-        }
+        leftBoat = false;
     }
 
     // Update is called once per frame

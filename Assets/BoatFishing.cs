@@ -11,35 +11,72 @@ public class BoatFishing : MonoBehaviour
     public bool startBoat = false;
     public bool boatMoving = false;
     public bool move;
+    public bool firstLoad;
 
     private Rigidbody2D rb;
     private Animator camAnimator;
     public float speed;
 
     public string sceneName;
+    public Transform destination;
+    public Transform playerDestination;
+
+    private Animator animator;
 
     void Start()
     {
+        boatMoving = true;
+        firstLoad = true;
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         camAnimator = Camera.main.GetComponent<Animator>();
+        animator =  GetComponent<Animator>();
+
+        animator.ResetTrigger("Arrive");
+        animator.ResetTrigger("Leave");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (startBoat && Input.GetKeyDown(KeyCode.E) && !boatMoving)
+        if (firstLoad)
         {
-            boatMoving = true;
-            player.GetComponent<PlayerScript>().Boat();
+            player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.up * speed;
+            rb.linearVelocity = Vector2.up * speed;
 
-            StartCoroutine(SailAway());
+            if (Vector2.Distance(transform.position, destination.position) <= 0.2f) 
+            {
+                rb.linearVelocity = Vector2.zero;
+                player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+                
+
+                player.transform.parent = null;
+                player.transform.position = playerDestination.position;
+                player.GetComponent<PlayerScript>().leftBoat = true;
+                
+                transform.eulerAngles = new Vector3(0,0,0);
+
+                animator.SetTrigger("Arrive");
+                boatMoving = false;
+                firstLoad = false;
+            }
         }
-
-        if (move) 
+        else
         {
-            player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.down * speed;
-            rb.linearVelocity = Vector2.down * speed;
+            if (startBoat && Input.GetKeyDown(KeyCode.E) && !boatMoving)
+            {
+                animator.SetTrigger("Leave");
+                boatMoving = true;
+                player.GetComponent<PlayerScript>().Boat();
+
+                StartCoroutine(SailAway());
+            }
+
+            if (move)
+            {
+                player.GetComponent<Rigidbody2D>().linearVelocity = Vector2.down * speed;
+                rb.linearVelocity = Vector2.down * speed;
+            }
         }
     }
 

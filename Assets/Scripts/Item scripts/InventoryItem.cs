@@ -11,6 +11,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [Header("Item Info")]
     public Image image;
     public Transform parentAfterDrag;
+    private bool inSellSlot;
+    private GameObject sellSlot;
 
     public void InitializeItem(SerializableEquipmentItem newItem)
     {
@@ -43,10 +45,30 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (inSellSlot) 
+        {
+            sellSlot.GetComponent<SellPanel>().Display(gameObject);
+        }
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+    }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
 
+        if(collision.gameObject.tag == "Sell Item") 
+        {
+            sellSlot = collision.gameObject;
+            inSellSlot = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Sell Item")
+        {
+            inSellSlot = false;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)

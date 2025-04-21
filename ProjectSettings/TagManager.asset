@@ -13,6 +13,12 @@ TagManager:
   - OccupiedLure
   - EquipmentSlot
   - Boundary
+  - Sell Item
+  - Inventory
+  - UIManager
+  - Settings
+  - Map
+  - MapPanel
   layers:
   - Default
   - TransparentFX

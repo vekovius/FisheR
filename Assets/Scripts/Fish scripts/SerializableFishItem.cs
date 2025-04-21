@@ -21,4 +21,5 @@ public class SerializableFishItem
     public int gearRarityBonus = 0;
     public string glowEffect = "";
     public int explicitModCount = 0;
+    public float value;
 }

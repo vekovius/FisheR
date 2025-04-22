@@ -8,6 +8,9 @@ using UnityEngine.Rendering.Universal;
 public class StateController : MonoBehaviour
 {
     public ParticleSystem ps;
+    public AudioSource lureBreak;
+    public AudioSource fishCaught;
+    public AudioSource fishCast;
 
     public static event Action<GameObject> OnFishCaught;
     public static event Action OnFishEscaped;
@@ -115,6 +118,7 @@ public class StateController : MonoBehaviour
         
         if (currentState is CastState && Input.GetKeyUp(castKey))
         {
+            fishCast.Play();
             ChangeState(inAirState);
         }
 
@@ -199,6 +203,8 @@ public class StateController : MonoBehaviour
         //fish. item = gearGenerator.GetSerializableEquipment(type, 1, lootRarity);
         inventory.AddItem(fishData);
         
+        fishCaught.Play();
+
         // Note: Fish is already destroyed above (line 175), no need to destroy it again here
         
         // Return to passive state
@@ -254,7 +260,8 @@ public class StateController : MonoBehaviour
                             fishRb.AddTorque(UnityEngine.Random.Range(-0.5f, 0.5f), ForceMode2D.Impulse);
                         }
                     }
-                    
+
+                    lureBreak.Play();
                     // Destroy the fish after a few seconds (when it's off-screen)
                     // This keeps it from permanently staying in the scene
                     Destroy(hookedFish, 5f);

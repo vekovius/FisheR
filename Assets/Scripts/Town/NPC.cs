@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour
     public GameObject dialogueUI;
     public TMP_Text dialogueTextComponent;
     public GameObject sellUI;
+    public GameObject MoneyPanel;
     public GameObject buyUI;
     public GameObject inventoryUI;
     public string type = "B"; 
@@ -22,12 +23,31 @@ public class NPC : MonoBehaviour
 
     void Start()
     {
+        inventoryUI = GameObject.FindGameObjectWithTag("Inventory");
+        inventoryUI = inventoryUI.transform.GetChild(0).gameObject;
+        //sellUI = GameObject.FindGameObjectWithTag("SellPanel");
+        if (sellUI == null)
+        {
+            Debug.LogError("Sell UI not found!");
+        }
+        //sellUI = sellUI.transform.GetChild(0).gameObject;
+        //sellUI.SetActive(false);
+        if (inventoryUI == null)
+        {
+            Debug.LogError("Inventory UI not found!");
+        }
+
         RB = Player.GetComponent<Rigidbody2D>();
         RBN = CharacterNP.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        if (inventoryUI == null) 
+        {
+            inventoryUI = GameObject.FindGameObjectWithTag("InventoryPanel");
+        }
+        
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             if (dialogueUI.activeSelf)
@@ -45,11 +65,13 @@ public class NPC : MonoBehaviour
             if (buyUI.activeSelf)
             {
                 buyUI.SetActive(false);
+                MoneyPanel.SetActive(false);
                 inventoryUI.SetActive(false);
             }
             else
             {
                 buyUI.SetActive(true);
+                MoneyPanel.SetActive(true);
                 inventoryUI.SetActive(true);
 
             }
@@ -59,11 +81,13 @@ public class NPC : MonoBehaviour
             if (sellUI.activeSelf)
             {
                 sellUI.SetActive(false);
+                MoneyPanel.SetActive(false);
                 inventoryUI.SetActive(false);
             }
             else
             {
                 sellUI.SetActive(true);
+                MoneyPanel.SetActive(true);
                 inventoryUI.SetActive(true);
 
             }
@@ -87,6 +111,7 @@ public class NPC : MonoBehaviour
             sellUI.SetActive(false);
             buyUI.SetActive(false);
             inventoryUI.SetActive(false);
+            MoneyPanel.SetActive(false);
         }
     }
 }

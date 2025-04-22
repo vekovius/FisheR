@@ -178,8 +178,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Terry
   dialogueText: This is my house. Please don't rob me.
+  isPlayerInRange: 0
   dialogueUI: {fileID: 0}
   dialogueTextComponent: {fileID: 0}
+  sellUI: {fileID: 0}
+  buyUI: {fileID: 0}
+  inventoryUI: {fileID: 0}
+  type: S
   Player: {fileID: 0}
   CharacterNP: {fileID: 6381425719959181977}
 --- !u!61 &1471335300164277588

@@ -22,6 +22,10 @@ TagManager:
   - SettingsPanel
   - InventoryPanel
   - DirectionIndicator
+  - MoneyPanel
+  - SellFishSlot
+  - SellButton
+  - SellPanel
   layers:
   - Default
   - TransparentFX

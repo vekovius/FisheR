@@ -3,14 +3,14 @@ using TMPro;
 
 public class MoneyUI : MonoBehaviour
 {
-    public int money;
     public TMP_Text moneyText;
     public GameObject moneyPanel;
 
-    public void SetMoneyText(int money){
-        moneyText.text = money.ToString();
+    public void SetMoneyText(){
+        
+        moneyText.text = PlayerClass.instance.gold.ToString();
     }
     private void Start(){
-        SetMoneyText(money);
+        SetMoneyText();
     }
 }

@@ -73,6 +73,7 @@ public class FishGenerator : MonoBehaviour
         //Apply name
         fish.fishName = $"{rarity} {fish.fishName}";
 
+
         //Apply description
         UpdateFishDescription(fish);
 
@@ -183,6 +184,7 @@ public class FishGenerator : MonoBehaviour
             fish.gearRarityBonus = template.gearRarityBonus;
             fish.glowEffect = template.glowEffect;
             fish.explicitModCount = template.explicitModCount;
+            fish.value = template.value;
         }
     }
 

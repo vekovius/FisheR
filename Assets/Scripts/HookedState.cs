@@ -387,7 +387,7 @@ public class HookedState : StateInterface
                 if (fishRb != null)
                 {
                     // Add random force in all directions to simulate line tension spike
-                    Vector2 randomDirection = Random.insideUnitCircle.normalized;
+                    Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
                     fishRb.AddForce(randomDirection * (scaledPenalty * 0.5f), ForceMode2D.Impulse);
                     
                     // Find player to calculate fish escape direction

@@ -124,8 +124,10 @@ public class StateController : MonoBehaviour
             if (currentState is HookedState)
             {
                 // For hooked state, this means the fish escaped
+                // FishEscaped() handles the state change internally after animation
                 FishEscaped();
-                ChangeState(passiveState);
+                // Don't immediately change state - let the escape animation play first
+                // The FishEscaped method will change to passive state via SeeFishLeave coroutine
             }
             else if (currentState is InAirState || currentState is InWaterState)
             {
@@ -197,10 +199,8 @@ public class StateController : MonoBehaviour
         //fish. item = gearGenerator.GetSerializableEquipment(type, 1, lootRarity);
         inventory.AddItem(fishData);
         
-
-
-        Destroy(fish);
-
+        // Note: Fish is already destroyed above (line 175), no need to destroy it again here
+        
         // Return to passive state
         ChangeState(passiveState);
     }
@@ -211,35 +211,99 @@ public class StateController : MonoBehaviour
 
         OnFishEscaped?.Invoke();
 
-        // Find and destoy only the lure 
+        // Find the lure and hooked fish
         GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
         if (lure != null)
         {
-            //Get reference to the hooked fish before destoying lure
+            // Get reference to the hooked fish before modifying lure
             LureStateController lureState = lure.GetComponent<LureStateController>();
             GameObject hookedFish = lureState?.HookedFish;
 
             if (hookedFish != null)
             {
+                // Clean up connections between lure and fish
                 CleanUpLureAndFish(lure, hookedFish);
+                
+                // Make the fish swim away naturally instead of destroying it
+                FishAI fishAI = hookedFish.GetComponent<FishAI>();
+                if (fishAI != null)
+                {
+                    // Re-enable fish AI to allow natural swimming
+                    fishAI.enabled = true;
+                    
+                    // Get reference to fish rigidbody to apply escape movement
+                    Rigidbody2D fishRb = hookedFish.GetComponent<Rigidbody2D>();
+                    if (fishRb != null)
+                    {
+                        // Find player to determine escape direction
+                        GameObject player = GameObject.FindGameObjectWithTag("Player");
+                        if (player != null)
+                        {
+                            // Calculate direction away from player
+                            Vector2 escapeDirection = ((Vector2)hookedFish.transform.position - (Vector2)player.transform.position).normalized;
+                            
+                            // Apply strong escape impulse in that direction and slightly downward
+                            escapeDirection.y -= 0.3f; // Add downward component for natural escape
+                            escapeDirection = escapeDirection.normalized;
+                            
+                            // Apply the escape impulse - stronger for bigger fish
+                            float escapeForce = 8f + (fishAI.transform.localScale.x * 4f);
+                            fishRb.AddForce(escapeDirection * escapeForce, ForceMode2D.Impulse);
+                            
+                            // Add slight random rotation to make escape look more natural
+                            fishRb.AddTorque(UnityEngine.Random.Range(-0.5f, 0.5f), ForceMode2D.Impulse);
+                        }
+                    }
+                    
+                    // Destroy the fish after a few seconds (when it's off-screen)
+                    // This keeps it from permanently staying in the scene
+                    Destroy(hookedFish, 5f);
+                }
             }
 
-            StartCoroutine(SeeFishLeave(2f));
-
-
+            // Wait for fish escape animation before returning to passive state and cleaning up
+            StartCoroutine(FishAndLureCleanup(lure, 2f));
+            
+            // Note: We don't destroy the lure immediately - we do it in the coroutine
+            // to ensure the fish has time to swim away first
         }
-
-        //PARTICLE EFFECT
-        Instantiate(ps, lure.transform.position, Quaternion.identity);
-
-        //Destroy Lure object
-        Destroy(lure);
     }
 
     IEnumerator SeeFishLeave(float time)
     {
         yield return new WaitForSeconds(time);
 
+        // Return to passive state
+        ChangeState(passiveState);
+    }
+    
+    IEnumerator FishAndLureCleanup(GameObject lure, float time)
+    {
+        // First add a small broken line particle effect (for line snap)
+        if (ps != null && lure != null)
+        {
+            // Scale down the particle effect for a more subtle line break
+            GameObject particles = Instantiate(ps, lure.transform.position, Quaternion.identity).gameObject;
+            ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
+            if (particleSystem != null)
+            {
+                // Make particles less dramatic - subtle line snap instead of explosion
+                var main = particleSystem.main;
+                main.startSpeed = main.startSpeed.constant * 0.5f;
+                main.startSize = main.startSize.constant * 0.5f;
+                main.maxParticles = main.maxParticles / 2;
+            }
+        }
+        
+        // Wait to let the fish swim away animation play
+        yield return new WaitForSeconds(time);
+        
+        // Now destroy the lure object after the delay
+        if (lure != null)
+        {
+            Destroy(lure);
+        }
+        
         // Return to passive state
         ChangeState(passiveState);
     }

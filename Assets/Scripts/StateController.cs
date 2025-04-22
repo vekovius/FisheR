@@ -118,10 +118,28 @@ public class StateController : MonoBehaviour
             ChangeState(inAirState);
         }
 
+        // Recast ability - pressing R during any fishing state (InAir, InWater)
         if (Input.GetKeyDown(KeyCode.R))
         {
-            FishEscaped();
-            ChangeState(passiveState);
+            if (currentState is HookedState)
+            {
+                // For hooked state, this means the fish escaped
+                FishEscaped();
+                ChangeState(passiveState);
+            }
+            else if (currentState is InAirState || currentState is InWaterState)
+            {
+                // For other fishing states, allow recasting
+                GameObject lure = GameObject.FindWithTag("Lure");
+                if (lure != null)
+                {
+                    Destroy(lure);
+                }
+                
+                // Return to passive state then immediately to cast state
+                ChangeState(passiveState);
+                ChangeState(castState);
+            }
         } 
     }
 

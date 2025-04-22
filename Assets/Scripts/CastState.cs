@@ -70,10 +70,12 @@ public class CastState : StateInterface
         currentLure = Object.Instantiate(lurePrefab, castOrigin.position, Quaternion.identity);
         Rigidbody2D rb = currentLure.GetComponent<Rigidbody2D>();
 
+        // Set normal gravity for in-air physics
+        rb.gravityScale = 1.0f;
+
         //Use the tracked power value 
         float appliedPowerValue = currentPowerBarValue;
         castSpeed = maxCastSpeed * appliedPowerValue;
-
         
         rb.AddForce(castDirection * castSpeed, ForceMode2D.Impulse);
     }

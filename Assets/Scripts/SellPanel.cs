@@ -6,32 +6,29 @@ using UnityEngine.EventSystems;
 public class SellPanel : MonoBehaviour
 {
     public TextMeshProUGUI cost;
+    public TextMeshProUGUI currentMoney;
     private float value;
     public MoneyUI moneyUI;
-    public Button sellButton;
+    public GameObject sellButton;
     public GameObject moneyPanel;
-    SellFishSlot sellFishSlot;
+    public GameObject sellPanelObject;
+    public SellFishSlot sellFishSlot;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {
         moneyPanel = GameObject.FindGameObjectWithTag("MoneyPanel");
-        sellFishSlot = GameObject.FindGameObjectWithTag("SellFishSlot").GetComponent<SellFishSlot>();
-
+        sellPanelObject = GameObject.FindGameObjectWithTag("SellPanel");
+        cost = moneyPanel.GetComponentInChildren<TextMeshProUGUI>();
         if (moneyUI == null)
         {
             moneyUI = FindAnyObjectByType<MoneyUI>();
         }
 
-        if (sellButton != null)
-        {
-            sellButton.clicked += SellItem;
-        }
-        else
-        {
-            Debug.LogError("Sell button is not assigned in the inspector.");
-        }
+        sellButton = GameObject.FindGameObjectWithTag("SellButton");
+
+        sellFishSlot = GameObject.FindGameObjectWithTag("SellFishSlot").GetComponent<SellFishSlot>();
 
     }
 
@@ -49,24 +46,33 @@ public class SellPanel : MonoBehaviour
 
     public void SellItem()
     {
-        if (sellFishSlot == null)
+        if (sellFishSlot == null || sellFishSlot.gameObject.GetComponentInChildren<InventoryItem>().itemFish == null)
         {
             Debug.LogError("SellFishSlot is null. Cannot sell.");
             return;
         }
+        value = sellFishSlot.gameObject.GetComponentInChildren<InventoryItem>().itemFish.value;
+        
 
-        PlayerClass player = FindAnyObjectByType<PlayerClass>();
+        Debug.Log("Selling item: " + sellFishSlot.gameObject.name);
+        Debug.Log("Item value: " + value);
 
-        if (player != null)
+        InventoryItem fishItem = sellFishSlot.GetComponentInChildren<InventoryItem>();
+        if (fishItem == null)
+        {
+            Debug.LogError("No fish item found in SellFishSlot.");
+            return;
+        }
+
+        if (PlayerClass.instance != null)
         {
             if (moneyUI != null)
             {
-                player.gold += Mathf.RoundToInt(value);
-                moneyUI.money = player.gold;
-                moneyUI.SetMoneyText(player.gold);
+                PlayerClass.instance.gold += Mathf.RoundToInt(value);
+                moneyUI.SetMoneyText();
             }
-            sellFishSlot = null;
-            cost.text = "0$";
+            Destroy(fishItem.gameObject);
+            //currentMoney.text = PlayerClass.instance.gold.ToString() + "$";
         }
         else
         {

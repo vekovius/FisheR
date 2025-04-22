@@ -19,6 +19,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         itemData = newItem;
         image = GetComponent<Image>();
         image.sprite = itemData.icon;
+        transform.localScale = new Vector3(1, 1, 1);
     }
     public void InitializeItem(SerializableFishItem newItem)
     {
@@ -27,6 +28,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         itemFish = newItem;
         image = GetComponent<Image>();
         image.sprite = itemFish.icon;
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
     //Drag and drop
@@ -35,6 +37,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -51,6 +54,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         image.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

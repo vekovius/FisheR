@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SellFishSlot : MonoBehaviour//, IDropHandler
+public class SellFishSlot : MonoBehaviour, IDropHandler
 {
-    /*
+    
     public FishType fishType;
 
     public void OnDrop(PointerEventData eventData)
@@ -12,6 +12,7 @@ public class SellFishSlot : MonoBehaviour//, IDropHandler
         {
             GameObject droppedObject = eventData.pointerDrag;
             if (droppedObject == null) return;
+            Debug.Log("Dropped object: " + droppedObject.name);
 
             InventoryItem inventoryItem = droppedObject.GetComponent<InventoryItem>();
 
@@ -22,7 +23,4 @@ public class SellFishSlot : MonoBehaviour//, IDropHandler
 
         }
     }
-
-    */
-
 }

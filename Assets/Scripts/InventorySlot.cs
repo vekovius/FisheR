@@ -10,6 +10,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             GameObject dropped = eventData.pointerDrag;
             InventoryItem item = dropped.GetComponent<InventoryItem>();
             item.parentAfterDrag = transform;
+            transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }

@@ -7571,7 +7571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5516965830095180926, guid: ae161cb93c554f544a478f6ebcf55580, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -11.000061
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 5516965830095180926, guid: ae161cb93c554f544a478f6ebcf55580, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7810,7 +7810,7 @@ SpriteRenderer:
   m_SortingLayerID: -1720030993
   m_SortingLayer: 19
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -3331326770824888208, guid: 878c4384f0ba28a40a9aa01d6bf5b5c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15670,6 +15670,7 @@ MonoBehaviour:
   - {fileID: 1096971446}
   populationUpdateInterval: 30
   timeScale: 1
+  populationMultiplier: 2.5
   showPopulationStats: 0
   lastPopulationUpdateTime: 0
   gameTime: 0

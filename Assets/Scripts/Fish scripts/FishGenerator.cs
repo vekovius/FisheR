@@ -135,7 +135,48 @@ public class FishGenerator : MonoBehaviour
         if (template != null)
         {
             fish.speedMultiplier = template.speedMultiplier;
-            fish.sizeMultiplier = template.sizeMultiplier;
+            
+            // Create truly natural size variations with actual randomization within school types
+            // Base size with random factors applied
+            float baseSize;
+            float randomFactor;
+            
+            switch (rarity)
+            {
+                case Rarity.Common:
+                    // Tiny fish (minnows) - very small
+                    baseSize = 0.2f;
+                    randomFactor = UnityEngine.Random.Range(-0.05f, 0.05f);
+                    break;
+                case Rarity.Uncommon:
+                    // Small fish - noticeable difference from tiny
+                    baseSize = 0.3f;
+                    randomFactor = UnityEngine.Random.Range(-0.04f, 0.05f);
+                    break;
+                case Rarity.Rare:
+                    // Medium fish - clear distinction from small
+                    baseSize = 0.45f;
+                    randomFactor = UnityEngine.Random.Range(-0.05f, 0.07f);
+                    break;
+                case Rarity.Epic:
+                    // Large fish - significantly bigger
+                    baseSize = 0.65f;
+                    randomFactor = UnityEngine.Random.Range(-0.05f, 0.1f);
+                    break;
+                case Rarity.Legendary:
+                    // Trophy fish - dramatically larger
+                    baseSize = 0.85f;
+                    randomFactor = UnityEngine.Random.Range(0.0f, 0.15f);
+                    break;
+                default:
+                    baseSize = 0.4f;
+                    randomFactor = UnityEngine.Random.Range(-0.05f, 0.1f);
+                    break;
+            }
+            
+            // Apply size with natural variation
+            fish.sizeMultiplier = baseSize + randomFactor;
+            
             fish.forceMultiplier = template.forceMultiplier;
             fish.expValue = template.expValue;
             fish.gearDropChance = template.gearDropChance;

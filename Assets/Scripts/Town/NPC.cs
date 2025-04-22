@@ -22,12 +22,29 @@ public class NPC : MonoBehaviour
 
     void Start()
     {
+        inventoryUI = GameObject.FindGameObjectWithTag("Inventory");
+        inventoryUI = inventoryUI.transform.GetChild(0).gameObject;
+        sellUI = GameObject.FindGameObjectWithTag("Sell Item");
+        if (sellUI == null)
+        {
+            Debug.LogError("Sell UI not found!");
+        }
+        //sellUI = sellUI.transform.GetChild(0).gameObject;
+        if (inventoryUI == null)
+        {
+            Debug.LogError("Inventory UI not found!");
+        }
         RB = Player.GetComponent<Rigidbody2D>();
         RBN = CharacterNP.GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        if (inventoryUI == null) 
+        {
+            inventoryUI = GameObject.FindGameObjectWithTag("InventoryPanel");
+        } 
+
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             if (dialogueUI.activeSelf)

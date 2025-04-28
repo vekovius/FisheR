@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: ff6232ddd7dbff84d94e1a5fc5f1e13b
+  - enabled: 1
+    path: Assets/Scenes/Swamp.unity
+    guid: 06b50c654400d4c41a63df6ad361f925
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

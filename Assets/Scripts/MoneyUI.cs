@@ -8,7 +8,7 @@ public class MoneyUI : MonoBehaviour
 
     public void SetMoneyText(){
         
-        moneyText.text = PlayerClass.instance.gold.ToString();
+    //    moneyText.text = PlayerClass.instance.gold.ToString();
     }
     private void Start(){
         SetMoneyText();

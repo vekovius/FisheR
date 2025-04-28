@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     public float speed;
     public GameObject interactionMarker;
 
+    public GameObject lifePreserver;
     public GameObject boat;
     public bool leftBoat = true;
 
@@ -103,5 +104,12 @@ public class PlayerScript : MonoBehaviour
         animator.SetTrigger("Boat");
         transform.position = boat.transform.position;
         animator.ResetTrigger("Boat");
+    }
+
+    public void LifePreserver()
+    {
+        leftBoat = false; 
+        transform.position = lifePreserver.transform.position;
+        transform.parent = lifePreserver.transform;
     }
 }

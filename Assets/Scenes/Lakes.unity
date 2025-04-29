@@ -31652,8 +31652,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managedFishTypes:
   - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
+  - {fileID: 11400000, guid: 20e4313363317604196370423313ef99, type: 2}
   spawnRegions:
   - {fileID: 1096971446}
+  - {fileID: 794993646}
   populationUpdateInterval: 30
   timeScale: 1
   populationMultiplier: 2.5

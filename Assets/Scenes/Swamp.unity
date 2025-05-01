@@ -4982,8 +4982,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishTypes:
-  - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
-  spawnFromCenterRad: 5
+  - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
+  - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
+  - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
+  spawnFromCenterRad: 10
 --- !u!4 &89424144
 Transform:
   m_ObjectHideFlags: 0
@@ -7318,11 +7321,113 @@ MonoBehaviour:
   maxY: 27
   enableBoundaries: 1
   allowYMovement: 0
+--- !u!1 &384307050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 384307052}
+  - component: {fileID: 384307051}
+  m_Layer: 0
+  m_Name: TigerfishSpawn Region
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &384307051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384307050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 50, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 10
+  maxDepth: 30
+  regionID: Tigerfish
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: Tigerfish
+--- !u!4 &384307052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384307050}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27, y: -4.6, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &390013885 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8472231016599380570, guid: 65c8bcd76dd66c146a76ead907d87e7e, type: 3}
   m_PrefabInstance: {fileID: 2054698287}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &483218510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 483218512}
+  - component: {fileID: 483218511}
+  m_Layer: 0
+  m_Name: PiranhaSpawnRegion
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &483218511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483218510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 10
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: Piranha
+--- !u!4 &483218512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483218510}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27, y: 5.8, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &541145548
 GameObject:
   m_ObjectHideFlags: 0
@@ -13757,9 +13862,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   managedFishTypes:
-  - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
+  - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
+  - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
+  - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
   spawnRegions:
   - {fileID: 1096971446}
+  - {fileID: 483218511}
+  - {fileID: 1144382896}
+  - {fileID: 384307051}
   populationUpdateInterval: 30
   timeScale: 1
   populationMultiplier: 2.5
@@ -29066,7 +29177,7 @@ GameObject:
   - component: {fileID: 1096971445}
   - component: {fileID: 1096971446}
   m_Layer: 0
-  m_Name: BassSpawnRegion
+  m_Name: CatfishSpawnRegion
   m_TagString: FishBounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29102,10 +29213,61 @@ MonoBehaviour:
   size: {x: 3.1, y: 2.7}
   waterSurfaceY: 16
   minDepth: 0
-  maxDepth: 10
+  maxDepth: 22
   regionID: 
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
-  speciesID: Bass
+  speciesID: Catfish
+--- !u!1 &1144382895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1144382897}
+  - component: {fileID: 1144382896}
+  m_Layer: 0
+  m_Name: SnakeHeadSpawn Region
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1144382896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144382895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 50, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 10
+  maxDepth: 30
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: SnakeHead
+--- !u!4 &1144382897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144382895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27, y: -4.6, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1164011215
 GameObject:
   m_ObjectHideFlags: 0
@@ -36784,8 +36946,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishTypes:
-  - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
   - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
+  - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
+  - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
   fishMods:
   - modName: Haste
     modTiers:
@@ -36902,8 +37066,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishTypes:
-  - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
   - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
+  - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
+  - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
 --- !u!1 &1629500169
 GameObject:
   m_ObjectHideFlags: 0
@@ -74235,6 +74401,9 @@ SceneRoots:
   - {fileID: 1591427347}
   - {fileID: 932208587}
   - {fileID: 1096971445}
+  - {fileID: 483218512}
+  - {fileID: 1144382897}
+  - {fileID: 384307052}
   - {fileID: 541145550}
   - {fileID: 2056596171}
   - {fileID: 5362956797031934276}

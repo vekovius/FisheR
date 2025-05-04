@@ -158,16 +158,15 @@ public class StateController : MonoBehaviour
         Debug.Log("Generating loot for caught fish...");
 
         FishAI fishAI = fish.GetComponent<FishAI>();
-        if (fishAI != null && fishAI.fishType != null)
-        {
-            //Debug.Log($"Fish type: {fishAI.fishType.name}");      
-        }
-
-        //Debug.Log($"Fish data: {fishAI.fishData}");
-       
+        Debug.Log($"Fish Unlocked Bestiary ID = {fishAI.fishData.bestiaryID}");
+        Bestiary.bestiary.RecordFishCaught(fishAI);
+        Bestiary.bestiary.UnlockFishEntry(fishAI);
         
-        //Find and destroy lure 
-        GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
+    
+
+
+    //Find and destroy lure 
+    GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
         if ( lure != null)
         {
             // Clean up lure state and associated components

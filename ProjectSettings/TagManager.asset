@@ -26,6 +26,9 @@ TagManager:
   - SellFishSlot
   - SellButton
   - SellPanel
+  - ConfirmationPanel
+  - YesButton
+  - NoButton
   layers:
   - Default
   - TransparentFX

@@ -25,6 +25,13 @@ public class Bestiary : MonoBehaviour
         public float largestSizeCaught;
         public Rarity rarity;
     }
+    private Dictionary<Rarity, int> _rarity = new Dictionary<Rarity, int>()
+{
+    {Rarity.Common, 0},
+    {Rarity.Uncommon, 1},
+    {Rarity.Rare, 2},
+    {Rarity.Epic, 3}
+};
 
     private void Start()
     {
@@ -77,7 +84,7 @@ public class Bestiary : MonoBehaviour
             _catchRecords[fishID].largestSizeCaught = fish.transform.localScale.x;
         }
         // Track highest rarity (assuming higher enum values = rarer)
-        if (fish.fishData.rarity > _catchRecords[fishID].rarity)
+        if (_rarity[fish.fishData.rarity] > _rarity[_catchRecords[fishID].rarity])
             _catchRecords[fishID].rarity = fish.fishData.rarity;
 
     }
@@ -108,7 +115,7 @@ public class Bestiary : MonoBehaviour
 
         ageText.text = $"<b>AGE:</b> {fish.age:F1} mins"; // F1 = 1 decimal place
 
-        sizeText.text = $"<b>SIZE:</b> {GetSizeCategory(fish.transform.localScale.x)} " +
+        sizeText.text = $"<b>SIZE:</b> {GetSizeCategory(_catchRecords[id].largestSizeCaught)} " +
                         $"| Record: {_catchRecords[id].largestSizeCaught:F1}x";
 
         counterText.text = $"<b>CAUGHT:</b> {_catchRecords[id].timesCaught}";

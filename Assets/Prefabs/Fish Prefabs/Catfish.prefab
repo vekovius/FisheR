@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1720030993
-  m_SortingLayer: 16
+  m_SortingLayer: 19
   m_SortingOrder: 0
   m_Sprite: {fileID: 1898798987767113856, guid: cd2f807e1934bf44da71150c60cf0aea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -165,6 +165,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87296c39aa592a34e9f2655e9a971112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishData:
+    fishName: 
+    description: 
+    icon: {fileID: 0}
+    baseFishType: {fileID: 0}
+    rarity: 0
+    bestiaryID: 1
+    caughtCounter: 0
+    speedMultiplier: 1
+    sizeMultiplier: 1
+    forceMultiplier: 1
+    expValue: 100
+    gearDropChance: 0.5
+    gearRarityBonus: 0
+    glowEffect: 
+    explicitModCount: 0
+    value: 0
   fishType: {fileID: 0}
   currentRegion: {fileID: 0}
   homePosition: {x: 0, y: 0}

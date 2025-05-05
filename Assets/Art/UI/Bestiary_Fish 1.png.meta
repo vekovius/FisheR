@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bestiary_Fish 1_0: -4365546633708726963
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

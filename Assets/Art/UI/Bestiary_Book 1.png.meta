@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bestiary_Book 1_0: 1238191905944401823
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

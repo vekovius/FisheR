@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
-  m_Name: NilePerch
+  m_Name: BlueFinTrevally
   m_EditorClassIdentifier: 
-  speciesID: NilePerch
-  prefab: {fileID: 2491004836648192844, guid: 253a0e4809aeb384cbac980490170a7a, type: 3}
+  speciesID: BlueFinTrevally
+  prefab: {fileID: 2491004836648192844, guid: 83f371890a1164f48846cec72e0e82b5, type: 3}
   spawnWeight: 0
   spawnRegion: {fileID: 0}
-  schoolSizeMin: 2
-  schoolSizeMax: 2
-  targetPopulation: 2
-  maxPopulation: 2
+  schoolSizeMin: 3
+  schoolSizeMax: 10
+  targetPopulation: 8
+  maxPopulation: 10
   spawnRate: 0.1
   naturalDeathRate: 0.05
   preferredDepthMin: 2

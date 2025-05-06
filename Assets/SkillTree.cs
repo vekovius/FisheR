@@ -83,7 +83,6 @@ public class SkillTree : MonoBehaviour
             {
                 HookedState.tensionDecreaseRate += 7f;
             }
-            //else if(skillId == "
 
             Debug.Log("Bought skill");
             bought = true;

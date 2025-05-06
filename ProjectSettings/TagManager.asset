@@ -31,6 +31,7 @@ TagManager:
   - NoButton
   - InventoryManager
   - Fire
+  - IceCube
   layers:
   - Default
   - TransparentFX

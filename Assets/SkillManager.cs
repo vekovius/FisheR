@@ -7,6 +7,8 @@ public class SkillManager : MonoBehaviour
     public GameObject panel;
     private bool open = false;
 
+    public AudioSource clip;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -32,6 +34,8 @@ public class SkillManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P)) 
         {
+            clip.Play();
+
             if (!open) 
             {
                 panel.SetActive(true);

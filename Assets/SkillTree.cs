@@ -28,8 +28,8 @@ public class SkillTree : MonoBehaviour
 
     private void Start()
     {
-        yesClip = GameObject.FindGameObjectWithTag("YesClip").GetComponent<AudioSource>();
-        noClip = GameObject.FindGameObjectWithTag("NoClip").GetComponent<AudioSource>();
+        yesClip = GameObject.FindGameObjectWithTag("YesSound").GetComponent<AudioSource>();
+        noClip = GameObject.FindGameObjectWithTag("NoSound").GetComponent<AudioSource>();
     }
 
     public void ClickSkill() 

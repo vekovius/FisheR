@@ -29,6 +29,7 @@ TagManager:
   - ConfirmationPanel
   - YesButton
   - NoButton
+  - InventoryManager
   layers:
   - Default
   - TransparentFX

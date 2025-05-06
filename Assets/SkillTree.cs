@@ -67,24 +67,28 @@ public class SkillTree : MonoBehaviour
 
     public void BuySkill() 
     {
-        //if have money then skill
-        mask.SetActive(false);
-
-        if(useNextSkill) 
+        if (GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold > cost)
         {
-            nextSkill.GetComponent<SkillTree>().unlocked = true;
+            GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold -= cost;
+            mask.SetActive(false);
+
+            if (useNextSkill)
+            {
+                nextSkill.GetComponent<SkillTree>().unlocked = true;
+            }
+
+            //whatever the skill does i guess just copy the buySkill and name it BuySkillBuff or whatever
+
+            Debug.Log("Bought skill");
+            bought = true;
+            yesButton.onClick.RemoveListener(BuySkill);
+            noButton.onClick.RemoveListener(Exit);
+            confirmationPanel.SetActive(false);
         }
-
-        //Buff() or whatever the skill does make it a method
-
-        Debug.Log("Bought skill");
-        bought = true;
-        yesButton.onClick.RemoveListener(BuySkill);
-        noButton.onClick.RemoveListener(Exit);
-        confirmationPanel.SetActive(false);
-
-        //else not enough money
-        //Exit();
+        else 
+        {
+            Exit();
+        }
     }
 
     public void Exit() 
@@ -95,10 +99,5 @@ public class SkillTree : MonoBehaviour
         yesButton.onClick.RemoveListener(BuySkill);
         noButton.onClick.RemoveListener(Exit);
         confirmationPanel.SetActive(false);
-    }
-
-    void Buff() 
-    {
-
     }
 }

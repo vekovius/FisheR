@@ -5,12 +5,17 @@ public class MoneyUI : MonoBehaviour
 {
     public TMP_Text moneyText;
     public GameObject moneyPanel;
+    private GameObject inventory;
 
-    public void SetMoneyText(){
-        
-    //    moneyText.text = PlayerClass.instance.gold.ToString();
-    }
-    private void Start(){
+   
+    private void Start()
+    {
+        inventory = GameObject.FindGameObjectWithTag("InventoryManager");
         SetMoneyText();
+    }
+
+    public void SetMoneyText()
+    {
+        moneyText.text = inventory.GetComponent<InventoryManager>().gold + "$";
     }
 }

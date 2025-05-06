@@ -10,6 +10,8 @@ public class InventoryManager : MonoBehaviour
     public List<SerializableEquipmentItem> inventoryItems = new List<SerializableEquipmentItem>();
     public InventorySlot[] inventorySlots;
 
+    public float gold;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);

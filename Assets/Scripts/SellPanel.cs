@@ -13,13 +13,14 @@ public class SellPanel : MonoBehaviour
     public GameObject moneyPanel;
     public GameObject sellPanelObject;
     public SellFishSlot sellFishSlot;
-
+    private GameObject inventory;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {
         moneyPanel = GameObject.FindGameObjectWithTag("MoneyPanel");
         sellPanelObject = GameObject.FindGameObjectWithTag("SellPanel");
+        inventory = GameObject.FindGameObjectWithTag("InventoryManager");
         cost = moneyPanel.GetComponentInChildren<TextMeshProUGUI>();
         if (moneyUI == null)
         {
@@ -68,11 +69,13 @@ public class SellPanel : MonoBehaviour
         {
             if (moneyUI != null)
             {
-                PlayerClass.instance.gold += Mathf.RoundToInt(value);
+                inventory.GetComponent<InventoryManager>().gold += Mathf.RoundToInt(value);
+                //PlayerClass.instance.gold += Mathf.RoundToInt(value);
                 moneyUI.SetMoneyText();
             }
             Destroy(fishItem.gameObject);
-            //currentMoney.text = PlayerClass.instance.gold.ToString() + "$";
+
+            currentMoney.text = inventory.GetComponent<InventoryManager>().gold + "$";
         }
         else
         {

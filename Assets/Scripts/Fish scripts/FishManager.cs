@@ -1,9 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FishManager : MonoBehaviour
 {
-    [System.Serializable]
     public class PopulationData
     {
         public FishType fishType; //Type of fish
@@ -17,6 +18,11 @@ public class FishManager : MonoBehaviour
     public List<SpawnRegion> spawnRegions = new List<SpawnRegion>(); //List of population data for each fish type
     public float populationUpdateInterval = 60f; //Interval for updating the population data in seconds
     public float timeScale = 1f; //Scale for time, used to speed up or slow down the simulation
+    
+    [Header("Fish Quantity Settings")]
+    [Tooltip("Multiplier for target population. Higher values = more fish")]
+    [Range(1f, 10f)]
+    public float populationMultiplier = 5f; // Significantly increased to 5x more fish
 
     [Header("Debug")]
     public bool showPopulationStats = true;
@@ -26,6 +32,8 @@ public class FishManager : MonoBehaviour
     public float lastPopulationUpdateTime = 0f; //Last time the population data was updated
     public float gameTime = 0f; //Current game time in seconds
 
+    [Header("Fish Generator")]
+    public FishGenerator fishGenerator;
 
     private void Start()
     {
@@ -42,8 +50,8 @@ public class FishManager : MonoBehaviour
             populations[fishType.speciesID] = data; //Add the population data to the dictionary
         }
 
-        //Inital population setup
-        PerformIntialSpawning();
+        //Initial population setup
+        PerformInitialSpawning();
 
         //Start enviromental cycle
         
@@ -64,25 +72,68 @@ public class FishManager : MonoBehaviour
     }
 
 
-    private void PerformIntialSpawning()
+    private void PerformInitialSpawning()
     {
         foreach (FishType fishType in managedFishTypes)
         {
-            int initialCount = fishType.targetPopulation / 2; //Spawn half
+            int initialCount = Mathf.RoundToInt(fishType.targetPopulation * populationMultiplier); //Spawn full multiplied target for more fish
 
-            //Find stuitable spawn region for the fish type
+            //Find suitable spawn region for the fish type
             List<SpawnRegion> suitableRegions = FindSuitableRegions(fishType);
             if (suitableRegions.Count > 0)
             {
-                int fishPerRegion = initialCount / suitableRegions.Count; //Distribute fish evenly across suitable regions
-                int remainder = initialCount % suitableRegions.Count;
-
-                for (int i = 0; i < suitableRegions.Count; i++)
+                // Create multiple smaller schools rather than one big school
+                // This prevents all fish being clustered in one location
+                int numberOfSchools = Mathf.Max(3, initialCount / 8); // At least 3 schools, or more for larger populations
+                
+                // Calculate fish per school, ensuring some variation in school sizes
+                List<int> schoolSizes = new List<int>();
+                int remainingFish = initialCount;
+                
+                for (int i = 0; i < numberOfSchools && remainingFish > 0; i++)
                 {
-                    int fishToSpawn = fishPerRegion;
-                    if (i == 0) fishToSpawn += remainder; //Add any remainder to the first region
-
-                    SpawnFishGroup(fishType, suitableRegions[i], fishToSpawn);
+                    // Create naturally varied school sizes
+                    int baseSize = remainingFish / (numberOfSchools - i);
+                    int variation = Mathf.RoundToInt(baseSize * 0.4f); // Up to 40% variation in school size
+                    int schoolSize = baseSize + UnityEngine.Random.Range(-variation, variation);
+                    
+                    // Ensure school size is at least 1 and doesn't exceed remaining fish
+                    schoolSize = Mathf.Clamp(schoolSize, 1, remainingFish);
+                    schoolSizes.Add(schoolSize);
+                    remainingFish -= schoolSize;
+                }
+                
+                // Spawn each school in a different location throughout the water body
+                foreach (int schoolSize in schoolSizes)
+                {
+                    // Choose a random region for this school
+                    SpawnRegion region = suitableRegions[UnityEngine.Random.Range(0, suitableRegions.Count)];
+                    
+                    // Generate a fish type with appropriate rarity based on size and position
+                    SerializableFishItem serializableFishItem;
+                    
+                    // Create natural rarity distribution - rare/epic fish spawn less frequently
+                    float rarityRoll = UnityEngine.Random.value;
+                    if (rarityRoll < 0.6f) // 60% common or uncommon
+                    {
+                        // Smaller fish are more common
+                        serializableFishItem = fishGenerator.GenerateFish(fishType, 1, 
+                            UnityEngine.Random.value < 0.7f ? Rarity.Common : Rarity.Uncommon);
+                    }
+                    else if (rarityRoll < 0.9f) // 30% rare or medium
+                    {
+                        // Medium fish are less common
+                        serializableFishItem = fishGenerator.GenerateFish(fishType, 1, Rarity.Rare);
+                    }
+                    else // 10% epic or legendary
+                    {
+                        // Large fish are rare
+                        serializableFishItem = fishGenerator.GenerateFish(fishType, 1, 
+                            UnityEngine.Random.value < 0.8f ? Rarity.Epic : Rarity.Legendary);
+                    }
+                    
+                    // Spawn the fish group with this rarity and size
+                    SpawnFishGroup(fishType, region, schoolSize, serializableFishItem);
                 }
             }
         }
@@ -104,7 +155,7 @@ public class FishManager : MonoBehaviour
     }
 
 
-    private void SpawnFishGroup(FishType fishType, SpawnRegion region, int count)
+    private void SpawnFishGroup(FishType fishType, SpawnRegion region, int count, SerializableFishItem serializableFishItem)
     {
         //Create a parent object for the school
         GameObject schoolParent = new GameObject(fishType.speciesID + " School");
@@ -112,18 +163,75 @@ public class FishManager : MonoBehaviour
         //Get population data
         PopulationData populationData = populations[fishType.speciesID];
 
-        //Random postion within region for school center
-        Vector2 schoolCenter = region.GetRandomPosition();
+        // Get the bounds of the entire scene rather than just the spawn region
+        // This will allow fish to spread across the entire water body
+        
+        // First get the camera bounds to determine the full available width
+        Camera mainCamera = Camera.main;
+        float fullSceneWidth = 50f; // Default fallback width
+        
+        if (mainCamera != null)
+        {
+            // Calculate the full width of the scene based on camera's orthographic size
+            float height = 2f * mainCamera.orthographicSize;
+            float width = height * mainCamera.aspect;
+            fullSceneWidth = width * 1.5f; // Extend beyond visible area
+        }
+        
+        // Determine a weight factor for positioning (0-1 range)
+        float weightFactor = UnityEngine.Random.value; // Random weight factor for this school
+        
+        // Position fish based on their weight, but across the full scene width
+        Vector2 regionCenter = (Vector2)region.transform.position;
+        
+        // Generate position across entire width but respect the depth based on weight
+        float xPos = UnityEngine.Random.Range(-fullSceneWidth/2, fullSceneWidth/2);
+        float yPos = region.GetYPositionForWeightedDepth(weightFactor);
+        
+        Vector2 schoolCenter = new Vector2(xPos, yPos);
         schoolParent.transform.position = schoolCenter;
 
-        //Spawn indivudual fishies
         for (int i = 0; i < count; i++)
         {
-            //Random position within the region for each fish
-            Vector2 spawnPosition = schoolCenter + new Vector2(Random.Range(-2f, 2f), Random.Range(-2f, 2f));
+            // More natural school formations with proper variation
+            // Fish in the same school should follow natural schooling patterns
+            
+            // Calculate formation position:
+            // - Smaller variance for schooling fish
+            // - Allow some stragglers
+            bool isStraggler = UnityEngine.Random.value < 0.25f; // 25% chance of straggler for more natural distribution
+            
+            // Use polar coordinates for more natural, non-rectangular distribution
+            float distance;
+            float angle;
+            
+            if (isStraggler) {
+                // Stragglers can be anywhere in the water body, much more spread out
+                distance = UnityEngine.Random.Range(3.0f, 20.0f); // Much wider range
+                angle = UnityEngine.Random.Range(0f, 360f); // Any direction
+            } else {
+                // School members have more natural, organic distribution
+                // Natural school formations are elliptical, not rectangular
+                distance = UnityEngine.Random.Range(0.5f, 5.0f); // Closer to school center
+                angle = UnityEngine.Random.Range(0f, 360f); // Any direction but closer
+            }
+            
+            // Convert polar to cartesian coordinates for more natural-looking distribution
+            float xVariance = distance * Mathf.Cos(angle * Mathf.Deg2Rad);
+            float yVariance = distance * Mathf.Sin(angle * Mathf.Deg2Rad) * 0.4f; // Flattened vertically
+                
+            Vector2 spawnPosition = schoolCenter + new Vector2(xVariance, yVariance);
 
             //Create fish instance
-            GameObject fishObj = Instantiate(fishType.prefab, spawnPosition, Quaternion.identity);
+            //Get the FishGenerator component from the FishManager
+            if (fishGenerator == null)
+            {
+                Debug.LogError("FishGenerator component not found on FishManager. Please add it.");
+                return;
+            }
+
+            
+            GameObject fishObj = Instantiate(fishType.prefab, spawnPosition, Quaternion.identity); //Instantiate the fish prefab
             fishObj.transform.parent = schoolParent.transform; //Set the parent to the school object
 
             //Set up fish AI
@@ -133,7 +241,7 @@ public class FishManager : MonoBehaviour
                 fishAI = fishObj.AddComponent<FishAI>(); //Add FishAI component if not present
             }
 
-            fishAI.Initialize(fishType, region, schoolCenter); //Initialize fish AI with type and region
+            fishAI.Initialize(fishType, region, schoolCenter, serializableFishItem); //Initialize fish AI 
 
             //Subscribe to fish events
             fishAI.OnFishDeath += HandleFishDeath; //Subscribe to the death event
@@ -159,7 +267,8 @@ public class FishManager : MonoBehaviour
             data.currentPopulation = data.activeFish.Count; //Update the current population count
 
             //Check if we need to spawn more fish
-            if (data.currentPopulation < fishType.targetPopulation)
+            int adjustedTargetPopulation = Mathf.RoundToInt(fishType.targetPopulation * populationMultiplier);
+            if (data.currentPopulation < adjustedTargetPopulation)
             {
                 //Calculate spawn probability based n time since last spawn
                 float timeSinceLastSpawn = gameTime - data.lastSpawnTime;
@@ -168,8 +277,8 @@ public class FishManager : MonoBehaviour
                 if (Random.value < spawnChance)
                 {
                     int fishToSpawn = Mathf.Min(
-                        Random.Range(1, 3), // //Randomly spawn 1-2 fish
-                        fishType.targetPopulation - data.currentPopulation //Ensure we don't exceed target population
+                        Random.Range(2, 6), // Randomly spawn 2-5 fish at once for faster repopulation
+                        adjustedTargetPopulation - data.currentPopulation // Ensure we don't exceed adjusted target population
                     );
 
                     if (fishToSpawn > 0)
@@ -178,8 +287,33 @@ public class FishManager : MonoBehaviour
                         List<SpawnRegion> suitableRegions = FindSuitableRegions(fishType); //Find suitable regions for spawning
                         if (suitableRegions.Count > 0)
                         {
-                            SpawnRegion region = suitableRegions[UnityEngine.Random.Range(0, suitableRegions.Count)]; //Select a random suitable region
-                            SpawnFishGroup(fishType, region, fishToSpawn);
+                            // Select a random region far from existing fish to prevent clustering
+                            SpawnRegion region = suitableRegions[Random.Range(0, suitableRegions.Count)];
+                            
+                            // Create varied fish sizes with natural distribution
+                            SerializableFishItem serializableFishItem;
+                            
+                            // Create natural size distribution based on depth and time
+                            // This creates ecological diversity - different zones have different fish
+                            float sizeRoll = UnityEngine.Random.value;
+                            
+                            // Deeper spawns tend to be larger fish
+                            if (region.maxDepth > 12f && sizeRoll > 0.6f) {
+                                // Deep water has chance for large fish
+                                serializableFishItem = fishGenerator.GenerateFish(fishType, 1, 
+                                    UnityEngine.Random.value < 0.7f ? Rarity.Epic : Rarity.Legendary);
+                            }
+                            else if (region.maxDepth > 8f && sizeRoll > 0.4f) {
+                                // Medium depths have medium fish
+                                serializableFishItem = fishGenerator.GenerateFish(fishType, 1, Rarity.Rare);
+                            }
+                            else {
+                                // Shallow waters have smaller fish
+                                serializableFishItem = fishGenerator.GenerateFish(fishType, 1, 
+                                    UnityEngine.Random.value < 0.6f ? Rarity.Common : Rarity.Uncommon);
+                            }
+                            
+                            SpawnFishGroup(fishType, region, fishToSpawn, serializableFishItem);
                         }
                     }
                 }

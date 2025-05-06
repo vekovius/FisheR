@@ -21,7 +21,19 @@ public class FishType : ScriptableObject
 
     [Header("Environmental properties")]
     public float preferredDepthMin = 2f; 
-    public float preferredDepthMax = 10f; 
+    public float preferredDepthMax = 10f;
+    [Tooltip("Minimum depth for lighter fish (lower weight)")]
+    public float lightWeightDepthMin = 3f;  // Increased to keep small fish away from surface
+    [Tooltip("Maximum depth for lighter fish (lower weight)")]
+    public float lightWeightDepthMax = 7f;  // Extended range for small fish
+    [Tooltip("Minimum depth for medium weight fish")]
+    public float mediumWeightDepthMin = 6f;  // Increased to keep medium fish in middle depths
+    [Tooltip("Maximum depth for medium weight fish")]
+    public float mediumWeightDepthMax = 12f; // Extended range for medium fish
+    [Tooltip("Minimum depth for heavier fish (higher weight)")]
+    public float heavyWeightDepthMin = 10f; // Significantly deeper for large fish
+    [Tooltip("Maximum depth for heavier fish (higher weight)")]
+    public float heavyWeightDepthMax = 18f; // Extended depth for large fish
 
     [Header("lifecycle")]
     public float growthRate = 0.1f; //Size increase per min
@@ -42,7 +54,7 @@ public class FishType : ScriptableObject
     public float cohesionWeight = 0.5f;
     public float separationWeight = 1f;
     public float wanderWeight = 1f;
-    public float homeAttractionWeight = 0.1f;
+    public float homeAttractionWeight = 0.03f; // Greatly reduced to allow fish to roam across the entire scene
     [Range(0, 360)]
     public float fieldOfView = 270f; //Field of view for the fish AI
 }

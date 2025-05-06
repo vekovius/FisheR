@@ -2,12 +2,26 @@ using UnityEngine;
 
 public class PlayerClass: MonoBehaviour
 {
-    public string Name { get; set; }
-    public int might { get; set; }
-    public int dexterity { get; set; }
-    public int magica { get; set; }
-    public float moveSpeed { get; set; }
-    public int experiencePoints {  get; set; }
-    public int gold {  get; set; }
+    public static PlayerClass instance;
+    [SerializeField] private string playerName = "DefaultName";
+    [SerializeField] private int playerMight;
+    [SerializeField] private int playerDexterity;
+    [SerializeField] private int playerMagica;
+    [SerializeField] private float playerMoveSpeed;
+    [SerializeField] private int playerExperiencePoints;
+    [SerializeField] public int gold = 0;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     
 }

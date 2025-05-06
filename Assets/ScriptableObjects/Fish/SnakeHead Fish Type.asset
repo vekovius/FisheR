@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
+  m_Name: SnakeHead Fish Type
+  m_EditorClassIdentifier: 
+  speciesID: SnakeHead
+  prefab: {fileID: 2491004836648192844, guid: 75cb9d64ac6547245992c45aca9a153e, type: 3}
+  spawnWeight: 0
+  spawnRegion: {fileID: 0}
+  schoolSizeMin: 1
+  schoolSizeMax: 5
+  targetPopulation: 3
+  maxPopulation: 6
+  spawnRate: 0.1
+  naturalDeathRate: 0.05
+  preferredDepthMin: 10
+  preferredDepthMax: 30
+  lightWeightDepthMin: 3
+  lightWeightDepthMax: 7
+  mediumWeightDepthMin: 6
+  mediumWeightDepthMax: 12
+  heavyWeightDepthMin: 10
+  heavyWeightDepthMax: 18
+  growthRate: 0.1
+  maturityAge: 5
+  maxAge: 30
+  reproductionRate: 0.002
+  hungerRate: 0.1
+  maxSpeed: 5
+  maxForce: 2
+  neighborRadius: 4
+  separationDistance: 3
+  lureAttractionRadius: 5
+  alignmentWeight: 5
+  cohesionWeight: 0.5
+  separationWeight: 1
+  wanderWeight: 1
+  homeAttractionWeight: 0.1
+  fieldOfView: 270

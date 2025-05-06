@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
   m_Name: Carp
   m_EditorClassIdentifier: 
-  speciesID: 
-  prefab: {fileID: 0}
+  speciesID: Carp
+  prefab: {fileID: 2491004836648192844, guid: f165814a16ca490428b9eb95e688578c, type: 3}
   spawnWeight: 0
   spawnRegion: {fileID: 0}
   schoolSizeMin: 4

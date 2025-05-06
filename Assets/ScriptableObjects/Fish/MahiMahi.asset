@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
-  m_Name: NilePerch
+  m_Name: MahiMahi
   m_EditorClassIdentifier: 
-  speciesID: NilePerch
-  prefab: {fileID: 2491004836648192844, guid: 253a0e4809aeb384cbac980490170a7a, type: 3}
+  speciesID: MahiMahi
+  prefab: {fileID: 2491004836648192844, guid: 14374053904a8834e85d387676ff8b66, type: 3}
   spawnWeight: 0
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2

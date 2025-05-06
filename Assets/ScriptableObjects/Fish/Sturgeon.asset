@@ -16,10 +16,10 @@ MonoBehaviour:
   prefab: {fileID: 2491004836648192844, guid: 02a910725ec8d0f4181f34f320fdf486, type: 3}
   spawnWeight: 0
   spawnRegion: {fileID: 0}
-  schoolSizeMin: 3
-  schoolSizeMax: 3
-  targetPopulation: 3
-  maxPopulation: 3
+  schoolSizeMin: 1
+  schoolSizeMax: 1
+  targetPopulation: 1
+  maxPopulation: 1
   spawnRate: 0.1
   naturalDeathRate: 0.05
   preferredDepthMin: 10
@@ -35,8 +35,8 @@ MonoBehaviour:
   maxAge: 30
   reproductionRate: 0.02
   hungerRate: 0.1
-  maxSpeed: 2
-  maxForce: 0.5
+  maxSpeed: 3
+  maxForce: 1.5
   neighborRadius: 3
   separationDistance: 3
   lureAttractionRadius: 5

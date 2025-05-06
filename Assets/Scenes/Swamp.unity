@@ -4986,6 +4986,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
   - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
   - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
+  - {fileID: 11400000, guid: e130377342484084788d5da641ce3c3e, type: 2}
   spawnFromCenterRad: 10
 --- !u!4 &89424144
 Transform:
@@ -16906,11 +16907,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
   - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
   - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
+  - {fileID: 11400000, guid: e130377342484084788d5da641ce3c3e, type: 2}
   spawnRegions:
   - {fileID: 1096971446}
   - {fileID: 483218511}
   - {fileID: 1144382896}
   - {fileID: 384307051}
+  - {fileID: 1329788231}
   populationUpdateInterval: 30
   timeScale: 1
   populationMultiplier: 2.5
@@ -46038,6 +46041,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1329788230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1329788232}
+  - component: {fileID: 1329788231}
+  m_Layer: 0
+  m_Name: TaimenSpawnRegion
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1329788231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329788230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 50, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 10
+  maxDepth: 35
+  regionID: Taimen
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: Taimen
+--- !u!4 &1329788232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1329788230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27, y: -4.6, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1462189317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48882,6 +48936,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
   - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
   - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
+  - {fileID: 11400000, guid: e130377342484084788d5da641ce3c3e, type: 2}
   fishMods:
   - modName: Haste
     modTiers:
@@ -48901,6 +48956,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -48916,6 +48973,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -48931,6 +48990,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -48946,6 +49007,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -48961,6 +49024,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -49002,6 +49067,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca3cd5b198d0b774c9b5b626a1a7f346, type: 2}
   - {fileID: 11400000, guid: 52c54b329d2ea7842bfa8fb3b82878cc, type: 2}
   - {fileID: 11400000, guid: 10b1ecabc4da28841982b3dd75ce05ac, type: 2}
+  - {fileID: 11400000, guid: e130377342484084788d5da641ce3c3e, type: 2}
 --- !u!1 &1629500169
 GameObject:
   m_ObjectHideFlags: 0
@@ -120736,6 +120802,7 @@ SceneRoots:
   - {fileID: 483218512}
   - {fileID: 1144382897}
   - {fileID: 384307052}
+  - {fileID: 1329788232}
   - {fileID: 541145550}
   - {fileID: 2056596171}
   - {fileID: 5362956797031934276}

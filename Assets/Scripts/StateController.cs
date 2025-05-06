@@ -151,7 +151,7 @@ public class StateController : MonoBehaviour
 
     public void FishCaught(GameObject fish)
     {
-        //Debug.Log($"Fish caught: {fish.name}");
+        Debug.Log($"Fish caught: {fish.name}");
 
         OnFishCaught?.Invoke(fish);
         

@@ -75,13 +75,15 @@ public class SkillTree : MonoBehaviour
             nextSkill.GetComponent<SkillTree>().unlocked = true;
         }
 
+        //Buff() or whatever the skill does make it a method
+
         Debug.Log("Bought skill");
         bought = true;
         yesButton.onClick.RemoveListener(BuySkill);
         noButton.onClick.RemoveListener(Exit);
         confirmationPanel.SetActive(false);
 
-        //else 
+        //else not enough money
         //Exit();
     }
 
@@ -93,5 +95,10 @@ public class SkillTree : MonoBehaviour
         yesButton.onClick.RemoveListener(BuySkill);
         noButton.onClick.RemoveListener(Exit);
         confirmationPanel.SetActive(false);
+    }
+
+    void Buff() 
+    {
+
     }
 }

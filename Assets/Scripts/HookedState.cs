@@ -13,7 +13,7 @@ public class HookedState : StateInterface
     private Image tensionBarMask;
     private float currentTension = 0f;
     private float maxTension = 100f;
-    private float tensionDecreaseRate = 22f;    // Much higher tension decay - significantly more challenge
+    public static float tensionDecreaseRate = 15f;    // Much higher tension decay - significantly more challenge
     private float tensionIncreaseRate = 38f;    // Higher tension buildup - high risk/reward
     private float tensionDecayPause = 0.3f;     // Very short pause - requires excellent timing
     private float lastReelTime = 0f;            // Track when player last reeled

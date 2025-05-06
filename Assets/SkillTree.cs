@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class SkillTree : MonoBehaviour
 {
+    public string skillId;
+
     public bool useNextSkill = false;
     public GameObject nextSkill;
     public bool unlocked = false;
@@ -32,7 +34,7 @@ public class SkillTree : MonoBehaviour
 
                 yesButton = GameObject.FindGameObjectWithTag("YesButton").GetComponent<Button>();
                 noButton = GameObject.FindGameObjectWithTag("NoButton").GetComponent<Button>();
-                text.text = aboutSkill;
+                text.text = aboutSkill + "(" + cost + ")";
 
                 yesButton.onClick.AddListener(BuySkill);
                 noButton.onClick.AddListener(Exit);
@@ -45,7 +47,7 @@ public class SkillTree : MonoBehaviour
 
                 yesButton.gameObject.SetActive(false);
                 noButton.onClick.AddListener(Exit);
-                text.text = aboutSkill;
+                text.text = aboutSkill + "(" + cost + ")";
 
                 Debug.Log("Show about skill");
             }
@@ -59,15 +61,15 @@ public class SkillTree : MonoBehaviour
 
             yesButton.gameObject.SetActive(false);
              noButton.onClick.AddListener(Exit);
-             text.text = aboutSkill;
+             text.text = aboutSkill + "(" + cost + ")";
 
-             Debug.Log("Show about skill");
+            Debug.Log("Show about skill");
         }
     }
 
-    public void BuySkill() 
+    public void BuySkill() //TEMPLATE
     {
-        if (GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold > cost)
+        if (GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold >= cost)
         {
             GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold -= cost;
             mask.SetActive(false);
@@ -77,7 +79,11 @@ public class SkillTree : MonoBehaviour
                 nextSkill.GetComponent<SkillTree>().unlocked = true;
             }
 
-            //whatever the skill does i guess just copy the buySkill and name it BuySkillBuff or whatever
+            if (skillId == "Buff")
+            {
+                HookedState.tensionDecreaseRate += 7f;
+            }
+            //else if{ }
 
             Debug.Log("Bought skill");
             bought = true;

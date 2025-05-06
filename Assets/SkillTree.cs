@@ -23,8 +23,19 @@ public class SkillTree : MonoBehaviour
 
     public bool bought = false;
 
+    public AudioSource yesClip;
+    public AudioSource noClip;
+
+    private void Start()
+    {
+        yesClip = GameObject.FindGameObjectWithTag("YesClip").GetComponent<AudioSource>();
+        noClip = GameObject.FindGameObjectWithTag("NoClip").GetComponent<AudioSource>();
+    }
+
     public void ClickSkill() 
     {
+        yesClip.Play();
+
         if (unlocked)
         {
             if (!bought)
@@ -67,10 +78,12 @@ public class SkillTree : MonoBehaviour
         }
     }
 
-    public void BuySkill() //TEMPLATE
+    public void BuySkill()
     {
         if (GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold >= cost)
         {
+            yesClip.Play();
+
             GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold -= cost;
             mask.SetActive(false);
 
@@ -98,6 +111,7 @@ public class SkillTree : MonoBehaviour
 
     public void Exit() 
     {
+        noClip.Play();
         Debug.Log("Exited skill");
 
         yesButton.gameObject.SetActive(true);

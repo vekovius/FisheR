@@ -32,6 +32,10 @@ TagManager:
   - InventoryManager
   - Fire
   - IceCube
+  - Lightning
+  - SkillManager
+  - YesSound
+  - NoSound
   layers:
   - Default
   - TransparentFX

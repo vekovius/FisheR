@@ -15,9 +15,15 @@ public class SellPanel : MonoBehaviour
     public SellFishSlot sellFishSlot;
     private GameObject inventory;
 
+    public AudioSource yesClip;
+    public AudioSource noClip;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {
+        yesClip = GameObject.FindGameObjectWithTag("YesSound").GetComponent<AudioSource>();
+        noClip = GameObject.FindGameObjectWithTag("NoSound").GetComponent<AudioSource>();
+
         moneyPanel = GameObject.FindGameObjectWithTag("MoneyPanel");
         sellPanelObject = GameObject.FindGameObjectWithTag("SellPanel");
         inventory = GameObject.FindGameObjectWithTag("InventoryManager");
@@ -33,12 +39,6 @@ public class SellPanel : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Display(GameObject item)
     {
         //item.transform.position = point.TransformPoint(point.transform.position
@@ -49,6 +49,7 @@ public class SellPanel : MonoBehaviour
     {
         if (sellFishSlot == null || sellFishSlot.gameObject.GetComponentInChildren<InventoryItem>().itemFish == null)
         {
+            noClip.Play();
             Debug.LogError("SellFishSlot is null. Cannot sell.");
             return;
         }
@@ -61,6 +62,7 @@ public class SellPanel : MonoBehaviour
         InventoryItem fishItem = sellFishSlot.GetComponentInChildren<InventoryItem>();
         if (fishItem == null)
         {
+            noClip.Play();
             Debug.LogError("No fish item found in SellFishSlot.");
             return;
         }
@@ -69,6 +71,7 @@ public class SellPanel : MonoBehaviour
         {
             if (moneyUI != null)
             {
+                yesClip.Play();
                 inventory.GetComponent<InventoryManager>().gold += Mathf.RoundToInt(value);
                 //PlayerClass.instance.gold += Mathf.RoundToInt(value);
                 moneyUI.SetMoneyText();

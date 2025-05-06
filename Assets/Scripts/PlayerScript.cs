@@ -100,6 +100,8 @@ public class PlayerScript : MonoBehaviour
 
     public void Boat() 
     {
+        boat.GetComponent<AudioSource>().Play();
+
         leftBoat = false;
         animator.SetTrigger("Boat");
         transform.position = boat.transform.position;
@@ -108,6 +110,8 @@ public class PlayerScript : MonoBehaviour
 
     public void LifePreserver()
     {
+        lifePreserver.GetComponent<AudioSource>().Play();
+
         leftBoat = false; 
         transform.position = lifePreserver.transform.position;
         transform.parent = lifePreserver.transform;

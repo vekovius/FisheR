@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
-  m_Name: NilePerch
+  m_Name: BlueFinTuna
   m_EditorClassIdentifier: 
-  speciesID: NilePerch
-  prefab: {fileID: 2491004836648192844, guid: 253a0e4809aeb384cbac980490170a7a, type: 3}
+  speciesID: BlueFinTuna
+  prefab: {fileID: 2491004836648192844, guid: 1057a42dde59e914791c89267ff76a7d, type: 3}
   spawnWeight: 0
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2
-  schoolSizeMax: 2
-  targetPopulation: 2
-  maxPopulation: 2
+  schoolSizeMax: 4
+  targetPopulation: 4
+  maxPopulation: 10
   spawnRate: 0.1
   naturalDeathRate: 0.05
-  preferredDepthMin: 2
+  preferredDepthMin: 5
   preferredDepthMax: 10
-  lightWeightDepthMin: 3
-  lightWeightDepthMax: 7
-  mediumWeightDepthMin: 6
-  mediumWeightDepthMax: 12
-  heavyWeightDepthMin: 10
-  heavyWeightDepthMax: 18
+  lightWeightDepthMin: 5
+  lightWeightDepthMax: 10
+  mediumWeightDepthMin: 5
+  mediumWeightDepthMax: 10
+  heavyWeightDepthMin: 5
+  heavyWeightDepthMax: 10
   growthRate: 0.1
   maturityAge: 5
   maxAge: 30

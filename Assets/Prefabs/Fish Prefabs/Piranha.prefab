@@ -171,6 +171,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 6
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1

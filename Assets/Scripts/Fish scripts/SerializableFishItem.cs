@@ -11,6 +11,8 @@ public class SerializableFishItem
     public Sprite icon;
     public FishType baseFishType;
     public Rarity rarity;
+    public int bestiaryID;
+    public int caughtCounter;
 
     // Modifier properties
     public float speedMultiplier = 1f;

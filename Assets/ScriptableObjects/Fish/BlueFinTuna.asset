@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
+  m_Name: BlueFinTuna
+  m_EditorClassIdentifier: 
+  speciesID: BlueFinTuna
+  prefab: {fileID: 2491004836648192844, guid: 1057a42dde59e914791c89267ff76a7d, type: 3}
+  spawnWeight: 0
+  spawnRegion: {fileID: 0}
+  schoolSizeMin: 2
+  schoolSizeMax: 4
+  targetPopulation: 4
+  maxPopulation: 10
+  spawnRate: 0.1
+  naturalDeathRate: 0.05
+  preferredDepthMin: 5
+  preferredDepthMax: 10
+  lightWeightDepthMin: 5
+  lightWeightDepthMax: 10
+  mediumWeightDepthMin: 5
+  mediumWeightDepthMax: 10
+  heavyWeightDepthMin: 5
+  heavyWeightDepthMax: 10
+  growthRate: 0.1
+  maturityAge: 5
+  maxAge: 30
+  reproductionRate: 0.02
+  hungerRate: 0.1
+  maxSpeed: 2
+  maxForce: 0.5
+  neighborRadius: 3
+  separationDistance: 3
+  lureAttractionRadius: 5
+  alignmentWeight: 1
+  cohesionWeight: 0.5
+  separationWeight: 1
+  wanderWeight: 1
+  homeAttractionWeight: 0.1
+  fieldOfView: 270

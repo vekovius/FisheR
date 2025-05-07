@@ -47,12 +47,14 @@ public class SellPanel : MonoBehaviour
 
     public void SellItem()
     {
-        if (sellFishSlot == null || sellFishSlot.gameObject.GetComponentInChildren<InventoryItem>().itemFish == null)
+        //Check if Sell Fish Slot has a InmventoryItem child, if not, return
+        if (sellFishSlot == null || sellFishSlot.transform.childCount == 0)
         {
             noClip.Play();
-            Debug.LogError("SellFishSlot is null. Cannot sell.");
+            Debug.Log("SellFishSlot is null. Cannot sell.");
             return;
         }
+      
         value = sellFishSlot.gameObject.GetComponentInChildren<InventoryItem>().itemFish.value;
         
 
@@ -63,7 +65,7 @@ public class SellPanel : MonoBehaviour
         if (fishItem == null)
         {
             noClip.Play();
-            Debug.LogError("No fish item found in SellFishSlot.");
+            Debug.Log("No fish item found in SellFishSlot.");
             return;
         }
 
@@ -82,7 +84,7 @@ public class SellPanel : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Could not find PlayerClass to add money");
+            Debug.Log("Could not find PlayerClass to add money");
         }
     }
 

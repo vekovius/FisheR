@@ -36,6 +36,7 @@ TagManager:
   - SkillManager
   - YesSound
   - NoSound
+  - DragPanel
   layers:
   - Default
   - TransparentFX

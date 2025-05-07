@@ -76,6 +76,7 @@ public class FishManager : MonoBehaviour
     {
         foreach (FishType fishType in managedFishTypes)
         {
+            Debug.Log("Performing initial spawning for fish type: " + fishType.speciesID);
             int initialCount = Mathf.RoundToInt(fishType.targetPopulation * populationMultiplier); //Spawn full multiplied target for more fish
 
             //Find suitable spawn region for the fish type

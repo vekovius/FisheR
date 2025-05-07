@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: Chichlid
   prefab: {fileID: 2491004836648192844, guid: 124a9f8d2265d7f4bae5bd77077dae78, type: 3}
   spawnWeight: 0
+  BestiaryID: 6
   spawnRegion: {fileID: 0}
   schoolSizeMin: 10
   schoolSizeMax: 10

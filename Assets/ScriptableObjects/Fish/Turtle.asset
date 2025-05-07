@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: Turtle
   prefab: {fileID: 2491004836648192844, guid: 35f757905a018ca40b347550c9f73f94, type: 3}
   spawnWeight: 0
+  BestiaryID: 21
   spawnRegion: {fileID: 0}
   schoolSizeMin: 1
   schoolSizeMax: 1

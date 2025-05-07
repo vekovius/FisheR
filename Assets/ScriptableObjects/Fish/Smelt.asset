@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: Smelt
   prefab: {fileID: 2491004836648192844, guid: 4a771ca2961eba64fb25bfe1cf72f238, type: 3}
   spawnWeight: 0
+  BestiaryID: 15
   spawnRegion: {fileID: 0}
   schoolSizeMin: 3
   schoolSizeMax: 8

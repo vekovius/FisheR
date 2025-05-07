@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: BlueFinTrevally
   prefab: {fileID: 2491004836648192844, guid: 83f371890a1164f48846cec72e0e82b5, type: 3}
   spawnWeight: 0
+  BestiaryID: 1
   spawnRegion: {fileID: 0}
   schoolSizeMin: 3
   schoolSizeMax: 10

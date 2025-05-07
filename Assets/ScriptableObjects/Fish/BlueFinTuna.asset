@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: BlueFinTuna
   prefab: {fileID: 2491004836648192844, guid: 1057a42dde59e914791c89267ff76a7d, type: 3}
   spawnWeight: 0
+  BestiaryID: 2
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2
   schoolSizeMax: 4

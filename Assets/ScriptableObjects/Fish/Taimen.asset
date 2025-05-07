@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: Taimen
   prefab: {fileID: 2491004836648192844, guid: 807eb2b3db600cf468fd1f71abe3920a, type: 3}
   spawnWeight: 0
+  BestiaryID: 18
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2
   schoolSizeMax: 2

@@ -6,7 +6,8 @@ public class FishType : ScriptableObject
     [Header("Basic information")]
     public string speciesID;
     public GameObject prefab; //Prefab for the fish
-    public float spawnWeight; 
+    public float spawnWeight;
+    public int BestiaryID;
 
     [Header("Spawning properties")]
     public SpawnRegion spawnRegion;

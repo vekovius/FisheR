@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: YellowPerch
   prefab: {fileID: 2491004836648192844, guid: 1e11177827630f343a37bd26288033d5, type: 3}
   spawnWeight: 0
+  BestiaryID: 23
   spawnRegion: {fileID: 0}
   schoolSizeMin: 3
   schoolSizeMax: 10

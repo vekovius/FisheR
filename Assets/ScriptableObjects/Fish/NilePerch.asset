@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: NilePerch
   prefab: {fileID: 2491004836648192844, guid: 253a0e4809aeb384cbac980490170a7a, type: 3}
   spawnWeight: 0
+  BestiaryID: 10
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2
   schoolSizeMax: 2

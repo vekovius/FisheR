@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: PacificCod
   prefab: {fileID: 2491004836648192844, guid: 6972e6314195dfe41b663c83a0989489, type: 3}
   spawnWeight: 0
+  BestiaryID: 11
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2
   schoolSizeMax: 3

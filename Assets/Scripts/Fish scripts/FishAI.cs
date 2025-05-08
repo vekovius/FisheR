@@ -51,7 +51,10 @@ public class FishAI : MonoBehaviour
 
         if (fishData != null)
         {
+            //Debug.Log("Applying fish data to fish: " + fishData.fishName);
             this.fishData = fishData;
+            Debug.Log("Fish name applied: " + this.fishData.fishName);
+            Debug.Log("Fish best id applied: " + this.fishData.bestiaryID);
             ApplyFishData();
         }
         
@@ -230,7 +233,6 @@ public class FishAI : MonoBehaviour
     private void ApplyFishData()
     {
         if (fishData == null) return;
-
         //Apply modifiers
         fishType.maxSpeed *= fishData.speedMultiplier;
         

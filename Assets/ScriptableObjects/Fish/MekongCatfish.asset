@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: MekongCatfish
   prefab: {fileID: 2491004836648192844, guid: ab14d8182ed23504eb2b2be69339df39, type: 3}
   spawnWeight: 0
+  BestiaryID: 9
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2
   schoolSizeMax: 2

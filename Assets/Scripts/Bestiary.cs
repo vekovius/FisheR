@@ -15,6 +15,7 @@ public class Bestiary : MonoBehaviour
     public TMP_Text rarityText;
     public TMP_Text counterText;
     public TMP_Text sizeText;
+    public GameObject statPanel;
 
     private Dictionary<int, FishCatchData> _catchRecords = new Dictionary<int, FishCatchData>();
 
@@ -24,6 +25,7 @@ public class Bestiary : MonoBehaviour
         public int timesCaught;
         public float largestSizeCaught;
         public Rarity rarity;
+        public float age;
     }
     private Dictionary<Rarity, int> _rarity = new Dictionary<Rarity, int>()
 {
@@ -35,7 +37,6 @@ public class Bestiary : MonoBehaviour
 
     private void Start()
     {
-        // Singleton setup (less reliable)
         if (bestiary == null)
         {
             bestiary = this;
@@ -44,7 +45,7 @@ public class Bestiary : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            return; // Skip further initialization if this is a duplicate
+            return;
         }
 
         RenameUnknown();
@@ -83,10 +84,15 @@ public class Bestiary : MonoBehaviour
         {
             _catchRecords[fishID].largestSizeCaught = fish.transform.localScale.x;
         }
-        // Track highest rarity (assuming higher enum values = rarer)
+        // Track highest rarity
         if (_rarity[fish.fishData.rarity] > _rarity[_catchRecords[fishID].rarity])
+        {
             _catchRecords[fishID].rarity = fish.fishData.rarity;
-
+        }
+        if (_catchRecords[fishID].age < fish.age)
+        {
+            _catchRecords[fishID].age = fish.age;
+        }
     }
     public FishCatchData GetCatchData(int bestiaryID)
     {
@@ -95,11 +101,13 @@ public class Bestiary : MonoBehaviour
 
     public void EnableEntry(int id)
     {
+        statPanel.SetActive(false);
         for (int i = 0; i < entries.Length; i++)
         {
             entries[i].SetActive(false);
         }
         entries[id].SetActive(true);
+
     }
     // Unlock a fish entry by FishAI reference
     public void UnlockFishEntry(FishAI fish)
@@ -110,16 +118,27 @@ public class Bestiary : MonoBehaviour
             buttons[id].interactable = true;
             buttonTexts[id].text = fishNames[id];
         }
-        rarityText.text = $"<b>RARITY:</b> {_catchRecords[id].rarity}";
-        rarityText.color = GetRarityColor(_catchRecords[id].rarity);
+        
 
-        ageText.text = $"<b>AGE:</b> {fish.age:F1} mins"; // F1 = 1 decimal place
+    }
+    public void UpdateStatsEntry(int fishID)
+    {
+        
+        rarityText.text = $"<b>RARITY:</b> {_catchRecords[fishID].rarity}";
+        rarityText.color = GetRarityColor(_catchRecords[fishID].rarity);
 
-        sizeText.text = $"<b>SIZE:</b> {GetSizeCategory(_catchRecords[id].largestSizeCaught)} " +
-                        $"| Record: {_catchRecords[id].largestSizeCaught:F1}x";
+        ageText.text = $"<b>AGE:</b> {_catchRecords[fishID].age:F1} mins";
 
-        counterText.text = $"<b>CAUGHT:</b> {_catchRecords[id].timesCaught}";
+        sizeText.text = $"<b>SIZE:</b> {GetSizeCategory(_catchRecords[fishID].largestSizeCaught)} " +
+                        $"| Record: {_catchRecords[fishID].largestSizeCaught:F1}x";
 
+        counterText.text = $"<b>CAUGHT:</b> {_catchRecords[fishID].timesCaught}";
+        statPanel.SetActive(true);
+    }
+    public void EnableDiscriptionPanel(GameObject gameObject)
+    {
+        statPanel.SetActive(false);
+        gameObject.SetActive(true);
     }
     private string GetSizeCategory(float size)
     {

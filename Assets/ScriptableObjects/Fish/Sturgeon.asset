@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: Sturgeon
   prefab: {fileID: 2491004836648192844, guid: 02a910725ec8d0f4181f34f320fdf486, type: 3}
   spawnWeight: 0
+  BestiaryID: 17
   spawnRegion: {fileID: 0}
   schoolSizeMin: 1
   schoolSizeMax: 1

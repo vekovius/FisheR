@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: Catfish
   prefab: {fileID: 2491004836648192844, guid: 27d0ef4eee317d44ab207dfaf1db9ad2, type: 3}
   spawnWeight: 0
+  BestiaryID: 5
   spawnRegion: {fileID: 0}
   schoolSizeMin: 10
   schoolSizeMax: 10

@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: PinkSnapper
   prefab: {fileID: 2491004836648192844, guid: 57eb561c1ba39fb42bffdc71521ce2ea, type: 3}
   spawnWeight: 0
+  BestiaryID: 13
   spawnRegion: {fileID: 0}
   schoolSizeMin: 2
   schoolSizeMax: 5

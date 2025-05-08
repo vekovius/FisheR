@@ -15,6 +15,7 @@ MonoBehaviour:
   speciesID: Piranha
   prefab: {fileID: 2491004836648192844, guid: 7a06f26fbf470044db4be866b4c5a478, type: 3}
   spawnWeight: 0
+  BestiaryID: 14
   spawnRegion: {fileID: 0}
   schoolSizeMin: 10
   schoolSizeMax: 10

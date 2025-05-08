@@ -117,7 +117,8 @@ public class HookedState : StateInterface
             if (collider.gameObject.GetComponent<FishAI>() != null)
             {
                 hookedFish = collider.gameObject;
-              
+                hookedFish.GetComponent<CircleCollider2D>().isTrigger = false; //lets the fish use their mass for fishing
+
                 // Attach the lure to the fish using a fixed joint
                 AttachLureToFish();
                 break;

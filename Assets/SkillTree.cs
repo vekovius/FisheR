@@ -91,7 +91,11 @@ public class SkillTree : MonoBehaviour
             GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold -= cost;
             mask.SetActive(false);
 
-            moneyPanel.GetComponent<MoneyUI>().SetMoneyText();
+            moneyPanel = GameObject.FindGameObjectWithTag("MoneyPanel");
+            if (moneyPanel != null)
+            {
+                moneyPanel.GetComponent<MoneyUI>().SetMoneyText();
+            }
 
             if (useNextSkill)
             {

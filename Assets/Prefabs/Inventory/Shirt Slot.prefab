@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4947252948082860506}
   - component: {fileID: 5931202223184505294}
   - component: {fileID: 8083052092859677115}
-  - component: {fileID: 4681689141290223405}
   - component: {fileID: 8962215959350947037}
+  - component: {fileID: 4309673321460925017}
   m_Layer: 5
   m_Name: Shirt Slot
-  m_TagString: Untagged
+  m_TagString: EquipmentSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,18 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4681689141290223405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8549337015326118626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86d69b1e791793e4fae7c78d76565920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8962215959350947037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +101,16 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &4309673321460925017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8549337015326118626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 782fffe122403fb4cbd07d9ef7a00dea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 5

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
 
 public class StateController : MonoBehaviour
 {
@@ -196,10 +197,59 @@ public class StateController : MonoBehaviour
                 lootRarity = (Rarity)rarityIndex;
             }
         }
- 
-         //Add fish item to inventory
         InventoryManager inventory = FindFirstObjectByType<InventoryManager>();
-        //fish. item = gearGenerator.GetSerializableEquipment(type, 1, lootRarity);
+
+        if (Random.value <= fishData.gearDropChance)
+        {
+            // Find gear generator
+            GearGenerator gearGenerator = GameObject.FindAnyObjectByType<GearGenerator>();
+            if (gearGenerator != null)
+            {
+                // Get inventory manager
+                //InventoryManager inventory = GameObject.FindAnyObjectByType<InventoryManager>();
+
+                // Determine number of items to generate (1-2 based on fish rarity)
+                int itemCount = 1;
+                if ((int)fishData.rarity >= (int)Rarity.Rare)
+                {
+                    itemCount = Random.Range(1, 3); // 1-2 items for rare+ fish
+                }
+
+                // Apply fish rarity bonus to determine minimum gear rarity
+                Rarity minRarity = fishData.rarity;
+                if (fishData.gearRarityBonus > 0)
+                {
+                    int rarityIndex = (int)minRarity + fishData.gearRarityBonus;
+                    rarityIndex = Mathf.Min(rarityIndex, (int)Rarity.Legendary);
+                    minRarity = (Rarity)rarityIndex;
+                }
+
+                // Generate each gear item
+                for (int i = 0; i < itemCount; i++)
+                {
+                    // Pick random equipment type
+                    EquipmentType type = (EquipmentType)Random.Range(0, System.Enum.GetValues(typeof(EquipmentType)).Length);
+
+                    // Determine item level based on fish size (bigger fish = better gear)
+                    int itemLevel = Mathf.RoundToInt(fishData.sizeMultiplier * 10);
+                    itemLevel = Mathf.Clamp(itemLevel, 1, 30);
+
+                    // Generate the equipment item
+                    SerializableEquipmentItem gearItem = gearGenerator.GetSerializableEquipment(type, itemLevel, minRarity);
+
+                    // Add to inventory if possible
+                    if (inventory != null && gearItem != null)
+                    {
+                        inventory.AddItem(gearItem);
+                        Debug.Log($"Added {gearItem.itemName} to inventory from fish catch");
+                    }
+                }
+            }
+        }
+
+        //Add fish item to inventory
+       
+        
         inventory.AddItem(fishData);
         
         fishCaught.Play();

@@ -96372,14 +96372,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb46b07b6d40771418360545cf5800a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rodTemplates: []
-  reelTemplates: []
-  lineTemplates: []
-  lureTemplates: []
-  hatTemplates: []
-  shirtTemplates: []
-  pantsTemplates: []
-  bootsTemplates: []
+  rodTemplates:
+  - name: Strong Rod
+    icon: {fileID: 4547441396451419903, guid: 4f93010cc132e9145b1d16728c8644e4, type: 3}
+    attributeFocus: 1
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
+  reelTemplates:
+  - name: Strong Reel
+    icon: {fileID: 185195585293424875, guid: f1d50cacff332a048b8176e61d04f6ca, type: 3}
+    attributeFocus: 1
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
+  lineTemplates:
+  - name: Strong Line
+    icon: {fileID: 6865370188546897000, guid: b99c1187072983e40aceddb406be3312, type: 3}
+    attributeFocus: 1
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
+  lureTemplates:
+  - name: Strong Lure
+    icon: {fileID: 7104172822213148843, guid: 99a1809d0e1f87d4db4eb07f53fdf5aa, type: 3}
+    attributeFocus: 1
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
+  hatTemplates:
+  - name: Strong Hat
+    icon: {fileID: -1836120431684336037, guid: bb6cdcc4078dd6745a0f5edb792d0649, type: 3}
+    attributeFocus: 1
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
+  shirtTemplates:
+  - name: Stong Shirt
+    icon: {fileID: -7490180441346702064, guid: 07009ac171bbf1c4eafb712846ea2ffd, type: 3}
+    attributeFocus: 1
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
+  pantsTemplates:
+  - name: Strong Pants
+    icon: {fileID: 3102973179360859532, guid: b259d08713e23c74e851dd36b1d64eec, type: 3}
+    attributeFocus: 0
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
+  bootsTemplates:
+  - name: Strong Boots
+    icon: {fileID: 1615231392091690814, guid: ec9643fb632231742bd7d9f34464ae74, type: 3}
+    attributeFocus: 1
+    baseStrength: 1
+    baseAgility: 0
+    baseIntelligence: 0
   rodMods: []
   reelMods: []
   lineMods: []
@@ -96436,27 +96484,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1740a016c586d4f438982082f6362e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rodTemplateAssets:
-  - {fileID: 11400000, guid: 9a388a715b63c9a4e880f3df093b0caf, type: 2}
-  - {fileID: 11400000, guid: 87d8a2fb8f0796940a259afe5d83c8ae, type: 2}
-  - {fileID: 11400000, guid: 316afa8bde18e5c429814fd72e3f5a59, type: 2}
+  rodTemplateAssets: []
   reelTemplateAssets: []
-  lineTemplateAssets:
-  - {fileID: 11400000, guid: 57e4bce17582b5d4980798b295ebbda0, type: 2}
-  lureTemplateAssets:
-  - {fileID: 11400000, guid: 24df2057fc0892a43b77a9fc45d7764e, type: 2}
-  hatTemplateAssets:
-  - {fileID: 11400000, guid: 228f0ae2458af1f44a4ed297cddd260c, type: 2}
+  lineTemplateAssets: []
+  lureTemplateAssets: []
+  hatTemplateAssets: []
   shirtTemplateAssets: []
   pantsTemplateAssets: []
   bootsTemplateAssets: []
-  rodModAssets:
-  - {fileID: 11400000, guid: 8e21c48b96367f940a567545543abab7, type: 2}
-  - {fileID: 11400000, guid: e31356fe89521624c968eeaea2b236c3, type: 2}
-  - {fileID: 11400000, guid: 57cdd0f4008431e4bba2ce2ffd3244b4, type: 2}
+  rodModAssets: []
   reelModAssets: []
-  lineModAssets:
-  - {fileID: 11400000, guid: 3752082d34689e84299924a4f99cfee8, type: 2}
+  lineModAssets: []
   lureModAssets: []
   hatModAssets: []
   shirtModAssets: []
@@ -96645,6 +96683,82 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae4fd96a4e1f5dc4f97035d73549fd19, type: 3}
+--- !u!114 &5362956797031934277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8036019574721839182, guid: ae4fd96a4e1f5dc4f97035d73549fd19, type: 3}
+  m_PrefabInstance: {fileID: 5362956797031934276}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3660a689a633a1a41adc04206bf27f90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &8827289873490885927
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 958244733640509703, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_Name
+      value: FishLootGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.379518
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.004909
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.321785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943994193250330180, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7230601671678934100, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: gearGenerator
+      value: 
+      objectReference: {fileID: 2056596170}
+    - target: {fileID: 7230601671678934100, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 5362956797031934277}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c53549602700c34f8470e3ee8671404, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -96677,3 +96791,4 @@ SceneRoots:
   - {fileID: 105285016}
   - {fileID: 295182963}
   - {fileID: 1203707657}
+  - {fileID: 8827289873490885927}

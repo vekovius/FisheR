@@ -192,3 +192,5 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   currentLure: {fileID: 0}
   lureAttractionRadius: 3
+  min: {fileID: 0}
+  max: {fileID: 0}

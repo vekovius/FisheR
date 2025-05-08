@@ -151,23 +151,22 @@ public class StateController : MonoBehaviour
 
     public void FishCaught(GameObject fish)
     {
-        //Debug.Log($"Fish caught: {fish.name}");
+        Debug.Log($"Fish caught: {fish.name}");
 
         OnFishCaught?.Invoke(fish);
         
         Debug.Log("Generating loot for caught fish...");
 
         FishAI fishAI = fish.GetComponent<FishAI>();
-        if (fishAI != null && fishAI.fishType != null)
-        {
-            //Debug.Log($"Fish type: {fishAI.fishType.name}");      
-        }
-
-        //Debug.Log($"Fish data: {fishAI.fishData}");
-       
+        Debug.Log($"Fish Unlocked Bestiary ID = {fishAI.fishData.bestiaryID}");
+        Bestiary.bestiary.RecordFishCaught(fishAI);
+        Bestiary.bestiary.UnlockFishEntry(fishAI);
         
-        //Find and destroy lure 
-        GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
+    
+
+
+    //Find and destroy lure 
+    GameObject lure = GameObject.FindWithTag("Lure") ?? GameObject.FindGameObjectWithTag("OccupiedLure");
         if ( lure != null)
         {
             // Clean up lure state and associated components
@@ -236,6 +235,7 @@ public class StateController : MonoBehaviour
                 {
                     // Re-enable fish AI to allow natural swimming
                     fishAI.enabled = true;
+                    hookedFish.GetComponent<CircleCollider2D>().isTrigger = true;
                     
                     // Get reference to fish rigidbody to apply escape movement
                     Rigidbody2D fishRb = hookedFish.GetComponent<Rigidbody2D>();

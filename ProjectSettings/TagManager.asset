@@ -36,6 +36,9 @@ TagManager:
   - SkillManager
   - YesSound
   - NoSound
+  - DragPanel
+  - WaterTopRight
+  - WaterBottomLeft
   layers:
   - Default
   - TransparentFX

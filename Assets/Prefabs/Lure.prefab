@@ -4846,7 +4846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa6a33c58b77ac439d52a402cec0694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagge: IceCube
+  useFire: 0
+  useIce: 1
+  useLightning: 0
 --- !u!1 &4367804216364821834
 GameObject:
   m_ObjectHideFlags: 0
@@ -9861,7 +9863,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa6a33c58b77ac439d52a402cec0694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagge: Lightning
+  useFire: 0
+  useIce: 0
+  useLightning: 1
 --- !u!1 &8918247135327990993
 GameObject:
   m_ObjectHideFlags: 0
@@ -14708,4 +14712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa6a33c58b77ac439d52a402cec0694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagge: Fire
+  useFire: 1
+  useIce: 0
+  useLightning: 0

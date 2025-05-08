@@ -66,9 +66,12 @@ public class FishGenerator : MonoBehaviour
         fish.fishName = baseFishType.speciesID;
         fish.rarity = rarity;
         fish.icon = baseFishType.prefab.GetComponent<SpriteRenderer>().sprite;
+       
 
         //Apply rarity template
         ApplyRarityTemplate(fish, rarity);
+
+        fish.bestiaryID = baseFishType.BestiaryID;
 
         //Apply name
         fish.fishName = $"{rarity} {fish.fishName}";
@@ -185,6 +188,7 @@ public class FishGenerator : MonoBehaviour
             fish.glowEffect = template.glowEffect;
             fish.explicitModCount = template.explicitModCount;
             fish.value = template.value;
+            fish.bestiaryID = template.bestiaryID;
         }
     }
 

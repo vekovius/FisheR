@@ -10,33 +10,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfe229777d4467f49aa231f1d3116f91, type: 3}
-  m_Name: NewFishType
+  m_Name: BlueFinTuna
   m_EditorClassIdentifier: 
-  speciesID: 
-  prefab: {fileID: 0}
+  speciesID: BlueFinTuna
+  prefab: {fileID: 2491004836648192844, guid: 1057a42dde59e914791c89267ff76a7d, type: 3}
   spawnWeight: 0
+  BestiaryID: 2
   spawnRegion: {fileID: 0}
-  schoolSizeMin: 3
-  schoolSizeMax: 10
-  targetPopulation: 20
-  maxPopulation: 20
+  schoolSizeMin: 2
+  schoolSizeMax: 4
+  targetPopulation: 4
+  maxPopulation: 10
   spawnRate: 0.1
   naturalDeathRate: 0.05
-  preferredDepthMin: 2
+  preferredDepthMin: 5
   preferredDepthMax: 10
+  lightWeightDepthMin: 5
+  lightWeightDepthMax: 10
+  mediumWeightDepthMin: 5
+  mediumWeightDepthMax: 10
+  heavyWeightDepthMin: 5
+  heavyWeightDepthMax: 10
   growthRate: 0.1
   maturityAge: 5
   maxAge: 30
   reproductionRate: 0.02
   hungerRate: 0.1
-  maxSpeed: 2
+  maxSpeed: 8.13
   maxForce: 0.5
   neighborRadius: 3
   separationDistance: 3
   lureAttractionRadius: 5
   alignmentWeight: 1
   cohesionWeight: 0.5
-  separationWeight: 1
+  separationWeight: 0
   wanderWeight: 1
-  homeAttractionWeight: 0.1
+  homeAttractionWeight: 8.02
   fieldOfView: 270

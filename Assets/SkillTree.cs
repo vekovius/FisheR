@@ -26,10 +26,14 @@ public class SkillTree : MonoBehaviour
     public AudioSource yesClip;
     public AudioSource noClip;
 
+    public GameObject moneyPanel;
+
     private void Start()
     {
         yesClip = GameObject.FindGameObjectWithTag("YesSound").GetComponent<AudioSource>();
         noClip = GameObject.FindGameObjectWithTag("NoSound").GetComponent<AudioSource>();
+
+        moneyPanel = GameObject.FindGameObjectWithTag("MoneyPanel");
     }
 
     public void ClickSkill() 
@@ -87,6 +91,12 @@ public class SkillTree : MonoBehaviour
             GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>().gold -= cost;
             mask.SetActive(false);
 
+            moneyPanel = GameObject.FindGameObjectWithTag("MoneyPanel");
+            if (moneyPanel != null)
+            {
+                moneyPanel.GetComponent<MoneyUI>().SetMoneyText();
+            }
+
             if (useNextSkill)
             {
                 nextSkill.GetComponent<SkillTree>().unlocked = true;
@@ -96,7 +106,18 @@ public class SkillTree : MonoBehaviour
             {
                 HookedState.tensionDecreaseRate += 7f;
             }
-
+            else if (skillId == "Fire")
+            {
+                ParticleScriptChecker.fire = true;
+            }
+            else if (skillId == "IceCube")
+            {
+                ParticleScriptChecker.ice = true;
+            }
+            else if (skillId == "Lightning")
+            {
+                ParticleScriptChecker.lightning = true;
+            }
             Debug.Log("Bought skill");
             bought = true;
             yesButton.onClick.RemoveListener(BuySkill);

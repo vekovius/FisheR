@@ -7757,6 +7757,11 @@ MonoBehaviour:
   fishTypes:
   - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
   - {fileID: 11400000, guid: 20e4313363317604196370423313ef99, type: 2}
+  - {fileID: 11400000, guid: 2db39407553ebb14f8b2bac828927ac7, type: 2}
+  - {fileID: 11400000, guid: e8c89b5f0d2940545a3b2d925b2c54cf, type: 2}
+  - {fileID: 11400000, guid: 6c2832824813efb4bb3825e3d100cfbb, type: 2}
+  - {fileID: 11400000, guid: bc8262672d54cf54d8604eb636f6c37f, type: 2}
+  - {fileID: 11400000, guid: e53b584ace93fb2498dfd1105d204f7f, type: 2}
   spawnFromCenterRad: 5
 --- !u!4 &89424144
 Transform:
@@ -7856,7 +7861,7 @@ GameObject:
   - component: {fileID: 232229206}
   m_Layer: 0
   m_Name: WaterTopRight
-  m_TagString: FishBounds
+  m_TagString: WaterTopRight
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14224,6 +14229,57 @@ Transform:
   - {fileID: 859141871}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &679882682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 679882684}
+  - component: {fileID: 679882683}
+  m_Layer: 0
+  m_Name: SturgeonSpawnRegion
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &679882683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679882682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 30
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: Sturgeon
+--- !u!4 &679882684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679882682}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.29, y: -0.85, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &697167486
 GameObject:
   m_ObjectHideFlags: 0
@@ -14493,7 +14549,7 @@ MonoBehaviour:
   size: {x: 3.1, y: 2.7}
   waterSurfaceY: 16
   minDepth: 0
-  maxDepth: 10
+  maxDepth: 15
   regionID: 
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   speciesID: BlueGill
@@ -22173,9 +22229,19 @@ MonoBehaviour:
   managedFishTypes:
   - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
   - {fileID: 11400000, guid: 20e4313363317604196370423313ef99, type: 2}
+  - {fileID: 11400000, guid: 2db39407553ebb14f8b2bac828927ac7, type: 2}
+  - {fileID: 11400000, guid: e8c89b5f0d2940545a3b2d925b2c54cf, type: 2}
+  - {fileID: 11400000, guid: 6c2832824813efb4bb3825e3d100cfbb, type: 2}
+  - {fileID: 11400000, guid: e53b584ace93fb2498dfd1105d204f7f, type: 2}
+  - {fileID: 11400000, guid: bc8262672d54cf54d8604eb636f6c37f, type: 2}
   spawnRegions:
   - {fileID: 1096971446}
   - {fileID: 794993646}
+  - {fileID: 1876803265}
+  - {fileID: 2086097609}
+  - {fileID: 1574780571}
+  - {fileID: 679882683}
+  - {fileID: 1983882307}
   populationUpdateInterval: 30
   timeScale: 1
   populationMultiplier: 2.5
@@ -32349,7 +32415,7 @@ MonoBehaviour:
   size: {x: 3.1, y: 2.7}
   waterSurfaceY: 16
   minDepth: 0
-  maxDepth: 10
+  maxDepth: 20
   regionID: 
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   speciesID: Bass
@@ -37191,6 +37257,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1001 &1203707657
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2345611051252178813, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_Name
+      value: Dragging Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795060760227334269, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}
 --- !u!1 &1228953583
 GameObject:
   m_ObjectHideFlags: 0
@@ -44936,6 +45099,57 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6402811363553958830, guid: 65c8bcd76dd66c146a76ead907d87e7e, type: 3}
   m_PrefabInstance: {fileID: 2054698287}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1574780570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574780572}
+  - component: {fileID: 1574780571}
+  m_Layer: 0
+  m_Name: PaddleFishSpawnRegion
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1574780571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574780570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 25
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: Paddlefish
+--- !u!4 &1574780572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574780570}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.29, y: -0.85, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1586773740
 GameObject:
   m_ObjectHideFlags: 0
@@ -45060,7 +45274,7 @@ GameObject:
   - component: {fileID: 1591427347}
   m_Layer: 0
   m_Name: WaterBottomLeft
-  m_TagString: FishBounds
+  m_TagString: WaterBottomLeft
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45113,6 +45327,11 @@ MonoBehaviour:
   fishTypes:
   - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
   - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  - {fileID: 11400000, guid: 2db39407553ebb14f8b2bac828927ac7, type: 2}
+  - {fileID: 11400000, guid: e8c89b5f0d2940545a3b2d925b2c54cf, type: 2}
+  - {fileID: 11400000, guid: 6c2832824813efb4bb3825e3d100cfbb, type: 2}
+  - {fileID: 11400000, guid: e53b584ace93fb2498dfd1105d204f7f, type: 2}
+  - {fileID: 11400000, guid: bc8262672d54cf54d8604eb636f6c37f, type: 2}
   fishMods:
   - modName: Haste
     modTiers:
@@ -45132,6 +45351,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -45147,6 +45368,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -45162,6 +45385,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -45177,6 +45402,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -45192,6 +45419,8 @@ MonoBehaviour:
     icon: {fileID: 0}
     baseFishType: {fileID: 0}
     rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
     speedMultiplier: 1
     sizeMultiplier: 1
     forceMultiplier: 1
@@ -45231,6 +45460,11 @@ MonoBehaviour:
   fishTypes:
   - {fileID: 11400000, guid: da0a315cf277b834883d17a2d5d1572a, type: 2}
   - {fileID: 11400000, guid: 20e27857d6846fe4bb315a19c57e18c8, type: 2}
+  - {fileID: 11400000, guid: 2db39407553ebb14f8b2bac828927ac7, type: 2}
+  - {fileID: 11400000, guid: e8c89b5f0d2940545a3b2d925b2c54cf, type: 2}
+  - {fileID: 11400000, guid: 6c2832824813efb4bb3825e3d100cfbb, type: 2}
+  - {fileID: 11400000, guid: bc8262672d54cf54d8604eb636f6c37f, type: 2}
+  - {fileID: 11400000, guid: e53b584ace93fb2498dfd1105d204f7f, type: 2}
 --- !u!4 &1762911346 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4650265596865471412, guid: 165c98a4750252941b6f1890c30c93c1, type: 3}
@@ -48150,6 +48384,57 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1876803264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1876803266}
+  - component: {fileID: 1876803265}
+  m_Layer: 0
+  m_Name: CrappieSpawnRegion
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1876803265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876803264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 20
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: Crappie
+--- !u!4 &1876803266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876803264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.29, y: -0.85, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1922482754
 GameObject:
   m_ObjectHideFlags: 0
@@ -95473,6 +95758,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1983882306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983882308}
+  - component: {fileID: 1983882307}
+  m_Layer: 0
+  m_Name: NilePerchSpawnRegion
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1983882307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983882306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 25
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: NilePerch
+--- !u!4 &1983882308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983882306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.29, y: -0.85, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2054698287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96129,6 +96465,57 @@ MonoBehaviour:
   strengthModAsset: {fileID: 0}
   agilityModAsset: {fileID: 0}
   intelligenceModAsset: {fileID: 0}
+--- !u!1 &2086097608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2086097610}
+  - component: {fileID: 2086097609}
+  m_Layer: 0
+  m_Name: MekongCatfish
+  m_TagString: FishBounds
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2086097609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086097608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a049d9659ef2a4badff544f6667946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 3.1, y: 2.7}
+  waterSurfaceY: 16
+  minDepth: 0
+  maxDepth: 25
+  regionID: 
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  speciesID: MekongCatfish
+--- !u!4 &2086097610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086097608}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -34.29, y: -0.85, z: 0.07541399}
+  m_LocalScale: {x: 1, y: 1.36, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5362956797031934276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96273,6 +96660,11 @@ SceneRoots:
   - {fileID: 541145550}
   - {fileID: 1096971445}
   - {fileID: 794993647}
+  - {fileID: 1876803266}
+  - {fileID: 1983882308}
+  - {fileID: 2086097610}
+  - {fileID: 1574780572}
+  - {fileID: 679882684}
   - {fileID: 2056596171}
   - {fileID: 5362956797031934276}
   - {fileID: 89424144}
@@ -96284,3 +96676,4 @@ SceneRoots:
   - {fileID: 571065129}
   - {fileID: 105285016}
   - {fileID: 295182963}
+  - {fileID: 1203707657}

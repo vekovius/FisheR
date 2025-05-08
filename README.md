@@ -15,7 +15,7 @@ Our project is a game called FISHER. In this game you, the player, live in a tow
 - Windows
 # Important Links
 Kanban Board: [https://github.com/orgs/CSC-3380-Spring-2025/projects/13]\
-Designs: [link]\
+Designs: [link]\https://www.aseprite.org/
 Styles Guide(s): [[link]](https://drive.google.com/file/d/11rcm_6tIgNXGlMKhJxUB_72EvvUTFuZp/view?usp=sharing)
 
 # How to Run Dev and Test Environment

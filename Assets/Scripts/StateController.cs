@@ -235,6 +235,7 @@ public class StateController : MonoBehaviour
                 {
                     // Re-enable fish AI to allow natural swimming
                     fishAI.enabled = true;
+                    hookedFish.GetComponent<CircleCollider2D>().isTrigger = true;
                     
                     // Get reference to fish rigidbody to apply escape movement
                     Rigidbody2D fishRb = hookedFish.GetComponent<Rigidbody2D>();

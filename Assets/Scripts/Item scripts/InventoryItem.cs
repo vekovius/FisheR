@@ -11,8 +11,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [Header("Item Info")]
     public Image image;
     public Transform parentAfterDrag;
+    public GameObject DragPanel;
     private bool inSellSlot;
     private GameObject sellSlot;
+    
 
     public void InitializeItem(SerializableEquipmentItem newItem)
     {
@@ -34,9 +36,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //Drag and drop
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (DragPanel == null)
+        {
+            DragPanel = GameObject.FindGameObjectWithTag("DragPanel");
+        }
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+        transform.SetParent(DragPanel.transform);
         transform.localScale = new Vector3(1, 1, 1);
     }
 

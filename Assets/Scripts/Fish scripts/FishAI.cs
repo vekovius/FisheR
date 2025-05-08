@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
 
@@ -24,6 +25,7 @@ public class FishAI : MonoBehaviour
     public Vector2 velocity;
     public Transform currentLure = null;
     public float lureAttractionRadius = 5f; //Radius for lure attraction, fish will be attracted to lures within this radius
+    public Transform min, max;
 
     //Components
     private SpriteRenderer spriteRenderer;
@@ -68,6 +70,9 @@ public class FishAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        min = GameObject.FindGameObjectWithTag("WaterBottomLeft").transform;
+        max = GameObject.FindGameObjectWithTag("WaterTopRight").transform;
 
         Initialize(fishType, currentRegion, homePosition); //Initialize fish properties
         if (fishType == null)
@@ -168,8 +173,8 @@ public class FishAI : MonoBehaviour
         }
         
         // Only constrain X position at the far edges of the scene, not region boundaries
-        float worldMinX = -sceneWidth/2;
-        float worldMaxX = sceneWidth/2;
+        float worldMinX = min.position.x;
+        float worldMaxX = max.position.x;
         
         if (newPosition.x < worldMinX) 
         {
@@ -181,18 +186,24 @@ public class FishAI : MonoBehaviour
             newPosition.x = worldMaxX;
             velocity.x = -velocity.x * 0.5f;
         }
-            
-        // Still constrain Y position for bottom depth
-        if (currentRegion != null)
+
+
+        float worldMinY = min.position.y;
+        float worldMaxY = max.position.y;
+
+        //float minY = currentRegion.GetYPositionForDepth(currentRegion.maxDepth);
+        if (newPosition.y < worldMinY)
         {
-            float minY = currentRegion.GetYPositionForDepth(currentRegion.maxDepth);
-            if (newPosition.y < minY)
-            {
-                newPosition.y = minY;
-                velocity.y = -velocity.y * 0.5f;
-            }
+            newPosition.y = worldMinY;
+            velocity.y = -velocity.y * 0.5f;
         }
-        
+        else if (newPosition.y > worldMaxY)
+        {
+            newPosition.y = worldMaxY;
+            velocity.y = -velocity.y * 0.5f;
+        }
+
+
         rb.MovePosition(newPosition);
 
         //Set the fish rotation to match the direction of movement

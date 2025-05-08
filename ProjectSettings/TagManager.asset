@@ -29,6 +29,16 @@ TagManager:
   - ConfirmationPanel
   - YesButton
   - NoButton
+  - InventoryManager
+  - Fire
+  - IceCube
+  - Lightning
+  - SkillManager
+  - YesSound
+  - NoSound
+  - DragPanel
+  - WaterTopRight
+  - WaterBottomLeft
   layers:
   - Default
   - TransparentFX

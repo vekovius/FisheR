@@ -88,6 +88,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7626892807e81d448416fd8da550aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
+  itemData:
+    itemName: 
+    description: 
+    icon: {fileID: 0}
+    itemLevel: 0
+    strength: 0
+    agility: 0
+    intelligence: 0
+    rarity: 0
+    equipmentType: 0
+    value: 0
+  itemFish:
+    fishName: 
+    description: 
+    icon: {fileID: 0}
+    baseFishType: {fileID: 0}
+    rarity: 0
+    bestiaryID: 0
+    caughtCounter: 0
+    speedMultiplier: 1
+    sizeMultiplier: 1
+    forceMultiplier: 1
+    expValue: 100
+    gearDropChance: 0.5
+    gearRarityBonus: 0
+    glowEffect: 
+    explicitModCount: 0
+    value: 0
   image: {fileID: 796543295145924272}
   parentAfterDrag: {fileID: 0}
+  DragPanel: {fileID: 2345611051252178813, guid: 547adafdb5bf3a246b60cd3004cb1c41, type: 3}

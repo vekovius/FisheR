@@ -36,14 +36,14 @@ MonoBehaviour:
   maxAge: 30
   reproductionRate: 0.02
   hungerRate: 0.1
-  maxSpeed: 1.5
+  maxSpeed: 8.13
   maxForce: 0.5
   neighborRadius: 3
   separationDistance: 3
   lureAttractionRadius: 5
   alignmentWeight: 1
   cohesionWeight: 0.5
-  separationWeight: 1
+  separationWeight: 0
   wanderWeight: 1
-  homeAttractionWeight: 0.1
+  homeAttractionWeight: 8.02
   fieldOfView: 270

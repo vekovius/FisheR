@@ -53,6 +53,7 @@ public class Mudhole : MonoBehaviour
         firstPs.Play();
         yield return new WaitForSeconds(2f);
         firstPs.Stop();
+        GetComponent<AudioSource>().Play();
         secondPs.Play();
         yield return new WaitForSeconds(4f);
         LevelManager.Instance.LoadScene(sceneName);

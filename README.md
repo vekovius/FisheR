@@ -28,6 +28,25 @@ Styles Guide(s): [[link]](https://drive.google.com/file/d/11rcm_6tIgNXGlMKhJxUB_
 - After unity engine loads assets(may take a while on first launch) to run game in current state, start from Menu scene(to find menu scene in the project window, open assets, scenes, and select menu)
 - press the play button to compile game(on first launch the level manager will take a while to load into new scenes as they also will need to be compiled)
 - enjoy and catch all fish:)
+- 
+#Controls for the game
+- Town Scene
+  -WASD or Arrow keys for movement
+  -M for Map
+  -I for Inventory
+  -Near NPC e to talk
+  -Near NPC r to sell fish
+  -e to interact
+  -p for skills
+  -find mudhole to go to swamp 
+  -fine life perserver at the dock to go to ocean
+-Fishing
+  -Hold down space bar for casting power
+  -In water after cast arrow keys and WASD to lightly move bair
+  -When fish is hooked hold space bar for reeling in and down arrow to relieve tensions(.6 second cooldown)
+  -I inventory
+  -M Map
+  -P for skills
 ## Dependencies
 - Unity Hub(latest version6000.0.34f1)
 - Visual Studio 2022(game developement with unity workload installed for IntelliSense)

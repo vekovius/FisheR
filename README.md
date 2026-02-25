@@ -1,6 +1,6 @@
 # FISHR : Team 24
 # Members
-Project Manager: Samuel Vekovius (vekoLSU)\
+Project Manager: Samuel Vekovius (vekovius)\
 Communications Lead: Mason Dornier (Mason-Dornierk)\
 Git Master: Brock Badeaux (BrockBadeaux14)\
 Design Lead: Michael Meyers (MichaelM626)\
